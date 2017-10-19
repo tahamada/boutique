@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<h2>Ajout d'article</h2>
+	<form action="" method="POST">
+		<div class="row">
+		<label for="designation">Désignation:</label><input type="text" id="designation" name="designation">
+		<label for="prix">Prix:</label><input type="number" id="prix" name="prix" step=".01">
+		<label for="stock">Stock:</label><input type="number" name="stock" id="stock">
+		<label for="payableNFois">Payable combien de fois:</label><input type="number" name="payableNFois" id="payableNFois">
+	</form>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Gestion Categories
+{% endblock %}
+
+{% block content %}
+	<h2>Gestion des categories</h2>
+	<div class="well" id="ajoutCategorie">
+		<h4>Ajouter une categorie</h4>
+		<form action="" method="POST">
+			<div  class="form-control row" >
+				<div class='col-md-3'>
+					<label for="nom">Nom :</label> <input type="text" id="nom" name="nom">
+				</div>
+				<div class='col-md-3'>
+					<input type="submit" class="btn btn-default" name="enregistrer" value="Enregistrer">	
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="well" id="listCategorie" data-spy="scroll">
+		<h4>Liste des categories</h4>
+		<form action="" method="POST">
+			{% for catego in categorie %}
+				<div  class="form-control row">
+					<div class='col-md-3'>
+						{{catego.Nom}} :
+					</div> 
+					<div class='col-md-3'>
+						<input type="submit" class="btn btn-default" name="enregistrer[catego.IdCategorie]" value="Supprimer">
+					</div>
+				</div>
+			{% endfor %}
+		</form>
+	</div>
+{% endblock %}
