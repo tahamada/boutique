@@ -108,7 +108,7 @@ abstract Class Manager implements Enregistrable{
 		foreach($AtrrArray['columns'] as $column){
 			$prepArray[$column] = $objet->$column();
 		}
-		$req->execute($prepArray);
+		return $req->execute($prepArray);
     }
 
     public function supprimer($objet){

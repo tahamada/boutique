@@ -2,10 +2,14 @@
 <html>
     <head>
         {% block head %}
-            <link rel="stylesheet" href="css/bootstrap.min.css">
+            <link rel="stylesheet" href="css/bootstrap.min.css">          
+            <link rel="stylesheet" href="css/jquery-ui.min.css">
+            <link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+            <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
             <link rel="stylesheet" href="css/style.css">
-            <script src="js/jquery-3.2.1.min"></script>
+            <script src="js/jquery-3.2.1.min.js"></script>
             <script src="js/popper.js"></script>
+            <script src="js/jquery-ui.min.js"></script>
             <script src="js/bootstrap.min.js"></script>
             <title>{% block title %}{% endblock %}</title>
         {% endblock %}
@@ -17,7 +21,7 @@
             </a>
             <div class="row">
                 {% include 'menu.html' %}
-            </div>
+            </div>           
             <div class="row" id="content">  
 
                 {% block content %}{% endblock %}
@@ -28,5 +32,14 @@
                 {% endblock %}
             </div>
         </div>
+         <div id="ConnexionDialog" class="row">
+             {% include 'connexion.html' %}
+         </div>
+        <script src="js/connexion.js"/>
+            
+        </script>
+        <script src="js/inputFile.js">
+            
+        </script>
     </body>
 </html>

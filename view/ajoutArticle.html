@@ -1,12 +1,77 @@
 {% extends "layout.html" %}
 
 {% block content %}
-	<h2>Ajout d'article</h2>
-	<form action="" method="POST">
-		<div class="row">
-		<label for="designation">Désignation:</label><input type="text" id="designation" name="designation">
-		<label for="prix">Prix:</label><input type="number" id="prix" name="prix" step=".01">
-		<label for="stock">Stock:</label><input type="number" name="stock" id="stock">
-		<label for="payableNFois">Payable combien de fois:</label><input type="number" name="payableNFois" id="payableNFois">
-	</form>
+    <h2>Ajout d'article</h2>
+    <div class="well" id="ajoutCategorie">
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class='col-md-3'>
+                    <label for="designation">Désignation:</label>
+                </div>
+                <div class='col-md-3'>
+                    <input type="text" id="designation" name="designation"/>
+                </div> 
+            </div>
+            <div class="row" >
+                <div class='col-md-3'>
+                    <label for="prix">Prix:</label>
+                </div>   
+                <div class='col-md-3'>
+                    <input type="number" id="prix" name="prix" step=".01"/>
+                </div> 
+            </div>
+            <div class="row" >
+                <div class='col-md-3'>
+                    <label for="quantite">En stock:</label>
+                </div>
+                <div class='col-md-3'>
+                    <input type="number" name="quantite" id="quantite"/>
+                </div> 
+            </div>    
+            <div class="row" >
+                <div class='col-md-3'>
+                    <label for="payableNFois">Payable combien de fois:</label>
+                </div>
+                <div class='col-md-3'>
+                    <input type="number" name="payableNFois" id="payableNFois"/>
+                </div>  
+            </div>
+            <div class="row" >
+                <div class='col-md-3'>            
+                    <label for="ajoutIdCategorie">Categorie:</label>                   
+                </div>     
+                <div class='col-md-3'>
+                    <select id="ajoutIdCategorie" name="idCategorie" class="form-control">               
+                        {% for item in categorie %}
+                            <option value="{{item.idCategorie}}">{{item.Nom}}</option>
+                        {% endfor %}
+                    </select>
+                </div>                
+            </div>
+            <div class="row" >
+                <div class='col-md-3'>
+                    <label for="ImageAriticleButton">Image:</label>  
+                </div>
+                <div class='col-md-3'>            
+                    <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                    <!--<label for="image">Image</label><input type="file"  name="image" id="image"/>-->
+                    <div class="input-group input-file" name="Fichier_1">
+                        <span class="input-group-btn">
+                            <button id="ImageAriticleButton" class="btn btn-default btn-choose" type="button">Choisir</button>
+                        </span>
+                        <input type="text" class="form-control" placeholder='Choisissez un fichier...' />
+                        <!--<span class="input-group-btn">
+                            <button class="btn btn-warning btn-reset" type="button">Effacer</button>
+                        </span>-->
+                    </div>
+                </div> 
+            </div> 
+            <div class="row" >
+                <div class='col-md-3 col-md-offset-0'>
+                    <input type="submit" class="btn btn-default" name="inscriptionSubmit" value="S'inscrire"/>
+            
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}
