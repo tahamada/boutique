@@ -9,7 +9,9 @@
                     <label for="designation">Désignation:</label>
                 </div>
                 <div class='col-md-3'>
-                    <input type="text" id="designation" name="designation"/>
+                    <input list="designationList" type="text" id="designation" name="designation" required/>
+                    <datalist id="designationList">
+                    </datalist>
                 </div> 
             </div>
             <div class="row" >
@@ -17,7 +19,7 @@
                     <label for="prix">Prix:</label>
                 </div>   
                 <div class='col-md-3'>
-                    <input type="number" id="prix" name="prix" step=".01"/>
+                    <input type="number" id="prix" name="prix" step=".01" required/>
                 </div> 
             </div>
             <div class="row" >
@@ -33,7 +35,7 @@
                     <label for="payableNFois">Payable combien de fois:</label>
                 </div>
                 <div class='col-md-3'>
-                    <input type="number" name="payableNFois" id="payableNFois"/>
+                    <input type="number" name="payableNFois" value=0 id="payableNFois"/>
                 </div>  
             </div>
             <div class="row" >
@@ -59,7 +61,7 @@
                         <span class="input-group-btn">
                             <button id="ImageAriticleButton" class="btn btn-default btn-choose" type="button">Choisir</button>
                         </span>
-                        <input type="text" class="form-control" placeholder='Choisissez un fichier...' />
+                        <input type="text" class="form-control" placeholder='Choisir un fichier' required/>
                         <!--<span class="input-group-btn">
                             <button class="btn btn-warning btn-reset" type="button">Effacer</button>
                         </span>-->

@@ -58,7 +58,7 @@ abstract Class Manager implements Enregistrable{
 
     public function enregistrer($objet,$update=null){
     	$table= $this->getTable(); 
-		$AtrrArray=$this->getAttr();	
+		$AtrrArray=$this->getAttr();
     	if($update==null){
     		//creation de la partie value pour une insertion
     		$value="";
@@ -108,7 +108,12 @@ abstract Class Manager implements Enregistrable{
 		foreach($AtrrArray['columns'] as $column){
 			$prepArray[$column] = $objet->$column();
 		}
-		return $req->execute($prepArray);
+		//try{
+		$execResult=$req->execute($prepArray);
+		return array($execResult,$this->Bdd()->lastInsertId());
+		/*}catch(PDOExecption $e){
+			//throw new Exception($e->getMessage());
+		}*/
     }
 
     public function supprimer($objet){
@@ -151,6 +156,9 @@ abstract Class Manager implements Enregistrable{
 				elseif(strpos($val,">")!==false){
 					$comparateur=">=";
 					$val=str_replace(">","",$val);
+				}
+				elseif(strpos($val,"%")!==false){
+					$comparateur=" like ";
 				}
 				$where.=str_replace("_","",$key)."$comparateur:$key";
 				$arrayexecute[$key]=$val;

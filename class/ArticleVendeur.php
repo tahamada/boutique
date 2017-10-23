@@ -19,10 +19,6 @@ class ArticleVendeur extends Model
         $this->hydrate($tuple);
     }
 
-
-
-
-
     /**
      * @return mixed
      */

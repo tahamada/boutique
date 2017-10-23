@@ -18,7 +18,7 @@ if(isset($_POST["inscriptionSubmit"])){
     if ($_FILES['Fichier_1']['error'] > 0) 
         $erreur = "Erreur lors du transfert";//a gerer plus tard si j'ai le temps
    
-    $mArticle->enregistrerArticle($_POST,$_FILES);
+    var_dump($mArticle->enregistrerArticle($_POST,$_FILES));
 }
 
 $loaderfile = new Twig_Loader_Filesystem('view/');

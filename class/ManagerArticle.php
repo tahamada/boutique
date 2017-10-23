@@ -18,33 +18,53 @@ class ManagerArticle extends Manager
         
         $randomNom=md5(uniqid(rand(), true));
         $nom = "images/article/".$randomNom.".".$extension_upload;              
-        
-        $post["idVendeur"]=1;
+        $idVendeur=1; //plus tard
+
+        $post["idVendeur"]=$idVendeur;
         $post["imageUrl"]=$nom;
-        $oArticle=new Article($post);
-        $oArticleVendeur=new ArticleVendeur($post);
+        $oArticle=new Article($post);        
         $mArticle=new ManagerArticle();        
+        $mArticleVendeur=new ManagerArticleVendeur();        
         
         $mArticle->Bdd()->beginTransaction();
         $error=false;
         try{
-            var_dump($mArticle->enregistrer($oArticle));
-        }catch(Exception $e){
+            $idArticle=$mArticle->enregistrer($oArticle)[1];
+            $mArticle->Bdd()->commit();
+           // $idArticle=$mArticle->Bdd()->lastInsertId();
+            $post["idArticle"]=$idArticle;
+            $oArticleVendeur=new ArticleVendeur($post);
+            $mArticleVendeur->enregistrer($oArticleVendeur);
+        }catch(PDOExecption $e){
+            $error=true;
+            $mArticle->Bdd()->rollback();
+            $mArticleVendeur->Bdd()->rollback(); 
+            $message=$e->getMessage();
+        }catch(Execption $e){
             $error=true;
         }
-        //deplacement du fichier apres l'enregistrement
-        $resultat = move_uploaded_file($file['Fichier_1']['tmp_name'],$nom);
-        
-        if ($resultat) 
-            var_dump("Transfert réussi");   
-        
-        //Image redimentionné
-        $width=200;
-        $height=100;
-        $nomRed = "images/article/".$randomNom."Mini.".$extension_upload;
-        $rImage=new Imagine\Gd\Imagine();
-        $rImage->open($nom)->resize(new Imagine\Image\Box($width,$height))->save($nomRed);
-        
-        var_dump($oArticle,$oArticleVendeur);
+
+        if(!$error){            
+            //deplacement du fichier apres l'enregistrement
+            $resultat = move_uploaded_file($file['Fichier_1']['tmp_name'],$nom);
+            
+            if ($resultat){ 
+                //var_dump("Transfert réussi"); 
+            }  
+            
+            //Image redimentionné
+            $width=200;
+            $height=100;
+            $nomRed = "images/article/".$randomNom."Mini.".$extension_upload;
+            $rImage=new Imagine\Gd\Imagine();
+            $rImage->open($nom)->resize(new Imagine\Image\Box($width,$height))->save($nomRed);
+                return array(true,"Ajout d'article reussi");
+        }
+        else{
+            return array(false,$message);
+        }
+
+            
+        //var_dump($oArticle,$oArticleVendeur);
     }
 }

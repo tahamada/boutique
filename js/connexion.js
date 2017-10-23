@@ -4,7 +4,8 @@ $( document ).ready(function(){
         $.ajax({
                 method: "POST",
                 url: "connexion.php",
-                data: { email: $("#email").val(), password: $("#password").val() }
+                data: { email: $("#email").val(), password: $("#password").val() },
+                dataType : "json"
             })
             .done(function(reponse) {
                 console.log(reponse);

@@ -8,7 +8,9 @@ class Client extends Model
 	private $_prenom;
 	private $_email; 
 	private $_adresse;
-	private $_valide; 
+    private $_valide; 
+	private $_password; 
+
 
 
 	/**
@@ -142,6 +144,26 @@ class Client extends Model
     public function setValide($_valide)
     {
         $this->_valide = $_valide;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function Password()
+    {
+        return $this->_password;
+    }
+
+    /**
+     * @param mixed $_password
+     *
+     * @return self
+     */
+    public function setPassword($_password)
+    {
+        $this->_password = $_password;
 
         return $this;
     }
