@@ -1,7 +1,6 @@
 <?php
 require "vendor/autoload.php";
 include "Autoload.php";
-include "funct/listCategorie.php";
 
 if(isset($_POST['enregistrer'])){
 	$_POST['nom'];
@@ -14,6 +13,15 @@ if(isset($_POST['enregistrer'])){
 		var_dump($e->getMessage());
 	}
 }
+
+if(isset($_POST['supprimer'])){
+	$mCategorie=new ManagerCategorie();
+	$idCategorie=key($_POST['supprimer']);
+	$oCategorie= $mCategorie->lister(array('idCategorie'=>$idCategorie))[0];
+	$mCategorie->supprimer($oCategorie);
+}
+
+include "funct/listCategorie.php";
 
 $loaderfile = new Twig_Loader_Filesystem('view/');
 $twig = new Twig_Environment($loaderfile);
