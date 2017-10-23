@@ -4,6 +4,8 @@ function loadClass($classe){
 		include 'class/'.$classe .'.php';
 	if(file_exists('class/interface/'.$classe .'.php'))
 		include 'class/interface/'.$classe .'.php';
+        /*if(file_exists('./'.$classe .'.php'))
+		include './'.$classe .'.php';*/
 }
 spl_autoload_register('loadClass');	
 ?>

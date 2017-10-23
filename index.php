@@ -1,5 +1,6 @@
 <?php
 require "vendor/autoload.php";
+include "Autoload.php";
 include "funct/listCategorie.php";
 
 $loaderfile = new Twig_Loader_Filesystem('view/');

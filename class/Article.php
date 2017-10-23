@@ -3,22 +3,12 @@
 class Article extends Model
 { 
 
-	private $_idArticle;
-	private $_designation; 
-	private $_imageUrl; 
-	private $_idCategorie; 
-	private $_idVendeur;
+    private $_idArticle;
+    private $_designation; 
+    private $_imageUrl; 
+    private $_idCategorie; 
 
-
-	/**
-	 * Class Constructor
-	 * @param    $_idArticle   
-	 * @param    $_designation   
-	 * @param    $_imageUrl   
-	 * @param    $_idCategorie   
-	 * @param    $_idVendeur   
-	 */
-	public function __construct($tuple)
+    public function __construct($tuple)
     {
         $this->hydrate($tuple);
     }
