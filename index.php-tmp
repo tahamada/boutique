@@ -15,7 +15,11 @@ $offset    = null;
 
 $listArticleNouveau = $mArticle->lister($search, $column, $objet, $joinParam, $order, $limit, $offset);
 
-$listArticle = $mArticle->lister();
+$search      = null;
+$join1       = array("ArticleVendeur as av", "av.idArticle=t.idArticle", "JOIN");
+$join2       = array("Vendeur as v", "v.idVendeur=av.idVendeur", "JOIN");
+$joinParam   = array($join1, $join2);
+$listArticle = $mArticle->lister($search, $column, $objet, $joinParam);
 
 $loaderfile = new Twig_Loader_Filesystem('view/');
 $twig       = new Twig_Environment($loaderfile);

@@ -133,7 +133,7 @@ abstract Class Manager implements Enregistrable{
 		$req->execute();
 	}
 
-	public function lister($value=null,$column=[],$objet=true,$joinParam=null,$order=null,$limit=null,$offset=null){
+	public function lister($value=null,$column=[],$objet=true,$joinParams=null,$order=null,$limit=null,$offset=null){
 		$table= $this->getTable(); 
 
 		$arrayexecute=[];
@@ -161,10 +161,14 @@ abstract Class Manager implements Enregistrable{
 
 
 		//traitement des jointure
-		if($joinParam!=null){
-			$joinType=$joinParam[2];
-			$joinTable=$joinType." ".$joinParam[0];
-			$joinOn="ON ".$joinParam[1];
+		$join="";
+		if($joinParams!=null){			
+			foreach($joinParams as $joinParam){
+				$joinType=$joinParam[2];
+				$joinTable=$joinType." ".$joinParam[0];
+				$joinOn="ON ".$joinParam[1];
+				$join.=" ".$joinTable." ".$joinOn;
+			}
 			
 		}
 		else{
@@ -180,7 +184,7 @@ abstract Class Manager implements Enregistrable{
 
 		//Si aucune valeur rechercher affiche tout sinon recherche filtré
 		if($value==null)
-			$req=$this->Bdd()->prepare("select distinct $column from $table as t $joinTable $joinOn $order $limit $offset");
+			$req=$this->Bdd()->prepare("select distinct $column from $table as t $join $order $limit $offset");
 		else{
 			$where="";
 			$i=0;
@@ -208,6 +212,7 @@ abstract Class Manager implements Enregistrable{
 				$ClientArray[]=$row;
 			//$p->afficher();
 		}
+
 		return $ClientArray;
 	}
 
