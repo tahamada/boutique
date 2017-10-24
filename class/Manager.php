@@ -133,11 +133,34 @@ abstract Class Manager implements Enregistrable{
 		$req->execute();
 	}
 
-	public function lister($value=null,$column=[],$objet=true,$joinParam=null){
+	public function lister($value=null,$column=[],$objet=true,$joinParam=null,$order=null,$limit=null,$offset=null){
 		$table= $this->getTable(); 
 
 		$arrayexecute=[];
 		$ClientArray=[];
+		
+		//traitement du tri
+		if($order!=null){
+			$order="ORDER BY ".$order;
+		}
+		else
+			$order="";
+
+		//traitement du limit et du offset
+		if($limit!=null){
+			$limit= "LIMIT ".$limit;
+		}
+		else
+			$limit="";
+
+		if($offset!=null){
+			$offset= "OFFSET ".$offset;
+		}
+		else
+			$offset="";
+
+
+		//traitement des jointure
 		if($joinParam!=null){
 			$joinType=$joinParam[2];
 			$joinTable=$joinType." ".$joinParam[0];
@@ -149,13 +172,15 @@ abstract Class Manager implements Enregistrable{
 			$joinOn="";
 		}
 
-
+		//gestion des colonnes
 		if(empty($column))
 			$column="*";
 		else
 			$column=implode(",",$column);
+
+		//Si aucune valeur rechercher affiche tout sinon recherche filtré
 		if($value==null)
-			$req=$this->Bdd()->prepare("select distinct $column from $table as t $joinTable $joinOn");
+			$req=$this->Bdd()->prepare("select distinct $column from $table as t $joinTable $joinOn $order $limit $offset");
 		else{
 			$where="";
 			$i=0;
@@ -171,7 +196,7 @@ abstract Class Manager implements Enregistrable{
 					$where.=" and ";
 				$i++;
 			}	
-			$req=$this->Bdd()->prepare("select * from $table as t $joinTable $joinOn where $where");
+			$req=$this->Bdd()->prepare("select * from $table as t $joinTable $joinOn where $where $order $limit $offset");
 			
 		}
 		$req->execute($arrayexecute);

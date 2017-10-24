@@ -5,6 +5,7 @@ class ArticleVendeur extends Model
 	private $_idVendeur; 
 	private $_quantite; 
 	private $_payableNFois; 
+    private $_prix;
 
 
 	/**
@@ -74,6 +75,8 @@ class ArticleVendeur extends Model
      */
     public function setQuantite($_quantite)
     {
+        if(empty($_quantite))
+            $_quantite=0;
         $this->_quantite = $_quantite;
 
         return $this;
@@ -84,6 +87,7 @@ class ArticleVendeur extends Model
      */
     public function PayableNFois()
     {
+
         return $this->_payableNFois;
     }
 
@@ -94,7 +98,29 @@ class ArticleVendeur extends Model
      */
     public function setPayableNFois($_payableNFois)
     {
+        if(empty($_payableNFois))
+            $_payableNFois=0;
         $this->_payableNFois = $_payableNFois;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function Prix()
+    {
+        return $this->_prix;
+    }
+
+    /**
+     * @param mixed $_prix
+     *
+     * @return self
+     */
+    public function setPrix($_prix)
+    {
+        $this->_prix = $_prix;
 
         return $this;
     }

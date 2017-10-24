@@ -7,6 +7,9 @@ class ManagerArticle extends Manager
         parent::__construct();
     }
     
+    /*
+    * Methode gerant l'enregistrement en base d'un article (insert dans les table Article et ArticleVendeur)
+    **/
     public function enregistrerArticle($post,$file)
     {         
         $extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
@@ -29,13 +32,32 @@ class ManagerArticle extends Manager
         $mArticle->Bdd()->beginTransaction();
         $error=false;
         try{
+            //verifie si l'article est deja vendu par vendeur
+            $search=array("designation"=>$oArticle->Designation(),"idVendeur"=>$idVendeur);
+            $joinParam=array("ArticleVendeur as AV","AV.idArticle=t.idArticle","JOIN");
+            $articleVendeurTrouve=$mArticle->lister($search,[],false,$joinParam);
+            if(count($articleVendeurTrouve)>0){
+                return array(false,"Article déjà possédé");
+            }
+            else{
+                //verifier si l'article existe deja
+                $search=array("designation"=>$oArticle->Designation());
+                
+                $articleTrouve=$mArticle->lister($search);
+                if(count($articleTrouve)==0){                    
+                    $idArticle=$mArticle->enregistrer($oArticle)[1];
+                    $mArticle->Bdd()->commit();
+                }
+                else{
+                    $idArticle=$articleTrouve[0]->IdArticle();
+                }
+
+               // $idArticle=$mArticle->Bdd()->lastInsertId();
+                $post["idArticle"]=$idArticle;
+                $oArticleVendeur=new ArticleVendeur($post);
+                $mArticleVendeur->enregistrer($oArticleVendeur);
+            }
             
-            $idArticle=$mArticle->enregistrer($oArticle)[1];
-            $mArticle->Bdd()->commit();
-           // $idArticle=$mArticle->Bdd()->lastInsertId();
-            $post["idArticle"]=$idArticle;
-            $oArticleVendeur=new ArticleVendeur($post);
-            $mArticleVendeur->enregistrer($oArticleVendeur);
         }catch(PDOExecption $e){
             $error=true;
             $mArticle->Bdd()->rollback();

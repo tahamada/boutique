@@ -4,6 +4,9 @@ function whereCreate($key,$val,&$arrayexecute){
 	if($val==null or $val=="null"){
 		return $key." is null";
 	}
+	elseif($val=="not null"){
+		return $key." is not null";
+	}
 	else{
 		if(strpos($val,"<")!==false){
 			$comparateur="<=";
