@@ -7,10 +7,12 @@ $twig = new Twig_Environment($loaderfile);
 
 if(isset($_POST['designation'])){
 	$mArticle=new ManagerArticle();
-	$designations=$mArticle->lister(array("designation"=>"%".$_POST['designation']."%"));
+	$joinArray=array("ArticleVendeur as AV","AV.idArticle=t.idArticle","LEFT JOIN");
+	$search=array("designation"=>"%".$_POST['designation']."%","AV.idVendeur"=>"!1 or null");
+	//liste des designations qui ne sont pas vendu par le vendeur
+	$designations=$mArticle->lister($search,[],false,$joinArray);
 }
 
 $reponse=array("message"=>"success");
-var_dump($designations);
-echo $twig->render('json.html', $designations);
+echo $twig->render('json.html', array("reponse"=>$designations));
 ?>

@@ -133,46 +133,54 @@ abstract Class Manager implements Enregistrable{
 		$req->execute();
 	}
 
-	public function lister($value=null,$column=[]){
+	public function lister($value=null,$column=[],$objet=true,$joinParam=null){
 		$table= $this->getTable(); 
 
 		$arrayexecute=[];
 		$ClientArray=[];
+		if($joinParam!=null){
+			$joinType=$joinParam[2];
+			$joinTable=$joinType." ".$joinParam[0];
+			$joinOn="ON ".$joinParam[1];
+			
+		}
+		else{
+			$joinTable="";
+			$joinOn="";
+		}
+
+
 		if(empty($column))
 			$column="*";
 		else
 			$column=implode(",",$column);
 		if($value==null)
-			$req=$this->Bdd()->prepare("select distinct $column from $table");
+			$req=$this->Bdd()->prepare("select distinct $column from $table as t $joinTable $joinOn");
 		else{
 			$where="";
 			$i=0;
+			include_once "funct/whereCreate.php";
 			foreach($value as $key=>$val){
-				$comparateur="=";
-				if(strpos($val,"<")!==false){
-					$comparateur="<=";
-					$val=str_replace("<","",$val);
+				if(strpos($val," or ")!==false){
+					$or=explode(" or ",$val);
+					$where.="(".whereCreate($key,$or[0],$arrayexecute)." or ".whereCreate($key,$or[1],$arrayexecute).")";
 				}
-				elseif(strpos($val,">")!==false){
-					$comparateur=">=";
-					$val=str_replace(">","",$val);
-				}
-				elseif(strpos($val,"%")!==false){
-					$comparateur=" like ";
-				}
-				$where.=str_replace("_","",$key)."$comparateur:$key";
-				$arrayexecute[$key]=$val;
+				else					
+					$where.=whereCreate($key,$val,$arrayexecute);
 				if($i<count($value)-1)
 					$where.=" and ";
 				$i++;
 			}	
-			$req=$this->Bdd()->prepare("select * from $table where $where");
+			$req=$this->Bdd()->prepare("select * from $table as t $joinTable $joinOn where $where");
 			
 		}
 		$req->execute($arrayexecute);
 		
 		while($row=$req->fetch(PDO::FETCH_ASSOC)){
-			$ClientArray[]=new $table($row);
+			if($objet)
+				$ClientArray[]=new $table($row);
+			else
+				$ClientArray[]=$row;
 			//$p->afficher();
 		}
 		return $ClientArray;

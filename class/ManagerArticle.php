@@ -29,6 +29,7 @@ class ManagerArticle extends Manager
         $mArticle->Bdd()->beginTransaction();
         $error=false;
         try{
+            
             $idArticle=$mArticle->enregistrer($oArticle)[1];
             $mArticle->Bdd()->commit();
            // $idArticle=$mArticle->Bdd()->lastInsertId();
