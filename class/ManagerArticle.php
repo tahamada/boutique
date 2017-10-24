@@ -34,7 +34,7 @@ class ManagerArticle extends Manager
         try{
             //verifie si l'article est deja vendu par vendeur
             $search=array("designation"=>$oArticle->Designation(),"idVendeur"=>$idVendeur);
-            $joinParam=array("ArticleVendeur as AV","AV.idArticle=t.idArticle","JOIN");
+            $joinParam=array(array("ArticleVendeur as AV","AV.idArticle=t.idArticle","JOIN"));
             $articleVendeurTrouve=$mArticle->lister($search,[],false,$joinParam);
             if(count($articleVendeurTrouve)>0){
                 return array(false,"Article déjà possédé");

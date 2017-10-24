@@ -86,3 +86,18 @@ div.ui-dialog-titlebar{
 .borderedBottom{
     border-bottom:1px solid #ccc;
 }
+
+.articleWell{
+    border: 1px solid #9c1b54;
+    margin: 5px;
+    padding: 2px;
+    border-radius: 5px;
+    background-color: #fff4f9;
+}
+
+#articlesList{
+    //background-color: #fff4f9;
+    border-radius: 5px;
+    border: 1px solid #9c1b54;
+    margin: 1px;
+}

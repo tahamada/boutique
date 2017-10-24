@@ -7,8 +7,9 @@ $twig = new Twig_Environment($loaderfile);
 
 if(isset($_POST['designation'])){
 	$mArticle=new ManagerArticle();
+        $idVendeur=1;
 	$joinArray=array(array("ArticleVendeur as AV","AV.idArticle=t.idArticle","LEFT JOIN"));
-	$search=array("designation"=>"%".$_POST['designation']."%","AV.idVendeur"=>"!1 or null");
+	$search=array("designation"=>"%".$_POST['designation']."%","AV.idVendeur"=>"!".$idVendeur." or null");
 	//liste des designations qui ne sont pas vendu par le vendeur
 	$designations=$mArticle->lister($search,[],false,$joinArray);
 }

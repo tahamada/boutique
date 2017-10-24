@@ -24,5 +24,5 @@ $listArticle=$mArticle->lister($search,$column,$objet,$joinParam);
 
 $loaderfile = new Twig_Loader_Filesystem('view/');
 $twig = new Twig_Environment($loaderfile);
-echo $twig->render('accueil.html',array('categorie'=>$listeoCategorie,'articles'=>$listArticleNouveau));
+echo $twig->render('accueil.html',array('categorie'=>$listeoCategorie,'articlesSlide'=>$listArticleNouveau,'articles'=>$listArticle));
 ?>

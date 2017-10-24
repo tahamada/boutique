@@ -6,9 +6,25 @@
 
 
 {% block content %}
-	<div class="col-md-10 col-md-offset-1" id="mainSlider">
-		{% for item in articles %}
-          <li><a href="#"> <img width="400px" src="{{item.imageUrl}}"></a></li>
+<div class="container-fluid">
+    <div class="col-md-10 col-md-offset-1 row" id="mainSlider">
+        {% for item in articlesSlide %}
+            <li><a href="#"> <img width="400px" src="{{item.imageUrl}}"></a></li>
         {% endfor %}
-	</div>
+    </div>
+</div>
+<div class="container-fluid" id="articlesList">
+    <h2>Articles</h2>
+    {% for item in articles %}
+    <div class="col-md-4 articleWell">
+        <div class="col-md-8">
+            <img class="center-block" src="{{item.imageUrl|replace({".":"Mini."})}}"/>
+        </div>
+        <div class="col-md-4">
+            <span class="col-md-12">{{item.designation}}</span>
+            <span class="col-md-12">{{item.prix}} €</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
