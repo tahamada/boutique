@@ -91,13 +91,32 @@ div.ui-dialog-titlebar{
     border: 1px solid #9c1b54;
     margin: 5px;
     padding: 2px;
-    border-radius: 5px;
-    background-color: #fff4f9;
+    border-radius: 5px 5px 0px 0px;
+    background-color: #fbf8f9;    
 }
 
 #articlesList{
     //background-color: #fff4f9;
     border-radius: 5px;
     border: 1px solid #9c1b54;
-    margin: 1px;
+}
+
+.articleWell img{
+	width:100%;
+}
+
+#articlesList a{
+	color:black;
+}
+
+.articleWell:hover, .articleWell:focus{
+	background-color: #fff1f5;
+}
+
+.articleWell > div{
+	padding:0px;
+}
+
+.imgNoImg {
+	height:92px;
 }

@@ -13,18 +13,25 @@
         {% endfor %}
     </div>
 </div>
-<div class="container-fluid" id="articlesList">
+<div class="container" id="articlesList">
     <h2>Articles</h2>
     {% for item in articles %}
-    <div class="col-md-4 articleWell">
-        <div class="col-md-8">
-            <img class="center-block" src="{{item.imageUrl|replace({".":"Mini."})}}"/>
+    <a href="">
+        <div class="col-md-2 articleWell nopadding">
+            <div class="col-md-12 nopadding">
+                {% if item.imageUrl|replace({".":"Mini."}) is empty%}
+                    <img class="center-block" src="images/article/vide.png"/>
+                {% else %}
+                    <img class="center-block" src="{{item.imageUrl|replace({".":"Mini."})}}"/>
+                {% endif %}    
+            </div>
+            <div class="col-md-12 nopadding">
+                <strong><span class="col-md-12 text-center">{{item.designation}}</span></strong>
+                <span class="col-md-12 nopadding text-center">{{item.prix}} €</span>
+                <span class="col-md-12 nopadding text-center"><em><small>Vendeur:</small>{{item.nomVendeur}}</em></span>
+            </div>
         </div>
-        <div class="col-md-4">
-            <span class="col-md-12">{{item.designation}}</span>
-            <span class="col-md-12">{{item.prix}} €</span>
-        </div>
-    </div>
+    </a>
     {% endfor %}
 </div>
 {% endblock %}
