@@ -120,3 +120,11 @@ div.ui-dialog-titlebar{
 .imgNoImg {
 	height:92px;
 }
+
+.prix{
+	font-size: 1.3em;
+}
+
+#submitInscr{
+	margin-top: 10px;
+}
