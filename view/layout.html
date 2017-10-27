@@ -2,12 +2,12 @@
 <html>
     <head>
         {% block head %}
-            <link rel="stylesheet" href="css/vendor/bootstrap.min.css">          
-            <link rel="stylesheet" href="css/vendor/jquery-ui.min.css">
-            <link rel="stylesheet" href="css/vendor/jquery-ui.structure.min.css">
-            <link rel="stylesheet" href="css/vendor/jquery-ui.theme.min.css">
-            <link rel="stylesheet" href="css/vendor/slick.css">
-            <link rel="stylesheet" href="css/vendor/slick-theme.css">
+            <link rel="stylesheet" href="css/lib/bootstrap.min.css">          
+            <link rel="stylesheet" href="css/lib/jquery-ui.min.css">
+            <link rel="stylesheet" href="css/lib/jquery-ui.structure.min.css">
+            <link rel="stylesheet" href="css/lib/jquery-ui.theme.min.css">
+            <link rel="stylesheet" href="css/lib/slick.css">
+            <link rel="stylesheet" href="css/lib/slick-theme.css">
             <link rel="stylesheet" href="css/style.css">            
             <title>{% block title %}{% endblock %}</title>
         {% endblock %}
@@ -22,7 +22,7 @@
                     {% include 'menu.html' %}
                 </div>     
                 <div class="row" id="message">
-                    {% block message %}{% endblock %}
+                    {% include 'message.html' %}
                 </div>        
                 <div class="row" id="content">  
 
@@ -38,11 +38,12 @@
          <div id="ConnexionDialog" class="row">
              {% include 'connexion.html' %}
          </div>
-        <script src="js/vendor/jquery-3.2.1.min.js"></script>
-        <script src="js/vendor/popper.js"></script>
-        <script src="js/vendor/jquery-ui.min.js"></script>
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/vendor/slick.min.js"></script>
+        <script src="js/lib/jquery-3.2.1.min.js"></script>
+        <script src="js/lib/popper.js"></script>
+        <script src="js/lib/jquery-ui.min.js"></script>
+        <script src="js/lib/bootstrap.min.js"></script>
+        <script src="js/lib/slick.min.js"></script>
+        <script src="js/lib/jquery.validate.min.js"></script>
        
         <script src="js/connexion.js"/>
             
@@ -54,6 +55,9 @@
             
         </script>
         <script src="js/mySlider.js">
+            
+        </script>
+        <script src="js/formValide.js">
             
         </script>
     </body>

@@ -3,7 +3,7 @@
 {% block content %}   
     <div class="well col-md-3 col-md-offset-4" id="ajoutCategorie">
        
-        <form class="center-block" action="" method="POST">
+        <form class="center-block" id="inscriptionForm" action="" method="POST">
             <div class="col-md-offset-2">
                 <h2 class="row">Créer un compte</h2>
                 <div class="row">
@@ -27,7 +27,7 @@
                         <label for="email">Email:</label>
                     </div>
                     <div class='col-md-12'>
-                        <input type="text" name="email" id="email" required/>
+                        <input type="email" name="email" id="email" required/>
                     </div> 
                 </div>                
                 <div class="row" >
@@ -42,8 +42,8 @@
                     <div class='col-md-12'>
                         <label for="password">Confirmer mot de passe :</label>
                     </div>
-                    <div class='col-md-3'>
-                        <input type="password" name="password2" id="password2" minlength=6 required/>
+                    <div class='col-md-12'>
+                        <input type="password" equalTo="#password" name="password2" id="password2" minlength=6 required/>
                     </div>  
                 </div>
                 <div class="row" >

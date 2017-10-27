@@ -17,11 +17,16 @@ if(isset($_POST["inscriptionSubmit"])){
     if ($_FILES['Fichier_1']['error'] > 0) 
         $erreur = "Erreur lors du transfert";//a gerer plus tard si j'ai le temps
    
-    if($mArticle->enregistrerArticle($_POST,$_FILES)[0]){
-        $message=array(true,"Ajout reussit");        
+    try{
+        if($mArticle->enregistrerArticle($_POST,$_FILES)[0]){
+            $message=array(true,"Ajout reussit");        
+        }
+        else
+            $message=array(false,$mArticle->enregistrerArticle($_POST,$_FILES)[1]);
+    }catch(Exception $e){
+        $message=array(false,$e->getMessage());
     }
-    else
-        $message=array(false,$mArticle->enregistrerArticle($_POST,$_FILES)[1]);
+    
 }
 
 $loaderfile = new Twig_Loader_Filesystem('view/');

@@ -10,6 +10,7 @@ class Client extends Model
 	private $_adresse;
     private $_valide; 
 	private $_password; 
+    private $_token;
 
 
 
@@ -63,8 +64,18 @@ class Client extends Model
      */
     public function setNom($_nom)
     {
-        $this->_nom = $_nom;
-
+        $pattern = '#^([a-z]+(( \')[a-z]+)*)+([-]([a-z]+(( \')[a-z]+)*)+)*$#iu';
+        preg_match($pattern, $_nom, $matches);
+        if(strlen($_nom)>2){
+            if(count($matches)>0){
+                 $this->_nom = $_nom;
+            }
+            else
+                throw new Exception("Veuillez entrer un nom valide");
+           
+        }
+        else 
+            throw new Exception("Le champs nom doit être superieur à 2");
         return $this;
     }
 
@@ -83,8 +94,17 @@ class Client extends Model
      */
     public function setPrenom($_prenom)
     {
-        $this->_prenom = $_prenom;
-
+        $pattern = '#^([a-z]+(( \')[a-z]+)*)+([-]([a-z]+(( \')[a-z]+)*)+)*$#iu';
+        preg_match($pattern, $_prenom, $matches);
+        if(strlen($_prenom)>2){
+            if(count($matches)>0){
+                 $this->_prenom = $_prenom;
+            }
+            else
+                throw new Exception("Veuillez entrer un prenom valide");           
+        }
+        else 
+            throw new Exception("Le champs prenom doit être superieur à 2");
         return $this;
     }
 
@@ -103,8 +123,10 @@ class Client extends Model
      */
     public function setEmail($_email)
     {
-        $this->_email = $_email;
-
+        if(filter_var($_email, FILTER_VALIDATE_EMAIL))
+            $this->_email = $_email;
+        else
+            throw new Exception("Veuillez entrer un email valide");
         return $this;
     }
 
@@ -163,7 +185,31 @@ class Client extends Model
      */
     public function setPassword($_password)
     {
-        $this->_password = $_password;
+        if(strlen($_password)>5){
+            $this->_password = $_password;
+        }
+        else
+            throw new Exception("Le mot de passe doit contenir plus de 5 caractères");
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function Token()
+    {
+        return $this->_token;
+    }
+
+    /**
+     * @param mixed $_token
+     *
+     * @return self
+     */
+    public function setToken($_token)
+    {
+        $this->_token = $_token;
 
         return $this;
     }

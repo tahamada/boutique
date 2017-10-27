@@ -1,0 +1,12 @@
+{% if message[0] is defined %}
+    {% if message[0]==false %}
+       <div class="alert alert-danger alert-dismissable">
+          <strong>{{message[1]}}</strong>
+        </div>
+    {% endif %}
+    {% if message[0]==true %}
+       <div class="alert alert-success alert-dismissable">
+          <strong>{{message[1]}}</strong>
+        </div>
+    {% endif %}
+{% endif %}

@@ -33,7 +33,7 @@ class ManagerArticle extends Manager {
 		try {
 			//verifie si l'article est deja vendu par vendeur
 			$search               = array("designation" => $oArticle->Designation(), "idVendeur" => $idVendeur);
-			$joinParam            = array("ArticleVendeur as AV", "AV.idArticle=t.idArticle", "JOIN");
+			$joinParam            = array(array("ArticleVendeur as AV", "AV.idArticle=t.idArticle", "JOIN"));
 			$articleVendeurTrouve = $mArticle->lister($search, [], false, $joinParam);
 			if (count($articleVendeurTrouve) > 0) {
 				return array(false, "Article déjà possédé");
@@ -55,13 +55,14 @@ class ManagerArticle extends Manager {
 				$mArticleVendeur->enregistrer($oArticleVendeur);
 			}
 
-		} catch (PDOExecption $e) {
+		} catch (PDOException $e) {
 			$error = true;
 			$mArticle->Bdd()->rollback();
 			$mArticleVendeur->Bdd()->rollback();
 			$message = $e->getMessage();
-		} catch (Execption $e) {
-			$error = true;
+		} catch (Exception $e) {
+			$error   = true;
+			$message = $e->getMessage();
 		}
 
 		if (!$error) {

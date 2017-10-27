@@ -58,13 +58,14 @@ class ManagerArticle extends Manager
                 $mArticleVendeur->enregistrer($oArticleVendeur);
             }
             
-        }catch(PDOExecption $e){
+        }catch(PDOException $e){
             $error=true;
             $mArticle->Bdd()->rollback();
             $mArticleVendeur->Bdd()->rollback(); 
             $message=$e->getMessage();
-        }catch(Execption $e){
+        }catch(Exception $e){
             $error=true;
+            $message=$e->getMessage();
         }
 
         if(!$error){            

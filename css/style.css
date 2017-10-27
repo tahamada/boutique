@@ -128,3 +128,11 @@ div.ui-dialog-titlebar{
 #submitInscr{
 	margin-top: 10px;
 }
+
+.error{
+	color:red;
+}
+
+input[class='error']{	
+	border:1px solid red;
+}
