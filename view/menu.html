@@ -12,7 +12,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Accueil<span class="sr-only">(current)</span></a></li>
+        <!--<li class="active"><a href="#">Accueil<span class="sr-only">(current)</span></a></li>-->
+        <li><a href="/">Accueil<span class="sr-only"></span></a></li>
         <!--<li><a href="#">Link</a></li>-->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorie <span class="caret"></span></a>
@@ -24,8 +25,15 @@
         </li>
       </ul>
       <div id='connexion' class="navbar-form navbar-right">
-        <button  id="inscrireButton" class="btn btn-default">S'inscire</button>
-        <button  id="connexionButton" class="btn btn-default">Se connecter</button>
+        {% if session is empty%}
+          <a href="ajoutClient.php">
+            <button  id="inscrireButton" class="btn btn-default">S'inscire</button>
+          </a>
+          <button  id="connexionButton" class="btn btn-default">Se connecter</button>
+        {% endif %} 
+        {% if session=='ok'%}
+          {% include 'monCompte.html' %}
+        {% endif %} 
       </div>
       <form class="navbar-form  navbar-right">
         <div class="form-group ">

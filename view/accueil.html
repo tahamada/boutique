@@ -9,14 +9,14 @@
 <div class="container-fluid">
     <div class="col-md-10 col-md-offset-1 row" id="mainSlider">
         {% for item in articlesSlide %}
-            <li><a href="#"> <img width="400px" src="{{item.imageUrl}}"></a></li>
+            <li><a href="articleDetail.php?idArticle={{item.idArticle}}"> <img width="400px" src="{{item.imageUrl}}"></a></li>
         {% endfor %}
     </div>
 </div>
 <div class="container" id="articlesList">
     <h2>Articles</h2>
     {% for item in articles %}
-    <a href="">
+    <a href="articleDetail.php?idArticle={{item.idArticle}}&idVendeur={{item.idVendeur}}">
         <div class="col-md-2 articleWell nopadding">
             <div class="col-md-12 nopadding">
                 {% if item.imageUrl|replace({".":"Mini."}) is empty%}

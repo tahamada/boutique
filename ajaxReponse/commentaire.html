@@ -1,0 +1,6 @@
+{% for item in reponse %}
+	<div class="commentaire">
+		<span>Posté le {{item.date}} par {{item.prenom}} {{item.nom}} </span>
+		<div class="well">{{item.contenu}}
+	</div>
+{% endfor %}

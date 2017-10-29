@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}   
+    <div class="well container" id="articleDetail">        
+        <div class="col-md-6">
+            <img src="{{article[indexVendeur].imageUrl}}"/>
+        </div>
+         <div class="col-md-0">
+            <input type="hidden" id="idArticle" value="{{article[indexVendeur].idArticle}}"/>
+         </div>
+        <div class="col-md-6">
+            <h1>{{article[indexVendeur].designation}}<small>  <input type="number" id="quantite" value="1"/><button id="ButtonAjoutPanier" name="{{article[indexVendeur].idArticle}}">Ajouter au panier</button></small></h1>
+            <h3>{{article[indexVendeur].prix}} €</h3>
+            <span><em><small>Vendeur:</small>{{article[indexVendeur].nomVendeur}}</em></span>
+            
+            {% if article|length > 1 %}
+                <h4>Vendu aussi par</h4>
+                {% for item in article %}
+                    {% if item.idVendeur != idVendeur %}
+                        <span class="col-md-12"><a  href="articleDetail.php?idArticle={{item.idArticle}}&idVendeur={{item.idVendeur}}">{{item.nomVendeur}}</a> {{item.prix}} €<span>
+                    {% endif %} 
+                {% endfor %}
+            {% endif %} 
+        </div>
+        <div id="description" class="col-md-12">
+            <h3>Descrition de l'article :</h3>
+            <p>{{article[indexVendeur].description}}</p>            
+        </div>
+        <div id="commentaire" class="col-md-12">
+            <h3>Commentaires :</h3>
+            <div>
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -3,19 +3,22 @@ require "vendor/autoload.php";
 include "Autoload.php";
 include "funct/listCategorie.php";
 include "funct/session.php";
-
 $mArticle= new ManagerArticle();
 
 //validation d'inscription par token
 if(isset($_GET['token'])){
 	$mClient=new ManagerClient();
 	$search=array("token"=>$_GET['token']);
-	var_dump("trouve");
 	$clientTrouve=$mClient->lister($search);
 	if(count($clientTrouve)!=0){
-		$clientTrouve[0]->setValide(1);
-		$mClient->enregistrer($clientTrouve[0],true);
-		$message=array(true,"Email validé vous pouvez connecté");
+		if($clientTrouve[0]->Valide()!=1){
+			$clientTrouve[0]->setValide(1);
+			$mClient->enregistrer($clientTrouve[0],true);
+			$message=array(1,"Email validé vous pouvez connecté");
+		}
+		else
+			$message=array(2,"Email déjà validé");
+		
 	}
 }
 
@@ -25,7 +28,7 @@ $column=[];
 $objet=false;
 $joinParam=null;
 $order="idArticle desc";
-$limit=7;
+$limit=14;
 $offset=null;
 
 $listArticleNouveau=$mArticle->lister($search,$column,$objet,$joinParam,$order,$limit,$offset);
@@ -41,5 +44,5 @@ $listArticle=$mArticle->lister($search,$column,$objet,$joinParam);
 
 $loaderfile = new Twig_Loader_Filesystem('view/');
 $twig = new Twig_Environment($loaderfile);
-echo $twig->render('accueil.html',array('categorie'=>$listeoCategorie,'articlesSlide'=>$listArticleNouveau,'articles'=>$listArticle,'message'=>$message));
+echo $twig->render('accueil.html',array('categorie'=>$listeoCategorie,'articlesSlide'=>$listArticleNouveau,'articles'=>$listArticle,'message'=>$message,'session'=>$session));
 ?>

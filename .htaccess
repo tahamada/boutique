@@ -1,0 +1,5 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+RewriteRule ^article-([0-9]+)$ articleDetail.php?idArticle=$1
+RewriteRule ^inscription$ ajoutClient.php

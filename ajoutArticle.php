@@ -19,12 +19,12 @@ if(isset($_POST["inscriptionSubmit"])){
    
     try{
         if($mArticle->enregistrerArticle($_POST,$_FILES)[0]){
-            $message=array(true,"Ajout reussit");        
+            $message=array(1,"Ajout reussit");        
         }
         else
-            $message=array(false,$mArticle->enregistrerArticle($_POST,$_FILES)[1]);
+            $message=array(0,$mArticle->enregistrerArticle($_POST,$_FILES)[1]);
     }catch(Exception $e){
-        $message=array(false,$e->getMessage());
+        $message=array(0,$e->getMessage());
     }
     
 }

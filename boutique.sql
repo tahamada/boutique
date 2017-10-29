@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 27 oct. 2017 à 14:51
+-- Généré le :  Dim 29 oct. 2017 à 22:35
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -51,29 +51,33 @@ CREATE TABLE IF NOT EXISTS `article` (
   `designation` varchar(255) NOT NULL,
   `imageUrl` varchar(255) DEFAULT NULL,
   `idCategorie` int(11) NOT NULL,
+  `description` text NOT NULL,
   PRIMARY KEY (`idArticle`),
   KEY `FK_Article_Categorie_idx` (`idCategorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `article`
 --
 
-INSERT INTO `article` (`idArticle`, `designation`, `imageUrl`, `idCategorie`) VALUES
-(1, 'toto', 'images/article/645cc8ae6068978ebe533d4c95e1279e.jpg', 1),
-(24, 'toto', 'images/article/97d9287ad1393edf78f6de4b0ae6ec88.jpg', 1),
-(25, 'clavier', NULL, 1),
-(26, 'souris', NULL, 1),
-(27, 'clavier2', NULL, 1),
-(28, 'clavier3', NULL, 1),
-(29, 'ecran', NULL, 1),
-(30, 'Clé usb', 'images/article/9f9fa85b756e019af21dcc7279542d5e.jpg', 1),
-(31, 'ordinateur', 'images/article/588fe31bb9af61bd629b7bc72a5bb684.jpg', 1),
-(32, 'test', 'images/article/ec68d1d6128d23731c6169f8c77b3a44.jpg', 1),
-(33, 'test2', 'images/article/8cd3ca8609f207f9cc9eb6017434f2e5.jpg', 1),
-(34, 'ecran 2', NULL, 1),
-(35, 'azer', 'images/article/a640d03638231e85723600731edf67f4.jpg', 1),
-(36, 'sfddsf', 'images/article/5de0503316bd8a62fbe2d6eae90bed47.jpg', 1);
+INSERT INTO `article` (`idArticle`, `designation`, `imageUrl`, `idCategorie`, `description`) VALUES
+(37, 'titi', NULL, 1, ''),
+(38, 'toto', 'images/article/b8626f33764d024d7a6e88a903563726.jpg', 1, ''),
+(39, 'Rere', NULL, 1, ''),
+(40, 'mloi', 'images/article/541ff01c4b692c440e3fe2373de44f85.jpg', 1, ''),
+(41, 'zeaz', 'images/article/00f76aee3da9fca57283c0c8b53d2273.jpg', 1, ''),
+(42, 'mere', 'images/article/899482c0b97b4814160538880dbd56ca.jpg', 1, ''),
+(43, 'Moljs', 'images/article/cd4552f58f6faa46b6c27bb9ac8def22.jpg', 1, ''),
+(44, 'fere', NULL, 2, ''),
+(45, 'plmoi', 'images/article/a0197a4bdff7bcf7a8b9d150b6ff7fbe.jpg', 2, ''),
+(46, 'Aear', 'images/article/150651811771a703a523a5ae66d70269.jpg', 2, ''),
+(47, 'lose', 'images/article/13703c04cf08f89796488f8ecc76fca9.jpg', 2, ''),
+(48, 'Nery', 'images/article/e2d8ed38b6f89c5fe14a870126adfdfc.jpg', 1, ''),
+(49, 'olk', 'images/article/4f60971a8142e1f1220f941ad1fcd12d.jpg', 2, ''),
+(50, 'Nos', 'images/article/93723e28c9d14b793f0c9f39ec6c9826.jpg', 1, ''),
+(51, 'tuta', 'images/article/89faa5623c2bdd45b93ba09be6d862f0.jpg', 2, ''),
+(52, 'mlnj', 'images/article/7327249b0bca717d4da1f5312ce1f251.jpg', 2, ''),
+(53, 'poiri', 'images/article/3e245a8c7ab7d16b9e218a0dd6348676.jpg', 2, ' Vestibulum non sagittis nunc. In quis felis nibh. Etiam malesuada purus nec risus efficitur, aliquet cursus dolor porttitor. Suspendisse semper metus sed vehicula rutrum. Nam porta orci sit amet massa pulvinar, in egestas elit eleifend. Integer in facilisis arcu. Vestibulum ut fringilla risus, eu posuere ex. Praesent magna dolor, lobortis ut elit ac, vulputate luctus elit. Cras posuere tellus in erat bibendum sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus ipsum \r\nAjoutermi, fringilla sagittis leo accumsan vitae. Phasellus varius enim ac arcu finibus tempor. Pellentesque mattis faucibus venenatis. Sed consectetur tortor nec sagittis porta. In eget enim vel nunc vestibulum fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;');
 
 -- --------------------------------------------------------
 
@@ -97,19 +101,24 @@ CREATE TABLE IF NOT EXISTS `articlevendeur` (
 --
 
 INSERT INTO `articlevendeur` (`idArticle`, `idVendeur`, `quantite`, `payableNFois`, `prix`) VALUES
-(1, 1, 11, 0, 0),
-(24, 1, 11, 0, 0),
-(25, 1, 12, 0, 0),
-(26, 1, 14, 0, 0),
-(27, 1, 0, 0, 0),
-(28, 1, 12, 0, 0),
-(29, 1, 0, 0, 0),
-(30, 1, 0, 0, 0),
-(31, 1, 22, 0, 12),
-(32, 1, 10, 0, 13),
-(33, 1, 11, 0, 14),
-(35, 1, 12, 0, 12),
-(36, 1, 12, 0, 12);
+(37, 1, 123, 0, 987),
+(38, 1, 98, 0, 23),
+(39, 1, 123, 0, 234),
+(40, 1, 87, 0, 32),
+(41, 1, 987, 0, 87),
+(42, 1, 123, 0, 23),
+(43, 1, 23, 0, 134),
+(44, 1, 123, 0, 23),
+(45, 1, 143, 0, 123),
+(46, 1, 345, 0, 98),
+(47, 1, 89, 0, 123),
+(48, 1, 477, 0, 1234),
+(49, 1, 56, 0, 32),
+(50, 1, 98, 0, 67),
+(51, 1, 123, 0, 74),
+(52, 1, 210, 0, 32),
+(53, 1, 89, 0, 234),
+(53, 2, 214, 0, 214);
 
 -- --------------------------------------------------------
 
@@ -122,14 +131,15 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `idCategorie` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(45) NOT NULL,
   PRIMARY KEY (`idCategorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `categorie`
 --
 
 INSERT INTO `categorie` (`idCategorie`, `nom`) VALUES
-(1, 'Informatique');
+(1, 'Informatique'),
+(2, 'Jeux');
 
 -- --------------------------------------------------------
 
@@ -156,7 +166,6 @@ CREATE TABLE IF NOT EXISTS `client` (
 
 INSERT INTO `client` (`idClient`, `nom`, `prenom`, `email`, `password`, `adresse`, `valide`, `token`) VALUES
 (1, 'azerty', 'azerty', 'azerty@mlk.fr', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 1, 'f4918f181fd27e57d852e341f15096e1e1c37ce9'),
-(2, 'azerty', 'azrar', 'tamoo@hotmail.fr', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 0, '9197feccab7b5fc16377fac05d0f312b1798f518'),
 (3, 'azerty', 'azer', 'azerty@mlk.frze', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 0, '474ab8ae7b16aa13e0ee391dcbd6f9305545c5b9');
 
 -- --------------------------------------------------------
@@ -208,7 +217,14 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`idMessage`),
   KEY `FK_Message_Article_idx` (`idArticle`),
   KEY `FK_Message_Vendeur_idx` (`idPersonne`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `message`
+--
+
+INSERT INTO `message` (`idMessage`, `date`, `contenu`, `vendeur`, `reclamation`, `idPersonne`, `idArticle`) VALUES
+(2, '2017-10-18 05:17:00', 'coucou', NULL, NULL, 3, 53);
 
 -- --------------------------------------------------------
 
@@ -278,14 +294,15 @@ CREATE TABLE IF NOT EXISTS `vendeur` (
   `adresseVendeur` varchar(255) DEFAULT NULL,
   `nomVendeur` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idVendeur`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `vendeur`
 --
 
 INSERT INTO `vendeur` (`idVendeur`, `nom`, `prenom`, `email`, `adresse`, `valide`, `adresseVendeur`, `nomVendeur`) VALUES
-(1, 'Ahamada', 'Tamou', 'sdfd@mlh.com', '12 rue kjhfd ssd', 1, '123 rue delaboutique', 'MarketShop');
+(1, 'Ahamada', 'Tamou', 'sdfd@mlh.com', '12 rue kjhfd ssd', 1, '123 rue delaboutique', 'MarketShop'),
+(2, 'test', 'test', 'tzts@jh.fr', 'sdf dfe ef', NULL, 'df df21 fdf', 'MyBoutique');
 
 --
 -- Contraintes pour les tables déchargées
@@ -322,8 +339,7 @@ ALTER TABLE `commandearticle`
 --
 ALTER TABLE `message`
   ADD CONSTRAINT `FK_Message_Article` FOREIGN KEY (`idArticle`) REFERENCES `article` (`idArticle`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_Message_Client` FOREIGN KEY (`idPersonne`) REFERENCES `client` (`idClient`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_Message_Vendeur` FOREIGN KEY (`idPersonne`) REFERENCES `vendeur` (`idVendeur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FK_Message_Client` FOREIGN KEY (`idPersonne`) REFERENCES `client` (`idClient`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `reduction`

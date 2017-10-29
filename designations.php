@@ -2,8 +2,6 @@
 require "vendor/autoload.php";
 include "Autoload.php";
 include "funct/listCategorie.php";
-$loaderfile = new Twig_Loader_Filesystem('ajaxReponse/');
-$twig = new Twig_Environment($loaderfile);
 
 if(isset($_POST['designation'])){
 	$mArticle=new ManagerArticle();
@@ -13,6 +11,9 @@ if(isset($_POST['designation'])){
 	//liste des designations qui ne sont pas vendu par le vendeur
 	$designations=$mArticle->lister($search,[],false,$joinArray);
 }
+
+$loaderfile = new Twig_Loader_Filesystem('ajaxReponse/');
+$twig = new Twig_Environment($loaderfile);
 
 $reponse=array("message"=>"success");
 echo $twig->render('json.html', array("reponse"=>$designations));

@@ -200,7 +200,7 @@ abstract Class Manager implements Enregistrable{
 					$where.=" and ";
 				$i++;
 			}	
-			$req=$this->Bdd()->prepare("select * from $table as t $joinTable $joinOn where $where $order $limit $offset");
+			$req=$this->Bdd()->prepare("select * from $table as t $join where $where $order $limit $offset");
 			
 		}
 		$req->execute($arrayexecute);

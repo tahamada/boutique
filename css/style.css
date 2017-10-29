@@ -136,3 +136,41 @@ div.ui-dialog-titlebar{
 input[class='error']{	
 	border:1px solid red;
 }
+
+#connexion a{
+	color:white;
+	cursor:pointer;
+}
+
+#articleDetail img{
+	width:100%;
+}
+
+#description{
+	width:100%;
+}
+
+#ButtonAjoutPanier{
+	border-radius: 10px;
+	background-color: #E43F0D;
+	color:white;
+	padding: 5px;
+}
+
+#ButtonAjoutPanier:hover, #ButtonAjoutPanier:focus{
+	background-color: #ce380b;
+}
+
+#description{
+	margin-top: 10px;
+	border-top: 1px solid #9c1b54;
+}
+
+#quantite{
+	width:40px;
+	padding-left: 5px;
+	margin-left: 5px;
+	border-radius: 10px;
+	
+}
+

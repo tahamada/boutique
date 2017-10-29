@@ -3,12 +3,35 @@ $( document ).ready(function(){
         console.log("connfunc");
         $.ajax({
                 method: "POST",
+                crossDomain: true,
+                xhrFields: {
+                    withCredentials: true
+                },
                 url: "connexion.php",
                 data: { email: $("#email").val(), password: $("#password").val() },
                 dataType : "json"
             })
             .done(function(reponse) {
-                console.log(reponse);
+                if(reponse.message=="success"){
+                  $.get("ajaxReponse/ajaxMessageSuccesConnexion.html", function(data){
+                      $("#alertZone").html(data);
+                      $( "#ConnexionDialog" ).dialog("close");
+                  });
+                  $("#connexion").empty();
+                  $.get("view/monCompte.html", function(data){
+                      $("#connexion").html(data);
+                  });
+                }else if(reponse.message=="valide"){
+                  $.get("ajaxReponse/ajaxMessageValideConnexion.html", function(data){
+                      $("#alertZone").html(data);
+                  });
+                }else if(reponse.message=="error"){
+                   $.get("ajaxReponse/ajaxMessageErrorConnexion.html", function(data){
+                      $("#connAlertZone").html(data);
+                  });
+                  $("#connAlertZone").append("<div class='alert alert-danger alert-dismissable'><strong>Mauvais identifiant</strong></div>");
+                }
+                console.log(reponse.message);
             })
             .fail(function() {
                 console.log("fail");

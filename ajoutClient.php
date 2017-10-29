@@ -2,11 +2,12 @@
 require "vendor/autoload.php";
 include "Autoload.php";
 include "funct/listCategorie.php";
+include "funct/mail.php";
 include "funct/session.php";
 
 if(isset($_POST["inscriptionSubmit"])){ 
     $mClient= new ManagerClient();
-    $message=array(true,"Inscription reussit, veuillez valider votre email");
+    $message=array(1,"Inscription reussit, veuillez valider votre email");
 
    	$entropy = uniqid(mt_rand(), true);
     $hash = sha1($entropy);  // sha1 gives us a 40-byte hash
@@ -20,25 +21,32 @@ if(isset($_POST["inscriptionSubmit"])){
 		   	try{
 		   		//creation de l'objet client
 		   		$_POST['password']=hash ("sha256", $_POST['password']);
-		   		$oClient=new Client($_POST);	
-
-		   		$mClient->enregistrer($oClient);	   		
+		   		$oClient=new Client($_POST);
+		   		$bodymessage="";
+		   		$bodymessage.="Bienvenue chez MyMarket\n";
+		   		$bodymessage.="\nVeuillez confirmer votre inscription en cliquant sur ce lien :\n";
+		   		$bodymessage.='http://'.$_SERVER['HTTP_HOST']."?token=".$oClient->Token()."\n";
+		   		$bodymessage.="\nVous pouvez ignorer cet email s'il ne vous concerne pas\n";
+		   		$bodymessage.="\nhttp://".$_SERVER['HTTP_HOST']."\n";
+		   		var_dump(smtpMailer("inscrption",$_POST['email'],"coucou"));
+		   		die();
+		   		//$mClient->enregistrer($oClient);	   		
 		   		//password_hash($_POST[''], PASSWORD_DEFAULT)
 		   		$_SESSION['message']=$message;
 		   		header("location:index.php");
 		   	}catch(Exception $e){
-		        $message=array(false,$e->getMessage());
+		        $message=array(0,$e->getMessage());
 		    }
 	   	}
 	   	else{
 	   		if($existantClient[0]->Valide()!=0)
-	   			$message=array(false,"Email déjà existant");
+	   			$message=array(0,"Email déjà existant");
 	   		else
-	   			$message=array(false,"Veuillez confirmer votre email ou vous réinscrire");
+	   			$message=array(0,"Veuillez confirmer votre email ou vous réinscrire");
 	   	}
    	}
    	else
-   		$message=array(false,"Les 2 mots de passe sont differents");
+   		$message=array(0,"Les 2 mots de passe sont differents");
 }
 
 $loaderfile = new Twig_Loader_Filesystem('view/');

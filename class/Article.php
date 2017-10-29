@@ -6,6 +6,7 @@ class Article extends Model
     private $_idArticle;
     private $_designation; 
     private $_imageUrl; 
+    private $_description;
     private $_idCategorie; 
 
     public function __construct($tuple)
@@ -109,6 +110,26 @@ class Article extends Model
     public function setIdVendeur($_idVendeur)
     {
         $this->_idVendeur = $_idVendeur;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function Description()
+    {
+        return $this->_description;
+    }
+
+    /**
+     * @param mixed $_description
+     *
+     * @return self
+     */
+    public function setDescription($_description)
+    {
+        $this->_description = $_description;
 
         return $this;
     }

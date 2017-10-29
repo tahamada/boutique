@@ -2,5 +2,4 @@ vendor/
 nbproject/
 project.*
 *.php-tmp
-images/article/*
 .phpintel/
