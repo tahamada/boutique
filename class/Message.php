@@ -6,7 +6,8 @@ class Message extends Model
 	private $_date;   
 	private $_contenu;   
 	private $_vendeur;   
-	private $_reclamation;   
+	private $_reclamation;  
+    private $_visible; 
 	private $_idPersonne;   
 	private $_idArticle; 
 
@@ -29,7 +30,7 @@ class Message extends Model
     /**
      * @return mixed
      */
-    public function getIdMessage()
+    public function IdMessage()
     {
         return $this->_idMessage;
     }
@@ -49,7 +50,7 @@ class Message extends Model
     /**
      * @return mixed
      */
-    public function getDate()
+    public function Date()
     {
         return $this->_date;
     }
@@ -69,7 +70,7 @@ class Message extends Model
     /**
      * @return mixed
      */
-    public function getContenu()
+    public function Contenu()
     {
         return $this->_contenu;
     }
@@ -89,11 +90,11 @@ class Message extends Model
     /**
      * @return mixed
      */
-    public function getVendeur()
+    public function Vendeur()
     {
         return $this->_vendeur;
     }
-_
+
     /**
      * @param mixed $vendeur
      *
@@ -109,7 +110,7 @@ _
     /**
      * @return mixed
      */
-    public function getReclamation()
+    public function Reclamation()
     {
         return $this->_reclamation;
     }
@@ -129,7 +130,7 @@ _
     /**
      * @return mixed
      */
-    public function getIdPersonne()
+    public function IdPersonne()
     {
         return $this->_idPersonne;
     }
@@ -149,7 +150,7 @@ _
     /**
      * @return mixed
      */
-    public function getIdArticle()
+    public function IdArticle()
     {
         return $this->_idArticle;
     }
@@ -162,6 +163,26 @@ _
     public function setIdArticle($idArticle)
     {
         $this->_idArticle = $idArticle;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function Visible()
+    {
+        return $this->_visible;
+    }
+
+    /**
+     * @param mixed $_visible
+     *
+     * @return self
+     */
+    public function setVisible($_visible)
+    {
+        $this->_visible = $_visible;
 
         return $this;
     }

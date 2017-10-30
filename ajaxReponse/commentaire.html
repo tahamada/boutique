@@ -1,7 +1,7 @@
 {% for item in reponse %}
 <div class="commentaire">
 	<span>Posté le {{item.date}} par {{item.prenom}} {{item.nom}} </span>
-	<div class="well">{{item.contenu}}
+	<div class="well">{{item.contenu}}</div>
 </div>
 {% endfor %}
 {% if session %}
@@ -10,7 +10,7 @@
 	<textarea>
 		
 	</textarea>
-	<button class="btn" id="envoyerCommentaire">Envoyer</button>
+	<button class="btn" id="envoyerCommentaire" onclick="ajoutCommentaire()">Envoyer</button>
 </div>
 {% endif %}
 

@@ -1,5 +1,5 @@
 $( document ).ready(function(){
-	function commentaireFunction(){
+	commentaireFunction=function commentaireFunction(){
 
 		$.ajax({
                 method: "POST",
@@ -24,18 +24,20 @@ $( document ).ready(function(){
     if($("#commentaire div"))
 	   commentaireFunction();
 
-    function ajoutCommentaire(){
-        $.ajax({
+    ajoutCommentaire=function ajoutCommentaire(){
+        if($("#envoyerCommentaire").prev().val().trim()){
+            $.ajax({
                 method: "POST",
                 crossDomain: true,
                 xhrFields: {
                     withCredentials: true
                 },
                 url: "ajoutCommentaire.php",
-                data: { idArticle: $("#idArticle").val(), idClient: $("#idClient").val()},
+                data: { idArticle: $("#idArticle").val(), idPersonne: $("#idClient").val(),contenu:$("#envoyerCommentaire").prev().val()},
                 dataType : "html"
             })
             .done(function(reponse) {
+
                commentaireFunction();
             })
             .fail(function() {
@@ -44,6 +46,6 @@ $( document ).ready(function(){
             .always(function() {
 
             });
+        }
     }
-    $("#envoyerCommentaire").click("ajoutCommentaire");
 });

@@ -9,7 +9,7 @@ if(isset($_SESSION['message'])){
 else
 	$message=array();
 if(isset($_SESSION['user'])){
-	$idClient=$_SESSION['user']['idClient'];
+	$idClient=$_SESSION['user']->IdClient();
 	$session="ok";
 }
 

@@ -9,7 +9,7 @@ if(isset($_POST['idArticle'])){
         $idVendeur=1;
 	$objet=false;
 	$column=["contenu","date","c.nom","c.prenom"];
-	$search=array("reclamation"=>"null","t.idArticle"=>$_POST['idArticle']);
+	$search=array("reclamation"=>"null","t.idArticle"=>$_POST['idArticle'],"visible"=>1);
 	$join1=array("Client as c","c.idClient=t.idPersonne","JOIN");
 	$join2=array("Article as a","a.idArticle=t.idArticle","JOIN");
 	$joinParam=array($join1,$join2);
