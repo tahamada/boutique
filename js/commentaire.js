@@ -21,5 +21,29 @@ $( document ).ready(function(){
 
             });
 	}
-	commentaireFunction();
+    if($("#commentaire div"))
+	   commentaireFunction();
+
+    function ajoutCommentaire(){
+        $.ajax({
+                method: "POST",
+                crossDomain: true,
+                xhrFields: {
+                    withCredentials: true
+                },
+                url: "ajoutCommentaire.php",
+                data: { idArticle: $("#idArticle").val(), idClient: $("#idClient").val()},
+                dataType : "html"
+            })
+            .done(function(reponse) {
+               commentaireFunction();
+            })
+            .fail(function() {
+                console.log("fail");
+            })
+            .always(function() {
+
+            });
+    }
+    $("#envoyerCommentaire").click("ajoutCommentaire");
 });

@@ -4,7 +4,7 @@
 	use PHPMailer\PHPMailer\Exception;
 
 	function sendMail($title,$expediteur,$body,$from=array('mymarket@mymarket.com' => 'MyMarket')){
-		$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl")
+		$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 587, "tls")
 		  ->setUsername('MyMarketBoutique@gmail.com')
 		  ->setPassword('MyMarketBoutique123456');
 
@@ -38,5 +38,24 @@
 		} else {
 			return true;
 		}
+	}
+	
+	function send(){	
+
+		$transport =  (new Swift_SmtpTransport('smtp.gmail.com', 587,'tls'))
+		                            ->setUsername('MyMarketBoutique')
+		                            ->setPassword('MyMarketBoutique123456');
+
+		    $mailer = new Swift_Mailer($transport);
+
+		    $message = (new Swift_Message('PHP composer'))
+		  ->setFrom(['MyMarketBoutique@gmail.com' => 'MyMarketBoutique'])
+		  ->setTo(['tamou.le.email.hamada@gmail.com' => 'Monsieur Tamou'])
+		  ->setBody('Vive PHP composer ! <br>rom Rang 4 ')
+		  ;
+
+		    $mailer->send($message);
+
+		    $result = $mailer->send($message);
 	}
 ?>

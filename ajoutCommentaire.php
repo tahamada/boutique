@@ -5,15 +5,12 @@ include "funct/session.php";
 
 $message=array();
 if(isset($_POST['idArticle'])){
+	$_POST['date']=date("Y-m-d H:i:s");
 	$mMessage=new ManagerMessage();
+	$oMessage=new Message($_POST);
         $idVendeur=1;
-	$objet=false;
-	$column=["contenu","date","c.nom","c.prenom"];
-	$search=array("reclamation"=>"null","t.idArticle"=>$_POST['idArticle']);
-	$join1=array("Client as c","c.idClient=t.idPersonne","JOIN");
-	$join2=array("Article as a","a.idArticle=t.idArticle","JOIN");
-	$joinParam=array($join1,$join2);
-	$message=$mMessage->lister($search,$column,$objet,$joinParam);
+	var_dump($oMessage);
+	$message=$mMessage->enregistrer();
 }
 
 

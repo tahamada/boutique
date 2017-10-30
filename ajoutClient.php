@@ -28,7 +28,8 @@ if(isset($_POST["inscriptionSubmit"])){
 		   		$bodymessage.='http://'.$_SERVER['HTTP_HOST']."?token=".$oClient->Token()."\n";
 		   		$bodymessage.="\nVous pouvez ignorer cet email s'il ne vous concerne pas\n";
 		   		$bodymessage.="\nhttp://".$_SERVER['HTTP_HOST']."\n";
-		   		var_dump(smtpMailer("inscrption",$_POST['email'],"coucou"));
+		   		//var_dump(sendMail("inscrption",$_POST['email'],"coucou"));
+		   		var_dump(send());
 		   		die();
 		   		//$mClient->enregistrer($oClient);	   		
 		   		//password_hash($_POST[''], PASSWORD_DEFAULT)

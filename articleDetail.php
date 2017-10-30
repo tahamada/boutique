@@ -13,7 +13,7 @@ if(isset($_GET['idArticle'])){
 	$join1=array("ArticleVendeur as av","av.idArticle=t.idArticle","JOIN");
 	$join2=array("Vendeur as v","v.idVendeur=av.idVendeur","JOIN");
 	$joinParam=array($join1,$join2);
-	$Article=$mArticle->lister($search,$column,$objet,$joinParam);
+	$Article=$mArticle->lister($search,$column,$objet,$joinParam);	
 	if(count($Article)>0){
 		if(isset($_GET['idVendeur']))
 			for($i=0;$i<count($Article);$i++) {
@@ -36,5 +36,5 @@ else
 	header("location:/");
 $loaderfile = new Twig_Loader_Filesystem('view/');
 $twig = new Twig_Environment($loaderfile);
-echo $twig->render('articleDetail.html', array('categorie'=>$listeoCategorie,"article"=>$Article,"idVendeur"=>$idVendeur,"indexVendeur"=>$indexVendeur,'message'=>$message));
+echo $twig->render('articleDetail.html', array('categorie'=>$listeoCategorie,"article"=>$Article,"idVendeur"=>$idVendeur,"indexVendeur"=>$indexVendeur,'message'=>$message,'session'=>$session,'idClient'=>$idClient));
 ?>

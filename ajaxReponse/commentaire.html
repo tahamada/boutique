@@ -1,6 +1,16 @@
 {% for item in reponse %}
-	<div class="commentaire">
-		<span>Posté le {{item.date}} par {{item.prenom}} {{item.nom}} </span>
-		<div class="well">{{item.contenu}}
-	</div>
+<div class="commentaire">
+	<span>Posté le {{item.date}} par {{item.prenom}} {{item.nom}} </span>
+	<div class="well">{{item.contenu}}
+</div>
 {% endfor %}
+{% if session %}
+<span>Ajouter un commentaire:</span>
+<div>
+	<textarea>
+		
+	</textarea>
+	<button class="btn" id="envoyerCommentaire">Envoyer</button>
+</div>
+{% endif %}
+

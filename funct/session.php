@@ -1,6 +1,7 @@
 <?php
 session_start();
 $session=null;
+$idClient=null;
 if(isset($_SESSION['message'])){
 	$message=$_SESSION['message'];	
 	unset($_SESSION['message']);
@@ -8,6 +9,7 @@ if(isset($_SESSION['message'])){
 else
 	$message=array();
 if(isset($_SESSION['user'])){
+	$idClient=$_SESSION['user']['idClient'];
 	$session="ok";
 }
 
