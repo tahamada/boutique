@@ -22,6 +22,8 @@ if(isset($_GET['token'])){
 	}
 }
 
+
+
 //liste des articles pour le slider
 $search=array("imageUrl"=>"not null");
 $column=[];
@@ -39,6 +41,23 @@ $search=null;
 $join1=array("ArticleVendeur as av","av.idArticle=t.idArticle","JOIN");
 $join2=array("Vendeur as v","v.idVendeur=av.idVendeur","JOIN");
 $joinParam=array($join1,$join2);
+
+
+
+//recherche POST
+if(isset($_POST['recherche'])){
+	if($_POST['categorie']=="all")
+		$_POST['categorie']="";
+	$search=array("designation"=>"%".$_POST['designation']."%","idCategorie"=>$_POST['categorie']);
+}
+
+////recherche GET
+if(isset($_GET['categorie'])){
+	$search=array("idCategorie"=>$_GET['categorie']);
+}
+
+
+
 $listArticle=$mArticle->lister($search,$column,$objet,$joinParam);
 
 

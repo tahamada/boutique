@@ -19,7 +19,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorie <span class="caret"></span></a>
           <ul class="dropdown-menu">
             {% for item in categorie %}
-              <li><a href="#">{{item.Nom}}</a></li>
+              <li><a href="/?categorie={{item.idCategorie}}">{{item.Nom}}</a></li>
             {% endfor %}
           </ul>
         </li>
@@ -35,17 +35,17 @@
           {% include 'monCompte.html' %}
         {% endif %} 
       </div>
-      <form class="navbar-form  navbar-right">
+      <form action="/" method="POST" class="navbar-form  navbar-right">
         <div class="form-group ">
-          <input type="text" class="form-control" placeholder="rechercher un article">
-          <select class="form-control">
+          <input type="text" name='designation' class="form-control" placeholder="rechercher un article">
+          <select class="form-control" name="categorie">
             <option value="all">All</option>
             {% for item in categorie %}
-                <option value="{{item.Nom}}">{{item.Nom}}</option>
+                <option value="{{item.idCategorie}}">{{item.Nom}}</option>
             {% endfor %}
           </select>
         </div>
-        <button type="submit" class="btn btn-default">Rechercher</button>
+        <button type="submit" name="recherche" class="btn btn-default">Rechercher</button>
       </form>
       
     </div><!-- /.navbar-collapse -->
