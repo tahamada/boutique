@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 29 oct. 2017 à 22:35
+-- Généré le :  mer. 01 nov. 2017 à 22:36
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -214,17 +214,19 @@ CREATE TABLE IF NOT EXISTS `message` (
   `reclamation` tinyint(4) DEFAULT NULL,
   `idPersonne` int(11) DEFAULT NULL,
   `idArticle` int(11) DEFAULT NULL,
+  `visible` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idMessage`),
   KEY `FK_Message_Article_idx` (`idArticle`),
   KEY `FK_Message_Vendeur_idx` (`idPersonne`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `message`
 --
 
-INSERT INTO `message` (`idMessage`, `date`, `contenu`, `vendeur`, `reclamation`, `idPersonne`, `idArticle`) VALUES
-(2, '2017-10-18 05:17:00', 'coucou', NULL, NULL, 3, 53);
+INSERT INTO `message` (`idMessage`, `date`, `contenu`, `vendeur`, `reclamation`, `idPersonne`, `idArticle`, `visible`) VALUES
+(2, '2017-10-18 05:17:00', 'coucou', NULL, NULL, 3, 53, 1),
+(3, '2017-10-30 20:38:25', 'coucou aussi\n	', NULL, NULL, 1, 53, 1);
 
 -- --------------------------------------------------------
 

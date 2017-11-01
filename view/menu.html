@@ -35,7 +35,8 @@
           {% include 'monCompte.html' %}
         {% endif %} 
       </div>
-      <form action="/" method="POST" class="navbar-form  navbar-right">
+      <span class="glyphicon navbar-right" id="btnPanier" ></span>
+      <form action="/" method="GET" class="navbar-form  navbar-right">
         <div class="form-group ">
           <input type="text" name='designation' class="form-control" placeholder="rechercher un article">
           <select class="form-control" name="categorie">
@@ -46,8 +47,7 @@
           </select>
         </div>
         <button type="submit" name="recherche" class="btn btn-default">Rechercher</button>
-      </form>
-      
+      </form>      
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

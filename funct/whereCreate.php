@@ -1,7 +1,7 @@
 <?php
 function whereCreate($key,$val,&$arrayexecute){
 	$comparateur="=";
-	if($val==null or $val=="null"){
+	if($val===null or $val=="null"){
 		return $key." is null";
 	}
 	elseif($val=="not null"){

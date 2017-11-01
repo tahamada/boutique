@@ -186,3 +186,35 @@ input[class='error']{
 #commentaire textarea{
 	width: 100%;
 }
+
+#btnAjoutPanier{
+	background-image:url("../images/pluspanier2.png");
+	background-color: #9c1b54;
+	border-radius: 5px;
+	width:25px;
+	height:27px;
+	top: 4px;
+	margin-left: 2px;
+}	
+
+#btnPanier{
+	background-image:url("../images/panier2.png");
+	border-radius: 5px;
+	width:25px;
+	height:27px;
+	top: 10px;
+	margin-right: 6px;
+}
+
+#btnAjoutPanier:hover, #btnAjoutPanier:focus, #btnAjoutPanier:active{
+	background-color:#7b1341;
+	cursor: pointer;
+}
+
+#btnPanier:hover, #btnPanier:focus, #btnPanier:active{
+	cursor: pointer;
+}
+
+#bs-example-navbar-collapse-1 > form{
+	padding-right: 2px;
+}
