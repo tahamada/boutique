@@ -23,7 +23,6 @@ if(isset($_GET['token'])){
 }
 
 
-
 //liste des articles pour le slider
 $search=array("imageUrl"=>"not null");
 $column=[];
@@ -40,27 +39,42 @@ $listArticleNouveau=$mArticle->lister($search,$column,$objet,$joinParam,$order,$
 $search=null;
 $join1=array("ArticleVendeur as av","av.idArticle=t.idArticle","JOIN");
 $join2=array("Vendeur as v","v.idVendeur=av.idVendeur","JOIN");
-$joinParam=array($join1,$join2);
+$join3=array("Categorie as c","c.idCategorie=t.idCategorie","JOIN");
+$joinParam=array($join1,$join2,$join3);
 
 ////recherche GET
 if(isset($_GET['categorie'])){
-	$search=array("idCategorie"=>$_GET['categorie']);
+	$search=array("t.idCategorie"=>$_GET['categorie']);
+}
+
+//tri
+$order=null;
+if(isset($_GET['tri'])){
+	if($_GET['tri']=="asc"){
+		$order="prix asc";
+	}elseif($_GET['tri']=="desc"){
+		$order="prix desc";
+	}
 }
 
 //recherche POST
 if(isset($_GET['recherche'])){
 	$whereCategorie=array();
 	if($_GET['categorie']!="all"){
-		$whereCategorie=array("idCategorie"=>$_GET['categorie']);
+		$whereCategorie=array("t.idCategorie"=>$_GET['categorie']);
 	}
 	$search=array("designation"=>"%".$_GET['designation']."%");
 	$search=array_merge ($search,$whereCategorie);
 
 }
 
-$listArticle=$mArticle->lister($search,$column,$objet,$joinParam);
-
+$listArticle=$mArticle->lister($search,$column,$objet,$joinParam,$order);
 $loaderfile = new Twig_Loader_Filesystem('view/');
 $twig = new Twig_Environment($loaderfile);
-echo $twig->render('accueil.html',array('categorie'=>$listeoCategorie,'articlesSlide'=>$listArticleNouveau,'articles'=>$listArticle,'message'=>$message,'session'=>$session));
+if(isset($_GET['mode']) && $_GET['mode']=="ajax"){
+	echo $twig->render('ajaxReponse/articleList.html',array('articles'=>$listArticle));
+}
+else{
+	echo $twig->render('accueil.html',array('categorie'=>$listeoCategorie,'articlesSlide'=>$listArticleNouveau,'articles'=>$listArticle,'message'=>$message,'session'=>$session));
+}
 ?>

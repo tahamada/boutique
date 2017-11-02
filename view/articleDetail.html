@@ -11,8 +11,11 @@
          <div class="col-md-0">
             <input type="hidden" id="idClient" value="{{idClient}}"/>
          </div>
+         <div class="col-md-0">
+            <input type="hidden" id="idVendeur" value="{{idVendeur}}"/>
+         </div>
         <div class="col-md-6">
-            <h1>{{article[indexVendeur].designation}}<small>  <input type="number" id="quantite" value="1"/><span class="glyphicon" id="btnAjoutPanier"></span><!--<button id="ButtonAjoutPanier" name="{{article[indexVendeur].idArticle}}" onclick="ajoutPanier()">Ajouter au panier</button>--></small></h1>
+            <h1 id="titreDetail">{{article[indexVendeur].designation}}<small>  <input type="number" id="quantite" value="1"/><span class="glyphicon" id="btnAjoutPanier"></span><!--<button id="ButtonAjoutPanier" name="{{article[indexVendeur].idArticle}}" onclick="ajoutPanier()">Ajouter au panier</button>--></small></h1>
             <h3>{{article[indexVendeur].prix}} €</h3>
             <span><em><small>Vendeur:</small>{{article[indexVendeur].nomVendeur}}</em></span>
             
@@ -26,7 +29,7 @@
             {% endif %} 
         </div>
         <div id="description" class="col-md-12">
-            <h3>Descrition de l'article :</h3>
+            <h3>Description de l'article :</h3>
             <p>{{article[indexVendeur].description}}</p>            
         </div>
         <div id="commentaire" class="col-md-12">

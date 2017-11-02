@@ -15,7 +15,7 @@
     <body>
         <div class="container">           
             <div class="container" id="page">
-                 <a href="">
+                 <a href="/">
                     <div class="ban"></div>
                 </a>
                 <div class="row">
@@ -35,9 +35,11 @@
                 {% endblock %}
             </div>
         </div>
-         <div id="ConnexionDialog" class="row">
+        <div id="ConnexionDialog" class="row">
              {% include 'connexion.html' %}
-         </div>
+        </div>
+        <div id="panierDialog" class="row">
+        </div>
         <script src="js/lib/jquery-3.2.1.min.js"></script>
         <script src="js/lib/popper.js"></script>
         <script src="js/lib/jquery-ui.min.js"></script>
@@ -45,6 +47,10 @@
         <script src="js/lib/slick.min.js"></script>
         <script src="js/lib/jquery.validate.min.js"></script>
        
+        <script src="js/commentaire.js">
+            
+        </script>
+
         <script src="js/connexion.js"/>
             
         </script>
@@ -60,10 +66,16 @@
         <script src="js/formValide.js">
             
         </script>
-        <script src="js/commentaire.js">
+        
+        <script src="js/ajoutPanier.js">
             
         </script>
+
         <script src="js/panier.js">
+            
+        </script>
+
+        <script src="js/triArticle.js">
             
         </script>
     </body>

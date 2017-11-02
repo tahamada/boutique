@@ -14,24 +14,12 @@
     </div>
 </div>
 <div class="container" id="articlesList">
-    <h2>Articles</h2>
-    {% for item in articles %}
-    <a href="articleDetail.php?idArticle={{item.idArticle}}&idVendeur={{item.idVendeur}}">
-        <div class="col-md-2 articleWell nopadding">
-            <div class="col-md-12 nopadding">
-                {% if item.imageUrl|replace({".":"Mini."}) is empty%}
-                    <img class="center-block" src="images/article/vide.png"/>
-                {% else %}
-                    <img class="center-block" src="{{item.imageUrl|replace({".":"Mini."})}}"/>
-                {% endif %}    
-            </div>
-            <div class="col-md-12 nopadding">
-                <strong><span class="col-md-12 text-center">{{item.designation}}</span></strong>
-                <span class="col-md-12 nopadding text-center prix">{{item.prix}} €</span>
-                <span class="col-md-12 nopadding text-center"><em><small>Vendeur:</small>{{item.nomVendeur}}</em></span>
-            </div>
-        </div>
-    </a>
-    {% endfor %}
+    <div class="row" id="articlesListHead">
+        <h2 class="col-md-2">Nos articles</h2>
+        <div class="col-md-2 col-md-offset-7" id="tri"><strong>Prix : </strong><button class="btn asc">↑</button>  <button class="btn desc">↓</button></div>
+    </div>
+    <div class="row col-md-offset-1 col-xs-offset-1" id="articles">
+        {% include 'ajaxReponse/articleList.html' %}
+    </div>
 </div>
 {% endblock %}

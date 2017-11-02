@@ -188,19 +188,18 @@ abstract Class Manager implements Enregistrable{
 		else{
 			$where="";
 			$i=0;
-			include_once "funct/whereCreate.php";
 			foreach($value as $key=>$val){
 				if(strpos($val," or ")!==false){
 					$or=explode(" or ",$val);
-					$where.="(".whereCreate($key,$or[0],$arrayexecute)." or ".whereCreate($key,$or[1],$arrayexecute).")";
+					$where.="(".Fonction::whereCreate($key,$or[0],$arrayexecute)." or ".Fonction::whereCreate($key,$or[1],$arrayexecute).")";
 				}
 				else					
-					$where.=whereCreate($key,$val,$arrayexecute);
+					$where.=Fonction::whereCreate($key,$val,$arrayexecute);
 				if($i<count($value)-1)
 					$where.=" and ";
 				$i++;
 			}	
-			$req=$this->Bdd()->prepare("select * from $table as t $join where $where $order $limit $offset");
+			$req=$this->Bdd()->prepare("select $column from $table as t $join where $where $order $limit $offset");
 			
 		}
 		$req->execute($arrayexecute);

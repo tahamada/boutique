@@ -14,7 +14,7 @@ $( document ).ready(function(){
             .done(function(reponse) {
                 if(reponse.message=="success"){
                   $.get("ajaxReponse/ajaxMessageSuccesConnexion.html", function(data){
-                      $("#alertZone").html(data);
+                      $("#alertZone").html(data).fadeIn(2000, function(){$(this).fadeOut(1000);});
                       $( "#ConnexionDialog" ).dialog("close");
                   });
                   $("#connexion").empty();
@@ -23,11 +23,11 @@ $( document ).ready(function(){
                   });
                 }else if(reponse.message=="valide"){
                   $.get("ajaxReponse/ajaxMessageValideConnexion.html", function(data){
-                      $("#alertZone").html(data);
+                      $("#alertZone").html(data).fadeIn(2000, function(){$(this).fadeOut(1000);});;
                   });
                 }else if(reponse.message=="error"){
                    $.get("ajaxReponse/ajaxMessageErrorConnexion.html", function(data){
-                      $("#connAlertZone").html(data);
+                      $("#connAlertZone").html(data).fadeIn(2000, function(){$(this).fadeOut(1000);});;
                   });
                   $("#connAlertZone").append("<div class='alert alert-danger alert-dismissable'><strong>Mauvais identifiant</strong></div>");
                 }

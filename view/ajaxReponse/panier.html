@@ -1,0 +1,27 @@
+<div id="connAlertZone">
+</div>
+<div class="borderedBottom">
+    <h4 class="text-center"><em>Mon Panier</em></h4>
+</div>
+<div class="table-responsive">
+	<table class="table">
+		<tr><th></th><th>Designation</th><th>Prix</th><th>Vendeur</th><th>Quantite</th><th></th><tr>  
+		{% for item in panier %}
+			<tr>
+				<td>
+					{% if item.imageUrl|replace({".":"Mini."}) is empty%}
+		                <img class="center-block" src="images/article/vide.png"/>
+		            {% else %}
+		                <img class="center-block" src="{{item.imageUrl|replace({".":"Mini."})}}"/>
+		            {% endif %} 
+				</td>
+				<td>{{item.designation}}</td>
+				<td>{{item.prix}}€</td>
+				<td>{{item.nomVendeur}}</td>
+				<td>{{item.quantite}}</td>
+				<td><button class='btn'>Supprimer</button></td>
+			</tr>
+		{% endfor %}	
+
+	</table>
+<div>

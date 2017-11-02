@@ -4,6 +4,8 @@ function loadClass($classe){
 		include 'class/'.$classe .'.php';
 	if(file_exists('class/interface/'.$classe .'.php'))
 		include 'class/interface/'.$classe .'.php';
+	if(file_exists('funct/'.$classe .'.php'))
+		include 'funct/'.$classe .'.php';
         /*if(file_exists('./'.$classe .'.php'))
 		include './'.$classe .'.php';*/
 }
