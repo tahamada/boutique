@@ -2,6 +2,7 @@
 class Reservation extends Model {
 	private $_idArticle;
 	private $_idClient;
+	private $_idVendeur;
 	private $_quantite;
 	private $_date;
 
@@ -84,6 +85,24 @@ class Reservation extends Model {
 	 */
 	public function setDate($_date) {
 		$this->_date = $_date;
+
+		return $this;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function IdVendeur() {
+		return $this->_idVendeur;
+	}
+
+	/**
+	 * @param mixed $_idVendeur
+	 *
+	 * @return self
+	 */
+	public function setIdVendeur($_idVendeur) {
+		$this->_idVendeur = $_idVendeur;
 
 		return $this;
 	}

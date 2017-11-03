@@ -1,11 +1,11 @@
-<div id="connAlertZone">
+<div id="alertZonePanier">
 </div>
 <div class="borderedBottom">
     <h4 class="text-center"><em>Mon Panier</em></h4>
 </div>
 <div class="table-responsive">
 	<table class="table">
-		<tr><th></th><th>Designation</th><th>Prix</th><th>Vendeur</th><th>Quantite</th><th></th><tr>  
+		<tr><th></th><th>Designation</th><th>Prix</th><th>Vendeur</th><th>Quantite</th><th></th><th></th><tr>  
 		{% for item in panier %}
 			<tr>
 				<td>
@@ -13,15 +13,20 @@
 		                <img class="center-block" src="images/article/vide.png"/>
 		            {% else %}
 		                <img class="center-block" src="{{item.imageUrl|replace({".":"Mini."})}}"/>
-		            {% endif %} 
+		            {% endif %}
+		            <span class="hidden panierIdArticle">{{item.idArticle}}</span> 
 				</td>
 				<td>{{item.designation}}</td>
-				<td>{{item.prix}}€</td>
-				<td>{{item.nomVendeur}}</td>
-				<td>{{item.quantite}}</td>
-				<td><button class='btn'>Supprimer</button></td>
+				<td><span class="prix">{{item.prix}}</span>€</td>
+				<td>{{item.nomVendeur}}<span class="hidden panierIdVendeur">{{item.idVendeur}}</span></td>
+				<td>  <input type="number" class="quantite" value="{{item.quantite}}" min="1" max="99"/></td>
+				<td class="etatStock"></td>
+				<td><button class='btn BtnDelPanier'>Supprimer</button>
+					 {% if session=='ok'%}<button class='btn BtnReserverPanier hidden'>Reserver</button>{% endif %}
+					</td>
 			</tr>
-		{% endfor %}	
+		{% endfor %}
+		<td></td><td></td><td></td><td></td><td></td><td><h3>Total :</h3></td><td><h3 id="total"></h3></td>	
 
 	</table>
 <div>

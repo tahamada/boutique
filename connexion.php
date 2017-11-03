@@ -24,9 +24,9 @@ if(isset($_POST['email'])){
 }
 
 
-$loaderfile = new Twig_Loader_Filesystem('ajaxReponse/');
+$loaderfile = new Twig_Loader_Filesystem('view/');
 $twig = new Twig_Environment($loaderfile);
 
 
-echo $twig->render('json.html', array("reponse"=>$reponse));
+echo $twig->render('ajaxReponse/json.html', array("reponse"=>$reponse));
 ?>

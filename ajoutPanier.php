@@ -21,17 +21,19 @@ if(isset($_POST['idArticle'])){
 
 	//recherche
 	$article=$mArticle->lister($search,$column,$objet,$joinParam);
-	$article=$article[0];
-	$article["quantite"]=$_POST['quantite'];
+	$article=$article[0];	
+	$article["quantite"]=1;
 	//unset($_COOKIE['panier']);
 	if(isset($_COOKIE['panier'])){
 		$panier = unserialize($_COOKIE['panier']);
 		$saute=false;
-		var_dump($article);
 		foreach($panier as $index => $pan){
 			if($pan['idVendeur']==$article['idVendeur'] && $pan['idArticle']==$article['idArticle']){
-				$pan['quantite']+=$article['quantite'];
-				$panier[$index]=$pan;
+				if(isset($_POST['quantite']) && !empty($_POST['quantite'])){
+					$pan['quantite']=$_POST['quantite'];
+					$panier[$index]=$pan;
+				}
+				
 				$saute=true;
 			}
 		}
@@ -40,6 +42,7 @@ if(isset($_POST['idArticle'])){
 		setcookie('panier', serialize($panier), time()+3600);
 	}
 	else{
+		
 		setcookie('panier', serialize(array($article)), time()+3600);
 		$panier = unserialize($_COOKIE['panier']);
 	}
@@ -48,8 +51,8 @@ if(isset($_POST['idArticle'])){
 }
 
 
-$loaderfile = new Twig_Loader_Filesystem('ajaxReponse/');
+$loaderfile = new Twig_Loader_Filesystem('view/');
 $twig = new Twig_Environment($loaderfile);
 
-echo $twig->render('json.html', array("reponse"=>$panier,"session"=>$session));
+echo $twig->render("ajaxReponse/json.html", array("nbPanier"=>count($panier),"session"=>$session));
 ?>
