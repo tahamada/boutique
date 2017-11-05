@@ -1,8 +1,8 @@
 <?php
 interface enregistrable
 {
-	public function lister($value,$column);
-	public function enregistrer($objet,$update);
-	public function supprimer($objet);
+	public static function lister($value,$column);
+	public static function enregistrer($objet,$update);
+	public static function supprimer($objet);
 }
 ?>

@@ -1,13 +1,15 @@
 <?php
-abstract Class Manager implements Enregistrable{
+Class Manager implements Enregistrable{
 	const BDD_PARAM=array("mysql:host=localhost;dbname=boutique;charset=utf8","root","",array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-	private $_bdd;
-	public function __construct()
+	private static $_bdd;
+	private static $_table;
+	private static $_instance;
+	private function __construct()
 	{
 		try
 		{
 			$bdd= new PDO(self::BDD_PARAM[0],self::BDD_PARAM[1],self::BDD_PARAM[2],self::BDD_PARAM[3]); 	
-			$this->setBdd($bdd);		
+			self::$_bdd=$bdd;		
 			
 		}catch(Exception $e){
 			die("Erreur: ".$e->getMessage());
@@ -15,12 +17,25 @@ abstract Class Manager implements Enregistrable{
 
 	}
 
+	private function __clone() { } // clonage private
+	
+	public static function getInstance()
+	{
+		if (!isset(self::$_instance)) // pas encore instanciee
+		{
+
+			self::$_instance = new self; // instanciation
+		}
+		return self::$_instance;
+	}
+
+
     /**
      * @return mixed
      */
-    public function Bdd()
+    public static function Bdd()
     {
-        return $this->_bdd;
+        return self::$_bdd;
     }
 
     /**
@@ -28,25 +43,43 @@ abstract Class Manager implements Enregistrable{
      *
      * @return self
      */
-    public function setBdd($_bdd)
+    public static function setBdd($_bdd)
     {
-        $this->_bdd = $_bdd;
+        self::$_bdd = $_bdd;
 
-        return $this;
+        return self::getInstance();
     }
-    public function getTable(){
-    	return str_replace("Manager","",get_Class($this));
+
+
+    public static function Table(){
+    	return self::$_table;
     } 
 
+
+
+    /**
+     * @param mixed $table
+     *
+     * @return self
+     */
+    public static function setTable($table)
+    {
+        self::$_table = $table;
+
+        return self::getInstance();
+    }
+
+
+
     //retourne la liste des colonnes et les cle primairesde la table
-    public function getAttr(){
-    	$table= $this->getTable();  	
+    public static function getAttr(){
+    	$table= self::Table();  	
     	//colonne
-    	$r = $this->Bdd()->prepare("DESCRIBE $table");
+    	$r = self::Bdd()->prepare("DESCRIBE $table");
 		$r->execute();
 		$table_colonne = $r->fetchAll(PDO::FETCH_COLUMN);
 		//primary key
-		$rprimary = $this->Bdd()->prepare("SHOW KEYS FROM $table WHERE Key_name = 'PRIMARY'");
+		$rprimary = self::Bdd()->prepare("SHOW KEYS FROM $table WHERE Key_name = 'PRIMARY'");
 		$rprimary->execute();
 		$table_primarykey = $rprimary->fetchAll();
 		$pk=[];
@@ -56,9 +89,9 @@ abstract Class Manager implements Enregistrable{
 		return array("columns"=>$table_colonne,"pk"=>$pk);
     }
 
-    public function enregistrer($objet,$update=null){
-    	$table= $this->getTable(); 
-		$AtrrArray=$this->getAttr();
+    public static function enregistrer($objet,$update=null){
+    	$table= self::Table(); 
+		$AtrrArray=self::getAttr();
     	if($update==null){
     		//creation de la partie value pour une insertion
     		$value="";
@@ -70,7 +103,7 @@ abstract Class Manager implements Enregistrable{
 				$i++;
 			}				
 
-			$req=$this->Bdd()->prepare("INSERT INTO $table values($value)");
+			$req=self::Bdd()->prepare("INSERT INTO $table values($value)");
 		}		
 		else{
 			//partie where cle primaire
@@ -99,7 +132,7 @@ abstract Class Manager implements Enregistrable{
 				$i++;
 			}
 
-			$req=$this->Bdd()->prepare("UPDATE $table SET $setvalue WHERE $pkvalue");
+			$req=self::Bdd()->prepare("UPDATE $table SET $setvalue WHERE $pkvalue");
 		}
 
 		//tableau preparer
@@ -110,15 +143,15 @@ abstract Class Manager implements Enregistrable{
 		}
 		//try{
 		$execResult=$req->execute($prepArray);
-		return array($execResult,$this->Bdd()->lastInsertId());
+		return array($execResult,self::Bdd()->lastInsertId());
 		/*}catch(PDOExecption $e){
 			//throw new Exception($e->getMessage());
 		}*/
     }
 
-    public function supprimer($objet){
-    	$table= $this->getTable(); 
-    	$AtrrArray=$this->getAttr();
+    public static function supprimer($objet){
+    	$table= self::Table(); 
+    	$AtrrArray=self::getAttr();
     	//where
     	$where="";
 		$i=0;
@@ -129,12 +162,12 @@ abstract Class Manager implements Enregistrable{
 			$i++;
 		}		
 		
-		$req=$this->Bdd()->prepare("DELETE from $table WHERE $where");
+		$req=self::Bdd()->prepare("DELETE from $table WHERE $where");
 		$req->execute();
 	}
 
-	public function lister($value=null,$column=[],$objet=true,$joinParams=null,$order=null,$limit=null,$offset=null){
-		$table= $this->getTable(); 
+	public static function lister($value=null,$column=[],$objet=true,$joinParams=null,$order=null,$limit=null,$offset=null){
+		$table= self::Table(); 
 
 		$arrayexecute=[];
 		$ClientArray=[];
@@ -179,12 +212,15 @@ abstract Class Manager implements Enregistrable{
 		//gestion des colonnes
 		if(empty($column))
 			$column="*";
+		elseif ($column[0]=="count") {
+			$column="count(*) as nb";
+		}
 		else
 			$column=implode(",",$column);
 
 		//Si aucune valeur rechercher affiche tout sinon recherche filtré
 		if($value==null)
-			$req=$this->Bdd()->prepare("select distinct $column from $table as t $join $order $limit $offset");
+			$req=self::Bdd()->prepare("select distinct $column from $table as t $join $order $limit $offset");
 		else{
 			$where="";
 			$i=0;
@@ -199,7 +235,7 @@ abstract Class Manager implements Enregistrable{
 					$where.=" and ";
 				$i++;
 			}	
-			$req=$this->Bdd()->prepare("select $column from $table as t $join where $where $order $limit $offset");
+			$req=self::Bdd()->prepare("select $column from $table as t $join where $where $order $limit $offset");
 			
 		}
 		$req->execute($arrayexecute);
@@ -214,7 +250,6 @@ abstract Class Manager implements Enregistrable{
 
 		return $ClientArray;
 	}
-
     
 }
 ?>

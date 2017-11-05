@@ -24,18 +24,18 @@
           </ul>
         </li>
       </ul>
-      <div id='connexion' class="navbar-form navbar-right">
-        {% if session is empty%}
-          <a href="ajoutClient.php">
-            <button  id="inscrireButton" class="btn btn-default">S'inscire</button>
-          </a>
-          <button  id="connexionButton" class="btn btn-default">Se connecter</button>
-        {% endif %} 
-        {% if session=='ok'%}
-          {% include 'monCompte.html' %}
-        {% endif %} 
+      <div class="navbar-form navbar-right">
+        <span id="btnPanier" class="glyphicon"  title="Mon panier"><img src="../images/panier2.png"><span id="nbPanier"></span></span>               
+        <span id='connexion'>
+          {% if session is empty%}
+            <a id="connexionButton"><span class="glyphicon glyphicon-log-in" id="btnLogIn" title="Connexion"></span></a>            
+          {% endif %} 
+          {% if session=='ok'%}
+            {% include 'monMenuCompte.html' %}
+          {% endif %} 
+        </span>
       </div>
-      <span class="glyphicon navbar-right" id="btnPanier" ></span>
+      
       <form action="/" method="GET" class="navbar-form  navbar-right">
         <div class="form-group ">
           <input type="text" name='designation' class="form-control" placeholder="rechercher un article">
@@ -46,7 +46,7 @@
             {% endfor %}
           </select>
         </div>
-        <button type="submit" name="recherche" class="btn btn-default">Rechercher</button>
+        <button type="submit" name="recherche" class="btn btn-default"><span class="glyphicon glyphicon-search"  title="Rechercher"></span></button>
       </form>      
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

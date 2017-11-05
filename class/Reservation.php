@@ -6,6 +6,8 @@ class Reservation extends Model
 	private $_idVendeur;
 	private $_quantite; 
 	private $_date;
+    private $_datePrevue;
+    private $_dateRecue;
 
 
 	/**
@@ -116,6 +118,46 @@ class Reservation extends Model
     public function setIdVendeur($_idVendeur)
     {
         $this->_idVendeur = $_idVendeur;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function DatePrevue()
+    {
+        return $this->_datePrevue;
+    }
+
+    /**
+     * @param mixed $_datePrevue
+     *
+     * @return self
+     */
+    public function setDatePrevue($_datePrevue)
+    {
+        $this->_datePrevue = $_datePrevue;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function DateRecue()
+    {
+        return $this->_dateRecue;
+    }
+
+    /**
+     * @param mixed $_dateRecue
+     *
+     * @return self
+     */
+    public function setDateRecue($_dateRecue)
+    {
+        $this->_dateRecue = $_dateRecue;
 
         return $this;
     }

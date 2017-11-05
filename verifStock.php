@@ -5,7 +5,8 @@ include "funct/session.php";
 
 if(isset($_POST['idVendeur']) && isset($_POST['idArticle']) && isset($_POST['quantite'])){
 	//recuperation de l'article
-	$mArticle= new ManagerArticle();
+	$mArticle=Manager::getInstance();
+	$mArticle::setTable("Article");
 	$search=array("t.idArticle"=>$_POST['idArticle'],"av.idVendeur"=>$_POST['idVendeur']);
 	$objet=null;
 	$column=["quantite","prix"];
@@ -14,7 +15,7 @@ if(isset($_POST['idVendeur']) && isset($_POST['idArticle']) && isset($_POST['qua
 	$joinParam=array($join1);
 
 	//recherche
-	$article=$mArticle->lister($search,$column,$objet,$joinParam);
+	$article=$mArticle::lister($search,$column,$objet,$joinParam);
 	if(count($article)>0)
 		$article=$article[0];
 	if($article['quantite']>0){

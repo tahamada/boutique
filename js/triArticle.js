@@ -1,8 +1,7 @@
 $( document ).ready(function(){
 	triArticle=function triArticle(){
-        console.log($(this));
-        var url = window.location.href;
-        var tri="";
+        url = window.location.href;
+        tri="";
         if($(this).hasClass('asc'))
             tri="asc";
         else if($(this).hasClass('desc'))
@@ -18,6 +17,17 @@ $( document ).ready(function(){
                 dataType : "html"
             })
             .done(function(reponse) {
+                console.log(url);
+               var oUrl=new URL(url);
+               var params = new URLSearchParams(oUrl.search.slice(1));
+               console.log(params.toString().length);
+               if(params.toString().length>0 && params.has("tri")){
+                    params.delete("tri");
+               }
+               
+               params.append("tri", tri);
+
+               history.pushState({urlPath:"?"+params.toString()},"","?"+params.toString());
                $("#articles").html(reponse);
             })
             .fail(function() {

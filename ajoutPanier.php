@@ -6,7 +6,8 @@ include "funct/session.php";
 $message=array("message"=>"error");
 if(isset($_POST['idArticle'])){
 	//recuperation de l'article
-	$mArticle= new ManagerArticle();
+	$mArticle= Manager::getInstance();
+    $mArticle::setTable("Article"); 
 	$search=array("t.idArticle"=>$_POST['idArticle'],"v.idVendeur"=>$_POST['idVendeur']);
 	$objet=null;
 
@@ -20,39 +21,42 @@ if(isset($_POST['idArticle'])){
 	$joinParam=array($join1,$join2,$join3);
 
 	//recherche
-	$article=$mArticle->lister($search,$column,$objet,$joinParam);
+	$article=$mArticle::lister($search,$column,$objet,$joinParam);
 	$article=$article[0];	
 	$article["quantite"]=1;
 	//unset($_COOKIE['panier']);
-	if(isset($_COOKIE['panier'])){
-		$panier = unserialize($_COOKIE['panier']);
+}
+if(isset($_COOKIE['panier'])){
+	$panier = unserialize($_COOKIE['panier']);
+	if(isset($article)){
 		$saute=false;
 		foreach($panier as $index => $pan){
 			if($pan['idVendeur']==$article['idVendeur'] && $pan['idArticle']==$article['idArticle']){
 				if(isset($_POST['quantite']) && !empty($_POST['quantite'])){
 					$pan['quantite']=$_POST['quantite'];
 					$panier[$index]=$pan;
-				}
-				
+				}			
 				$saute=true;
 			}
 		}
 		if(!$saute)
 			$panier[]=$article;
 		setcookie('panier', serialize($panier), time()+3600);
+		$panier = unserialize($_COOKIE['panier']);
 	}
-	else{
-		
+}
+else{	
+	if(isset($article)){
 		setcookie('panier', serialize(array($article)), time()+3600);
 		$panier = unserialize($_COOKIE['panier']);
 	}
-	
-	$message=array("message"=>"success");
 }
+
+$message=array("message"=>"success");
+
 
 
 $loaderfile = new Twig_Loader_Filesystem('view/');
 $twig = new Twig_Environment($loaderfile);
-
-echo $twig->render("ajaxReponse/json.html", array("nbPanier"=>count($panier),"session"=>$session));
+echo $twig->render("ajaxReponse/json.html", array("reponse"=>array("nbPanier"=>count($panier),"session"=>$session)));
 ?>

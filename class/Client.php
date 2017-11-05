@@ -8,6 +8,7 @@ class Client extends Model
 	private $_prenom;
 	private $_email; 
 	private $_adresse;
+    private $_telephone;
     private $_valide; 
 	private $_password; 
     private $_token;
@@ -64,18 +65,10 @@ class Client extends Model
      */
     public function setNom($_nom)
     {
-        $pattern = '#^([a-z]+(( \')[a-z]+)*)+([-]([a-z]+(( \')[a-z]+)*)+)*$#iu';
-        preg_match($pattern, $_nom, $matches);
-        if(strlen($_nom)>2){
-            if(count($matches)>0){
-                 $this->_nom = $_nom;
-            }
-            else
-                throw new Exception("Veuillez entrer un nom valide");
-           
-        }
-        else 
-            throw new Exception("Le champs nom doit être superieur à 2");
+        $this->verifTailleInf("nom",$_nom,2);
+        $this->verifChaineSansNombre("nom",$_nom);
+       
+        $this->_nom = $_nom;
         return $this;
     }
 
@@ -94,17 +87,12 @@ class Client extends Model
      */
     public function setPrenom($_prenom)
     {
-        $pattern = '#^([a-z]+(( \')[a-z]+)*)+([-]([a-z]+(( \')[a-z]+)*)+)*$#iu';
-        preg_match($pattern, $_prenom, $matches);
-        if(strlen($_prenom)>2){
-            if(count($matches)>0){
-                 $this->_prenom = $_prenom;
-            }
-            else
-                throw new Exception("Veuillez entrer un prenom valide");           
-        }
-        else 
-            throw new Exception("Le champs prenom doit être superieur à 2");
+        
+        $this->verifTailleInf("prenom",$_prenom,2);
+        $this->verifChaineSansNombre("prenom",$_prenom);
+       
+        $this->_prenom = $_prenom;
+            
         return $this;
     }
 
@@ -123,10 +111,10 @@ class Client extends Model
      */
     public function setEmail($_email)
     {
-        if(filter_var($_email, FILTER_VALIDATE_EMAIL))
-            $this->_email = $_email;
-        else
-            throw new Exception("Veuillez entrer un email valide");
+        
+        $this->verifEmail("email",$_email);
+        $this->_email = $_email;
+        
         return $this;
     }
 
@@ -185,11 +173,8 @@ class Client extends Model
      */
     public function setPassword($_password)
     {
-        if(strlen($_password)>5){
-            $this->_password = $_password;
-        }
-        else
-            throw new Exception("Le mot de passe doit contenir plus de 5 caractères");
+        $this->verifTailleInf("mot de passe",$_password,5);
+        $this->_password = $_password;        
 
         return $this;
     }
@@ -210,6 +195,26 @@ class Client extends Model
     public function setToken($_token)
     {
         $this->_token = $_token;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function Telephone()
+    {
+        return $this->_telephone;
+    }
+
+    /**
+     * @param mixed $_telephone
+     *
+     * @return self
+     */
+    public function setTelephone($_telephone)
+    {
+        $this->_telephone = $_telephone;
 
         return $this;
     }

@@ -4,7 +4,7 @@ class ManagerArticle extends Manager
 
     public function __construct()
     {
-        parent::__construct();
+        
     }
     
     /*
@@ -25,11 +25,11 @@ class ManagerArticle extends Manager
 
         $post["idVendeur"]=$idVendeur;
         $post["imageUrl"]=$nom;
-        $oArticle=new Article($post);        
-        $mArticle=new ManagerArticle();        
-        $mArticleVendeur=new ManagerArticleVendeur();        
+        $oArticle=new Article($post);      
+        $mArticle= Manager::getInstance();
+        $mArticle::setTable("Article");           
         
-        $mArticle->Bdd()->beginTransaction();
+        $mArticle::Bdd()->beginTransaction();
         $error=false;
         try{
             //verifie si l'article est deja vendu par vendeur
@@ -46,7 +46,7 @@ class ManagerArticle extends Manager
                 $articleTrouve=$mArticle->lister($search);
                 if(count($articleTrouve)==0){                    
                     $idArticle=$mArticle->enregistrer($oArticle)[1];
-                    $mArticle->Bdd()->commit();
+                    $mArticle::Bdd()->commit();
                 }
                 else{
                     $idArticle=$articleTrouve[0]->IdArticle();
@@ -55,13 +55,13 @@ class ManagerArticle extends Manager
                // $idArticle=$mArticle->Bdd()->lastInsertId();
                 $post["idArticle"]=$idArticle;
                 $oArticleVendeur=new ArticleVendeur($post);
-                $mArticleVendeur->enregistrer($oArticleVendeur);
+                $mArticle::setTable("ArticleVendeur");  
+                $mArticle->enregistrer($oArticleVendeur);
             }
             
         }catch(PDOException $e){
             $error=true;
-            $mArticle->Bdd()->rollback();
-            $mArticleVendeur->Bdd()->rollback(); 
+            $mArticle::Bdd()->rollback(); 
             $message=$e->getMessage();
         }catch(Exception $e){
             $error=true;

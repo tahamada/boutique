@@ -4,10 +4,11 @@ include "Autoload.php";
 
 if(isset($_POST['enregistrer'])){
 	$_POST['nom'];
-	$mCategorie=new ManagerCategorie();
+	$mCategorie=Manager::getInstance();
+	$mCategorie::setTable("Categorie");
 	$oCategorie=new Categorie($_POST);
 	try{
-		$mCategorie->enregistrer($oCategorie);
+		$mCategorie::enregistrer($oCategorie);
 	}
 	catch(Exception $e){
 		var_dump($e->getMessage());
@@ -15,10 +16,11 @@ if(isset($_POST['enregistrer'])){
 }
 
 if(isset($_POST['supprimer'])){
-	$mCategorie=new ManagerCategorie();
+	$mCategorie=Manager::getInstance();
+	$mCategorie::setTable("Categorie");
 	$idCategorie=key($_POST['supprimer']);
-	$oCategorie= $mCategorie->lister(array('idCategorie'=>$idCategorie))[0];
-	$mCategorie->supprimer($oCategorie);
+	$oCategorie= $mCategorie::lister(array('idCategorie'=>$idCategorie))[0];
+	$mCategorie::supprimer($oCategorie);
 }
 
 include "funct/listCategorie.php";

@@ -1,17 +1,18 @@
 {% for item in articles %}
 <a href="articleDetail.php?idArticle={{item.idArticle}}&idVendeur={{item.idVendeur}}">
-    <div class="col-md-2 col-xs-10 articleWell nopadding">
-        <div class="col-md-12 nopadding">
+    <div class="col-md-3 col-xs-12 articleWell nopadding">
+        <div id="articleListImage" class="col-md-12 col-xs-6 nopadding">
             {% if item.imageUrl|replace({".":"Mini."}) is empty%}
                 <img class="center-block" src="images/article/vide.png"/>
             {% else %}
                 <img class="center-block" src="{{item.imageUrl|replace({".":"Mini."})}}"/>
             {% endif %}    
         </div>
-        <div class="col-md-12 nopadding">
-            <span class="col-md-12 text-center"><strong>{{item.designation}}</strong> - <small><em>{{item.nom}}</em></small></span>
-            <span class="col-md-12 nopadding text-center prix">{{item.prix}} €</span>
-            <span class="col-md-12 nopadding text-center"><em><small>Vendeur:</small>{{item.nomVendeur}}</em></span>
+        <div class="col-md-12 col-xs-6 nopadding articleDetail">
+                <span class="col-md-9 col-md-offset-3 col-xs-12"><strong>{{item.designation}}</strong> - <small><em>{{item.nom}}</em></small></span>
+                <span class="col-md-9 col-md-offset-3 col-xs-12 nopadding prix">{{item.prix}} €</span>
+                <span class="col-md-9 col-md-offset-3 col-xs-12 nopadding"><em><small>Vendu par:</small>{{item.nomVendeur}}</em></span>
+           
         </div>
     </div>
 </a>

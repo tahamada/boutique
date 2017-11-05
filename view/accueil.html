@@ -6,20 +6,26 @@
 
 
 {% block content %}
-<div class="container-fluid">
-    <div class="col-md-10 col-md-offset-1 row" id="mainSlider">
+<div class="container-fluid" id="sliderContainer">
+    <div class="col-md-12 col-md-offset-0 nopadding row" id="mainSlider">
         {% for item in articlesSlide %}
             <li><a href="articleDetail.php?idArticle={{item.idArticle}}"> <img width="400px" src="{{item.imageUrl}}"></a></li>
         {% endfor %}
     </div>
 </div>
-<div class="container" id="articlesList">
+<div class="container-fluid" id="articlesList">
     <div class="row" id="articlesListHead">
-        <h2 class="col-md-2">Nos articles</h2>
-        <div class="col-md-2 col-md-offset-7" id="tri"><strong>Prix : </strong><button class="btn asc">↑</button>  <button class="btn desc">↓</button></div>
+        <h2 class="col-md-3">Nos articles(<span id="nbArticle">{{nbArticle}}</span><span class="hidden" id="ArticleListPage">{{page}}</span><span class="hidden" id="ArticleListLimit">{{limit}}</span>)</h2>
+        <div class="col-md-2 col-md-offset-7" id="tri"><strong>Prix : </strong><button class="btn asc"  title="Trier du moins au plus cher"><span class="glyphicon glyphicon-arrow-up"></span></button>  <button class="btn desc"  title="Trier du plus cher au moin cher"><span class="glyphicon glyphicon-arrow-down"></span></button></div>
     </div>
-    <div class="row col-md-offset-1 col-xs-offset-1" id="articles">
+    <div class="row" id="articles">
         {% include 'ajaxReponse/articleList.html' %}
+    </div>
+    <div class="row" id="articlesListFoot">
+        <div class="col-md-offset-6">
+            <button class="btn pageChange prec">Précédent</button>
+            <button class="btn pageChange suiv">Suivant</button>
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -7,10 +7,11 @@ $message=array();
 if(isset($_POST['idArticle'])){
 	$_POST['date']=date("Y-m-d H:i:s");
 	$_POST['visible']=1;
-	$mMessage=new ManagerMessage();
+	$mMessage=Manager::getInstance();
+	$mMessage::setTable("Message");
 	$oMessage=new Message($_POST);
 	try{
-		$idMessage=$mMessage->enregistrer($oMessage);
+		$idMessage=$mMessage::enregistrer($oMessage);
 	}catch(Exception $e){
 		$message=array("error"=>$e->getMessage());
 	}

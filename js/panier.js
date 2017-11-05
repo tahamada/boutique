@@ -1,4 +1,5 @@
 $( document ).ready(function(){
+    panierFunction();
     function panierFunction(){
         $.ajax({
                 method: "POST",
@@ -10,9 +11,13 @@ $( document ).ready(function(){
                 dataType : "html"
             })
             .done(function(reponse) {
-               $( "#panierDialog" ).html(reponse);               
-               verifStockPanier();
-               total();
+              if(reponse.length!=0){
+                $( "#panierDialog" ).html(reponse);               
+                verifStockPanier();
+                total();
+              }
+              else
+                dialogPanier.dialog( "close" );          
             })
             .fail(function() {
                 console.log("fail");
@@ -27,7 +32,7 @@ $( document ).ready(function(){
     }
 
     function verifStockPanier(){
-      $("#panierDialog table tr").each(function(){        
+      $("#panierDialog table .tableLigneArticle").each(function(){        
         verifStock($(this));
       });
     }
@@ -70,16 +75,15 @@ $( document ).ready(function(){
                 $(etatStock).removeClass("red");
                 $(ligne).find(".prix").text(reponse['prix']);
                 $(ligne).find(".BtnReserverPanier").addClass("hidden");
-                total();
               }
               else{
                 $(etatStock).addClass("red");
                 $(etatStock).removeClass("green");
                 $(ligne).find(".prix").text(0);
                 $(ligne).find(".BtnReserverPanier").removeClass("hidden");
-                total();
+                
               }
-
+              total();              
             })
             .fail(function() {
                 console.log("fail");
@@ -112,7 +116,10 @@ $( document ).ready(function(){
                 dataType : "json"
             })
             .done(function(reponse) {
-              
+              $("#nbPanier").text("("+reponse["nbPanier"]+")");
+              if(reponse["nbPanier"]=="0"){
+                dialogPanier.dialog( "close" );
+              }
             })
             .fail(function() {
                 console.log("fail");
@@ -145,6 +152,7 @@ $( document ).ready(function(){
     }
 
     ajoutReservation=function ajoutReservation(ligne){
+      console.log("ici")
       if($(ligne).parent().length<1)
         var ligne=$(this).parent().parent();
       ajoutPanier(ligne);
@@ -164,14 +172,14 @@ $( document ).ready(function(){
         .done(function(reponse) {
           if(reponse['message']=="success")
             $.get("ajaxReponse/ajaxMessageSuccessReservation.html", function(data){
-                $("#alertZonePanier").html(data).fadeIn(2000, function(){$(this).fadeOut(1000);});;
+                $("#alertZonePanier").html(data).fadeIn(2000, function(){$(this).fadeOut(2000);});;
             });
           else{
             $.get("ajaxReponse/ajaxMessageWarningReservation.html", function(data){
-                $("#alertZonePanier").html(data).fadeIn(2000, function(){$(this).fadeOut(1000);});;
+                $("#alertZonePanier").html(data).fadeIn(2000, function(){$(this).fadeOut(2000);});;
             });
           }
-          //panierFunction();
+          panierFunction();
         })
         .fail(function() {
             console.log("fail");
@@ -179,10 +187,13 @@ $( document ).ready(function(){
     }
 
     dialogPanier = $( "#panierDialog" ).dialog({
+        title:'Mon panier',
         autoOpen: false,
-        height: 500,
-        width: 1000,
+        height: 'auto',
+        width: 'auto',
         modal: true,
+        responsive: true,
+        position: { my: "center ", at: "center", of: "#ban" },
         buttons: {
           "Commander": commanderFunction,
           Fermer: function() {
@@ -197,6 +208,8 @@ $( document ).ready(function(){
 
 
    $("#btnPanier").click(function(){
+      $("button").addClass("btn");
+      $("button").addClass("btn-default");
       panierFunction();
       dialogPanier.dialog( "open" );
    }); 

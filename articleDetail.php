@@ -6,14 +6,15 @@ include "funct/session.php";
 
 if(isset($_GET['idArticle'])){
 	//recuperation du detail de l'article
-	$mArticle=new ManagerArticle();
+	$mArticle=Manager::getInstance();
+	$mArticle::setTable("Article");
 	$objet=false;
 	$column=[];
 	$search=array("t.idArticle"=>$_GET['idArticle']);
 	$join1=array("ArticleVendeur as av","av.idArticle=t.idArticle","JOIN");
 	$join2=array("Vendeur as v","v.idVendeur=av.idVendeur","JOIN");
 	$joinParam=array($join1,$join2);
-	$Article=$mArticle->lister($search,$column,$objet,$joinParam);	
+	$Article=$mArticle::lister($search,$column,$objet,$joinParam);	
 	if(count($Article)>0){
 		if(isset($_GET['idVendeur']))
 			for($i=0;$i<count($Article);$i++) {

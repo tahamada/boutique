@@ -1,5 +1,6 @@
 body{
 	background-color:#00003c;
+	color:#150109;
 }
 
 #page{
@@ -10,13 +11,28 @@ body{
 	background-image:url("../images/Digital_Marketing_Agency.jpg");
 	background-size:cover;
 	width: 100%;
-	height: 86px;
-	color:black;
+	height: 110px;
+}
+
+/*.vertical-align {
+  display: flex;
+  flex-direction: row;
+}
+*/
+.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+  display: flex;
+  align-items: center;     /* Align the flex-items vertically */
+  justify-content: center; /* Optional, to align inner flex-items
+                              horizontally within the column  */
 }
 
 .navbar{
 	background-color:#9c1b54;
 	border-color:#f5f5f5;
+	margin-bottom: 0px;
+	border:0px;
+	border-radius: 0px;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
@@ -57,7 +73,7 @@ body{
 }
 
 .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
-	background-color:#000f5d;
+	background-color:#7b1341;
 	color:#fff
 }
 
@@ -68,16 +84,17 @@ body{
 .btn, button {
 	background-color:#9c1b54;
 	color:white;
+	border-color: #e0d3d9;
 }
 
 .btn:hover, .btn:focus, .btn:active, button:hover, button:focus, button:active{
 	background-color:#7b1341;
 	color:white;
+	border-color: #e0d3d9;
 }
 
 #connexion{
-    //border-left: 1px solid white;
-    //margin-left:2px;
+    margin-bottom: auto;
 }
 
 div.ui-dialog-titlebar{
@@ -86,6 +103,13 @@ div.ui-dialog-titlebar{
 
 .borderedBottom{
     border-bottom:1px solid #ccc;
+    background-color:#9c1b54;
+	color:white; 	
+}
+
+.borderedBottom h4{
+	padding-top: 4px;
+	margin-top: 0px;
 }
 
 
@@ -97,10 +121,18 @@ div.ui-dialog-titlebar{
    height:300px;
 }
 
+#mainSlider{
+	padding: 0px;
+}
+
+#sliderContainer{
+	padding:0px;
+}
+
 .articleWell{
     border: 1px solid #9c1b54;
-    margin: 5px;
-    padding: 2px;
+    margin-bottom: 5px;
+    padding: 0px;
     border-radius: 5px 5px 0px 0px;
     background-color: #fbf8f9;    
 }
@@ -116,7 +148,7 @@ div.ui-dialog-titlebar{
 }
 
 #articlesList a{
-	color:black;
+	color:#150109;
 }
 
 .articleWell:hover, .articleWell:focus{
@@ -147,7 +179,7 @@ input[class='error']{
 	border:1px solid red;
 }
 
-#connexion a{
+#connexion a, #menuMonCompte a{
 	color:white;
 	cursor:pointer;
 }
@@ -202,19 +234,34 @@ input[class='error']{
 }	
 
 #btnPanier{
-	background-image:url("../images/panier2.png");
-	background-repeat:no-repeat;
+	/*background-image:url("../images/panier2.png");
+	background-repeat:no-repeat;*/
 	border-radius: 5px;
-	width:25px;
 	height:27px;
-	top: 10px;
-	padding-right : 32px;
-	padding-bottom : 29px;
+	top: -5px;
+	padding-right : 9px;
+	padding-bottom : 31px;
+	padding-top : 1px;
 	margin-left: 2px;
-	border: 1px solid white;
+	border: 1px solid #e0d3d9;
 }
 
-#btnAjoutPanier:hover, #btnAjoutPanier:focus, #btnAjoutPanier:active,#btnPanier:hover, #btnPanier:focus, #btnPanier:active{
+#btnUser,#btnLogOut,#btnLogIn{
+	top:-1px;
+	border-radius: 5px;
+	padding-right : 9px;
+	padding-top : 8px;
+	padding-bottom : 11px;
+	padding-left: 9px;
+	border: 1px solid #e0d3d9;
+}
+
+
+#btnAjoutPanier:hover, #btnAjoutPanier:focus, #btnAjoutPanier:active,
+#btnPanier:hover, #btnPanier:focus, #btnPanier:active,
+#btnUser:hover, #btnUser:focus, #btnUser:active, 
+#btnLogOut:hover, #btnLogOut:focus, #btnLogOut:active,
+#btnLogIn:hover, #btnLogIn:focus, #btnLogIn:active{
 	background-color:#7b1341;
 	cursor: pointer;
 }
@@ -224,7 +271,7 @@ input[class='error']{
 }
 
 #tri{
-	//margin-left: 5px;
+	margin-bottom: 5px;
 	top:15px;
 }
 
@@ -234,6 +281,10 @@ input[class='error']{
 
 #articlesListHead{
 	margin-bottom: 10px;
+}
+
+#articleListImage{
+	border-bottom: 1px solid #f5e0e9;
 }
 
 .green{
@@ -246,4 +297,83 @@ input[class='error']{
 
 .BtnReserverPanier{
 	margin-left: 3px;
+}
+
+.ui-dialog-titlebar{
+	display: none;
+	color:white;
+}
+
+#panierDialog,#ConnexionDialog{
+	padding-top: 0px;
+	color:#150109;
+}
+
+#nbPanier{
+	color:white;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form{
+	margin-bottom: auto;
+}
+
+a:hover{
+	text-decoration:none;
+}
+
+#nouveauCompte{
+    margin-top: 10px;
+    padding-top: 10px;
+    font-size: smaller;
+    text-align: center;
+    border-top: 1px solid #f5e0e9;
+}
+
+#nouveauCompte:hover{
+	text-decoration:underline;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+	background-color: #9c1b54;
+	color:white;
+}
+
+.nav-tabs>li>a{
+	color:black;
+}
+
+.nav-tabs>li>a:hover{
+	background-color: #e0d3d9;
+}
+
+#submitModifClient{
+	margin-top: 5px;
+}
+
+@media screen and (max-width: 1000px)
+{
+    #mainSlider{
+    	padding-left: 15px;
+    	padding-right: 15px;
+    }
+    .ban{
+    	height: 53px;
+    }
+}
+
+@media screen and (max-width: 550px)
+{
+   
+    .ban{
+    	height: 30px;
+    }
+}
+
+@media (min-width: 1000px)
+{  	
+
+  	.navbar-toggle {
+	    display: none;
+	}
+
 }

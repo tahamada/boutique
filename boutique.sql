@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 03 nov. 2017 à 15:46
+-- Généré le :  Dim 05 nov. 2017 à 21:58
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   `description` text NOT NULL,
   PRIMARY KEY (`idArticle`),
   KEY `FK_Article_Categorie_idx` (`idCategorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `article`
@@ -77,7 +77,8 @@ INSERT INTO `article` (`idArticle`, `designation`, `imageUrl`, `idCategorie`, `d
 (50, 'Nos', 'images/article/93723e28c9d14b793f0c9f39ec6c9826.jpg', 1, ''),
 (51, 'tuta', 'images/article/89faa5623c2bdd45b93ba09be6d862f0.jpg', 2, ''),
 (52, 'mlnj', 'images/article/7327249b0bca717d4da1f5312ce1f251.jpg', 2, ''),
-(53, 'poiri', 'images/article/3e245a8c7ab7d16b9e218a0dd6348676.jpg', 2, ' Vestibulum non sagittis nunc. In quis felis nibh. Etiam malesuada purus nec risus efficitur, aliquet cursus dolor porttitor. Suspendisse semper metus sed vehicula rutrum. Nam porta orci sit amet massa pulvinar, in egestas elit eleifend. Integer in facilisis arcu. Vestibulum ut fringilla risus, eu posuere ex. Praesent magna dolor, lobortis ut elit ac, vulputate luctus elit. Cras posuere tellus in erat bibendum sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus ipsum \r\nAjoutermi, fringilla sagittis leo accumsan vitae. Phasellus varius enim ac arcu finibus tempor. Pellentesque mattis faucibus venenatis. Sed consectetur tortor nec sagittis porta. In eget enim vel nunc vestibulum fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;');
+(53, 'poiri', 'images/article/3e245a8c7ab7d16b9e218a0dd6348676.jpg', 2, ' Vestibulum non sagittis nunc. In quis felis nibh. Etiam malesuada purus nec risus efficitur, aliquet cursus dolor porttitor. Suspendisse semper metus sed vehicula rutrum. Nam porta orci sit amet massa pulvinar, in egestas elit eleifend. Integer in facilisis arcu. Vestibulum ut fringilla risus, eu posuere ex. Praesent magna dolor, lobortis ut elit ac, vulputate luctus elit. Cras posuere tellus in erat bibendum sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus ipsum \r\nAjoutermi, fringilla sagittis leo accumsan vitae. Phasellus varius enim ac arcu finibus tempor. Pellentesque mattis faucibus venenatis. Sed consectetur tortor nec sagittis porta. In eget enim vel nunc vestibulum fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;'),
+(54, 'refoil', 'images/article/be3598d3ff07be0248f52f2103b3cd08.jpg', 1, ' nteger sagittis, nulla vel auctor congue, erat lorem lacinia urna, sit amet efficitur lectus quam vel sem. Aenean mattis posuere erat quis porta. Pellentesque at accumsan neque. Ut feugiat sed metus et aliquam. Phasellus eget porttitor massa, sed accumsan arcu. Cras mollis urna id sem consectetur euismod. Suspendisse pharetra est laoreet, interdum justo non, luctus neque. Nam luctus velit non malesuada mattis. Quisque vitae enim luctus felis mattis eleifend vel quis lectus. Morbi nisl massa, pellentesque ut dictum vel, imperdiet vitae turpis. Vestibulum sodales, ex sed feugiat varius, augue ligula molestie ante, ut fringilla libero urna et neque. Phasellus iaculis venenatis diam, quis viverra dui lobortis in.');
 
 -- --------------------------------------------------------
 
@@ -118,7 +119,8 @@ INSERT INTO `articlevendeur` (`idArticle`, `idVendeur`, `quantite`, `payableNFoi
 (51, 1, 123, 0, 74),
 (52, 1, 210, 0, 32),
 (53, 1, 89, 0, 234),
-(53, 2, 214, 0, 214);
+(53, 2, 214, 0, 214),
+(54, 1, 32, 0, 124);
 
 -- --------------------------------------------------------
 
@@ -131,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `idCategorie` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(45) NOT NULL,
   PRIMARY KEY (`idCategorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `categorie`
@@ -157,16 +159,20 @@ CREATE TABLE IF NOT EXISTS `client` (
   `adresse` varchar(45) DEFAULT NULL,
   `valide` tinyint(4) DEFAULT NULL,
   `token` varchar(255) NOT NULL,
+  `telephone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`idClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `client`
 --
 
-INSERT INTO `client` (`idClient`, `nom`, `prenom`, `email`, `password`, `adresse`, `valide`, `token`) VALUES
-(1, 'azerty', 'azerty', 'azerty@mlk.fr', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 1, 'f4918f181fd27e57d852e341f15096e1e1c37ce9'),
-(3, 'azerty', 'azer', 'azerty@mlk.frze', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 0, '474ab8ae7b16aa13e0ee391dcbd6f9305545c5b9');
+INSERT INTO `client` (`idClient`, `nom`, `prenom`, `email`, `password`, `adresse`, `valide`, `token`, `telephone`) VALUES
+(1, 'azertyii', 'azerty', 'azerty@mlk.fr', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', NULL, 'f4918f181fd27e57d852e341f15096e1e1c37ce9', ''),
+(3, 'azerty', 'azer', 'azerty@mlk.frze', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 0, '474ab8ae7b16aa13e0ee391dcbd6f9305545c5b9', ''),
+(4, 'toto', 'toto', 'tamoo@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 1, '572aa2935d9c1d22c08b634bd45881b78a110add', NULL),
+(5, 'toto', 'toto', 'toto@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 0, '684312138e3e6d397c326916bc505534a858dcc1', NULL),
+(6, 'toto', 'toto', 'tamoo2@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 1, 'ec86d7170900ea4fb54c73d47903a6749e1a5a2f', NULL);
 
 -- --------------------------------------------------------
 
@@ -180,6 +186,8 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `date` tinyint(4) DEFAULT NULL,
   `etat` varchar(45) DEFAULT NULL,
   `idClient` int(11) DEFAULT NULL,
+  `datePrevue` datetime DEFAULT NULL,
+  `dateRecue` int(11) DEFAULT NULL,
   PRIMARY KEY (`idCommande`),
   KEY `FK_Commande_Client_idx` (`idClient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -194,9 +202,13 @@ DROP TABLE IF EXISTS `commandearticle`;
 CREATE TABLE IF NOT EXISTS `commandearticle` (
   `idCommande` int(11) NOT NULL,
   `idArticle` int(11) NOT NULL,
+  `idVendeur` int(11) NOT NULL,
   `quantite` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idCommande`,`idArticle`),
-  KEY `FK_CommandeArticle_Article_idx` (`idArticle`)
+  `datePrevue` datetime DEFAULT NULL,
+  `dateRecue` datetime DEFAULT NULL,
+  PRIMARY KEY (`idCommande`,`idArticle`,`idVendeur`),
+  KEY `FK_CommandeArticle_Article_idx` (`idArticle`),
+  KEY `FK_CommandeArticle_Article` (`idArticle`,`idVendeur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -218,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`idMessage`),
   KEY `FK_Message_Article_idx` (`idArticle`),
   KEY `FK_Message_Vendeur_idx` (`idPersonne`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `message`
@@ -226,7 +238,10 @@ CREATE TABLE IF NOT EXISTS `message` (
 
 INSERT INTO `message` (`idMessage`, `date`, `contenu`, `vendeur`, `reclamation`, `idPersonne`, `idArticle`, `visible`) VALUES
 (2, '2017-10-18 05:17:00', 'coucou', NULL, NULL, 3, 53, 1),
-(3, '2017-10-30 20:38:25', 'coucou aussi\n	', NULL, NULL, 1, 53, 1);
+(3, '2017-10-30 20:38:25', 'coucou aussi\n	', NULL, NULL, 1, 53, 1),
+(4, '2017-11-04 18:51:12', 'mpil jjio\n	', NULL, NULL, 1, 42, 1),
+(5, '2017-11-05 15:06:20', 'dert		\n	', NULL, NULL, 1, 40, 1),
+(6, '2017-11-05 19:23:01', 'test\n	', NULL, NULL, 1, 38, 1);
 
 -- --------------------------------------------------------
 
@@ -257,9 +272,19 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `idClient` int(11) NOT NULL,
   `quantite` int(11) DEFAULT NULL,
   `date` date DEFAULT NULL,
+  `datePrevue` datetime DEFAULT NULL,
+  `dateRecue` datetime DEFAULT NULL,
   PRIMARY KEY (`idArticle`,`idClient`),
   KEY `FK_Reservation_Client_idx` (`idClient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `reservation`
+--
+
+INSERT INTO `reservation` (`idArticle`, `idClient`, `quantite`, `date`, `datePrevue`, `dateRecue`) VALUES
+(42, 1, 135, '2017-11-04', NULL, NULL),
+(51, 1, 199, '2017-11-05', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -333,7 +358,7 @@ ALTER TABLE `commande`
 -- Contraintes pour la table `commandearticle`
 --
 ALTER TABLE `commandearticle`
-  ADD CONSTRAINT `FK_CommandeArticle_Article` FOREIGN KEY (`idArticle`) REFERENCES `article` (`idArticle`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_CommandeArticle_Article` FOREIGN KEY (`idArticle`,`idVendeur`) REFERENCES `articlevendeur` (`idArticle`, `idVendeur`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_CommandeArticle_Commande` FOREIGN KEY (`idCommande`) REFERENCES `commande` (`idCommande`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --

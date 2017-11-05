@@ -1,4 +1,5 @@
 <?php
-	$mCategorie=new ManagerCategorie();
-	$listeoCategorie=$mCategorie->lister();
+	$mCategorie=Manager::getInstance();
+	$mCategorie::setTable("Categorie");
+	$listeoCategorie=$mCategorie::lister();
 ?>

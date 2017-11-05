@@ -7,14 +7,17 @@ include "funct/session.php";
 $reponse=array("message"=>"error");
 
 if(isset($_POST['email'])){
-	$mClient=new ManagerClient();
+	$mClient=Manager::getInstance();
+	$mClient::setTable("Client");
+	$colonne=[];
+	$objet=false;
 	$search=array("email"=>$_POST['email'],'password'=>hash ("sha256", $_POST['password']));
-	$clientTrouve=$mClient->lister($search);
+	$clientTrouve=$mClient::lister($search,$colonne,$objet);
 	if(count($clientTrouve)>0){
-		if($clientTrouve[0]->Valide()!=0){
+		if($clientTrouve[0]['valide']!=0){
 			$_SESSION['user']=$clientTrouve[0];
-			$_SESSION['user']->setToken(null);
-			$_SESSION['user']->setPassword("000000");
+			$_SESSION['user']["token"]=null;
+			$_SESSION['user']["password"]=null;
 			$reponse=array("message"=>"success");
 		}
 		else
