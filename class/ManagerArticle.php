@@ -21,7 +21,7 @@ class ManagerArticle extends Manager
         
         $randomNom=md5(uniqid(rand(), true));
         $nom = "images/article/".$randomNom.".".$extension_upload;              
-        $idVendeur=1; //plus tard
+        $idVendeur=$_SESSION['user']['idVendeur']; 
 
         $post["idVendeur"]=$idVendeur;
         $post["imageUrl"]=$nom;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 05 nov. 2017 à 21:58
+-- Généré le :  lun. 06 nov. 2017 à 21:47
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -54,31 +54,37 @@ CREATE TABLE IF NOT EXISTS `article` (
   `description` text NOT NULL,
   PRIMARY KEY (`idArticle`),
   KEY `FK_Article_Categorie_idx` (`idCategorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `article`
 --
 
 INSERT INTO `article` (`idArticle`, `designation`, `imageUrl`, `idCategorie`, `description`) VALUES
-(37, 'titi', NULL, 1, ''),
-(38, 'toto', 'images/article/b8626f33764d024d7a6e88a903563726.jpg', 1, ''),
-(39, 'Rere', NULL, 1, ''),
-(40, 'mloi', 'images/article/541ff01c4b692c440e3fe2373de44f85.jpg', 1, ''),
-(41, 'zeaz', 'images/article/00f76aee3da9fca57283c0c8b53d2273.jpg', 1, ''),
-(42, 'mere', 'images/article/899482c0b97b4814160538880dbd56ca.jpg', 1, ''),
-(43, 'Moljs', 'images/article/cd4552f58f6faa46b6c27bb9ac8def22.jpg', 1, ''),
-(44, 'fere', NULL, 2, ''),
-(45, 'plmoi', 'images/article/a0197a4bdff7bcf7a8b9d150b6ff7fbe.jpg', 2, ''),
-(46, 'Aear', 'images/article/150651811771a703a523a5ae66d70269.jpg', 2, ''),
-(47, 'lose', 'images/article/13703c04cf08f89796488f8ecc76fca9.jpg', 2, ''),
-(48, 'Nery', 'images/article/e2d8ed38b6f89c5fe14a870126adfdfc.jpg', 1, ''),
-(49, 'olk', 'images/article/4f60971a8142e1f1220f941ad1fcd12d.jpg', 2, ''),
-(50, 'Nos', 'images/article/93723e28c9d14b793f0c9f39ec6c9826.jpg', 1, ''),
-(51, 'tuta', 'images/article/89faa5623c2bdd45b93ba09be6d862f0.jpg', 2, ''),
-(52, 'mlnj', 'images/article/7327249b0bca717d4da1f5312ce1f251.jpg', 2, ''),
-(53, 'poiri', 'images/article/3e245a8c7ab7d16b9e218a0dd6348676.jpg', 2, ' Vestibulum non sagittis nunc. In quis felis nibh. Etiam malesuada purus nec risus efficitur, aliquet cursus dolor porttitor. Suspendisse semper metus sed vehicula rutrum. Nam porta orci sit amet massa pulvinar, in egestas elit eleifend. Integer in facilisis arcu. Vestibulum ut fringilla risus, eu posuere ex. Praesent magna dolor, lobortis ut elit ac, vulputate luctus elit. Cras posuere tellus in erat bibendum sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus ipsum \r\nAjoutermi, fringilla sagittis leo accumsan vitae. Phasellus varius enim ac arcu finibus tempor. Pellentesque mattis faucibus venenatis. Sed consectetur tortor nec sagittis porta. In eget enim vel nunc vestibulum fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;'),
-(54, 'refoil', 'images/article/be3598d3ff07be0248f52f2103b3cd08.jpg', 1, ' nteger sagittis, nulla vel auctor congue, erat lorem lacinia urna, sit amet efficitur lectus quam vel sem. Aenean mattis posuere erat quis porta. Pellentesque at accumsan neque. Ut feugiat sed metus et aliquam. Phasellus eget porttitor massa, sed accumsan arcu. Cras mollis urna id sem consectetur euismod. Suspendisse pharetra est laoreet, interdum justo non, luctus neque. Nam luctus velit non malesuada mattis. Quisque vitae enim luctus felis mattis eleifend vel quis lectus. Morbi nisl massa, pellentesque ut dictum vel, imperdiet vitae turpis. Vestibulum sodales, ex sed feugiat varius, augue ligula molestie ante, ut fringilla libero urna et neque. Phasellus iaculis venenatis diam, quis viverra dui lobortis in.');
+(37, 'Apple MacBook Air 13.3\'\' LED 128 Go SSD 8 Go RAM Intel Core i5 bicœur à 1.8 Ghz MQD32FN ', 'images/article/azertyu321654.png', 1, ''),
+(38, 'PC Portable Asus R540UP-GO112T 15.6\"', 'images/article/2315sdfsdf654.png', 1, ''),
+(39, 'PC Portable HP Omen 15-ax242nf 15.6\"', 'images/article/qffdsdf3215sdf48z56ef1.png', 1, ''),
+(40, 'PC Portable Lenovo IdeaPad 320-17AST 80XW000SFR 17', 'images/article/sqgvs23dsfg1sdfhg1sdfh321fdg32.png', 1, ''),
+(41, 'PC Portable HP 15-bw035nf 15.6', 'images/article/321564s6g54g65r4g65r1gfgf.png', 1, ''),
+(42, 'PC Ultra-Portable Asus VivoBook Flip TP410UA-EC243T 14\" Tactile', 'images/article/sgdsg2s1dgs2dg1sdgs2dzfghtth22y1.png', 1, ''),
+(43, 'PC Ultra-Portable Asus VivoBook E402NA-GA029T 14', 'images/article/kdfjhsd2sfsqs2th1h3n5rf21bt1.png', 1, ''),
+(44, 'VTT semi rigide 26pouces Carnivore blanc TC 52 cm KS Cycling', 'images/article/df6g5dgd4g6df65gs132s1fgsf4gsqgdq1g.png', 2, ''),
+(45, 'Vélo dame 28\"\" Casino 3 vitesses rose vif TC 54 cm KS Cycling', 'images/article/dg5df4gdsf54ds8d7gdsdsf98g65d1f2sssddfh.png', 2, ''),
+(46, 'Vélo électrique pliant BIZOBIKE MIESTY BELLO gris - Batterie : Li-ION Panasonic 36V, 14,5Ah', 'images/article/sdgsdg546sqd5f21dfqs6d45fqsdf123.png', 2, ''),
+(47, 'vidaXL Vélo électrique pliant en alliage d\'aluminium et batterie lithium-ion', 'images/article/sfsdf865qs21fddqs86f5dsq2f1ds6f521ds.png', 2, ''),
+(48, 'Tablette PC Asus Transformer Book T101HA-GR030T 10.1', 'images/article/jhglkjh554uhgdskl4jhfhjkllj24h.png', 1, ''),
+(49, 'vélo électrique Wayscral Sporty 655 36V 11,6Ah Noir', 'images/article/dsgdgsd65s1dgfs6dg5412sg3sdfg5421.png', 2, ''),
+(50, 'PC Portable Asus ROG GL753VE-GC030T 17.3', 'images/article/kuhdf32g1gdh5s4df86fd5gs2fd4hsf6d5g4.png', 1, ''),
+(51, 'VTT semi-rigide ATB Twentyniner 29“ Heist blanc TC 51 cm KS Cycling', 'images/article/kjsdfs6d5f98zef461s2dfsdf7454s.png', 2, ''),
+(52, 'VTT semi-rigide ATB Twentyniner 29“ Heist noir TC 51 cm KS Cycling', 'images/article/dfgdf8645dgsdf9g846521sfdg86452.png', 2, ''),
+(53, 'Vélo électrique de ville 36V 10AH Mecer Noir', 'images/article/sdf5q4685dsf1qsdf856qsd1f2sqdf5421.png', 2, ' Vestibulum non sagittis nunc. In quis felis nibh. Etiam malesuada purus nec risus efficitur, aliquet cursus dolor porttitor. Suspendisse semper metus sed vehicula rutrum. Nam porta orci sit amet massa pulvinar, in egestas elit eleifend. Integer in facilisis arcu. Vestibulum ut fringilla risus, eu posuere ex. Praesent magna dolor, lobortis ut elit ac, vulputate luctus elit. Cras posuere tellus in erat bibendum sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus ipsum \r\nAjoutermi, fringilla sagittis leo accumsan vitae. Phasellus varius enim ac arcu finibus tempor. Pellentesque mattis faucibus venenatis. Sed consectetur tortor nec sagittis porta. In eget enim vel nunc vestibulum fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;'),
+(54, 'PC Ultra-portable Asus ZenBook UX430UA-GV305T ', 'images/article/sf5ds4fsddsf8645sdf1sdf8s6df54f.png', 1, ' nteger sagittis, nulla vel auctor congue, erat lorem lacinia urna, sit amet efficitur lectus quam vel sem. Aenean mattis posuere erat quis porta. Pellentesque at accumsan neque. Ut feugiat sed metus et aliquam. Phasellus eget porttitor massa, sed accumsan arcu. Cras mollis urna id sem consectetur euismod. Suspendisse pharetra est laoreet, interdum justo non, luctus neque. Nam luctus velit non malesuada mattis. Quisque vitae enim luctus felis mattis eleifend vel quis lectus. Morbi nisl massa, pellentesque ut dictum vel, imperdiet vitae turpis. Vestibulum sodales, ex sed feugiat varius, augue ligula molestie ante, ut fringilla libero urna et neque. Phasellus iaculis venenatis diam, quis viverra dui lobortis in.'),
+(55, 'PC Portable HP 17-bs007nf 17.3\"', 'images/article/34d904fc64490247f66a3954c3c8675a.png', 1, ' Taille de l\'écran	17,3 \"\r\nPoids du produit	2,71 Kg\r\nProcesseur	Intel Core i7\r\nSystème d\'exploitation	Microsoft Windows 10'),
+(56, 'ASUS PC Portable X705UV-BX134T 17,3\" - 8Go de RAM - Windows 10 - Intel Pentium - NVIDIA® GeForce 920MX - Disque Dur 1To', 'images/article/fc02d256dfc29443de74d82249fcca3c.jpg', 1, ' CPU : Intel Pentium 4405U - 2.1 GHz\r\n17.3\" - 1600 x 900 (HD+)\r\nRAM : 8 Go\r\n1 To HDD SATA - 5400 tours-min\r\nProcesseur graphique : NVIDIA GeForce 920MX\r\nInterfaces : Prise combo casque-microphone, USB 3.0, 2 x USB 2.0, USB-C 3.1 Gen 1, HDMI, LAN\r\nSans fil : 802.11b-g-n, Bluetooth 4.0\r\nSystème d\'exploitation : Windows 10 Edition Familiale 64 bits\r\nGarantie (²) : 2 ans - pièces, main d’œuvre'),
+(57, 'Samsung Galaxy J3 2016 Or', 'images/article/c3342239ae5e1d3f26647b8510ae922d.jpg', 5, ' 5\" - HD Super AMOLED\r\nRésolution du capteur : 8 mégapixels\r\nCapacité : 2600 mAh\r\nCapacité de la mémoire interne : 8 Go\r\n1.5 GHz - Quadruple coeur\r\nRAM : 1.5 Go\r\nGénération à haut débit mobile : 4G\r\nCartes mémoire flash prises en charge : microSDXC - jusqu\'à 128 Go'),
+(58, 'TEENO Smartphone 4G Débloqué 6 Pouces 1280 x 720 IPS HD Écran 1.3GHz Quad Core Android 5.1 Double SIM Caméras 8.0MP', 'images/article/d584f7f785a587b8312220915948c221.jpg', 5, ' 6\" - Tactile\r\nGénération à haut débit mobile : 4G\r\nSystème d\'exploitation : Android 5.1\r\nCouleur du boitier : Or'),
+(59, 'SONY Xperia XA1 Plus Bleu 32 Go', 'images/article/bea228d57da6f70db42765e2b24c7d54.jpg', 5, ' Ecran 5.5\" Full HD - Dual SIM - Stockage 32 Go - RAM 4Go - Lecteur empreinte - 4G cat 4 - Processeur Octa-core 64bit - Appareil photo 23 Mpx+Caméra frontal 8 Mpx - Capteur vidéo Full HD avec stabilisation optique SteadyShot - Batterie 3430 mAh - USB type C - WiFi - NFC - Bluetooth 4.2 - Recharge rapide : Technologie Pump Express+ 2.0 - Garantie 2 ans'),
+(60, 'APPLE iPhone X 64Go Gris sidéral', 'images/article/dee49cc87e741cca6701c9657766d141.jpg', 5, ' 5.8\" - Super Retina HD\r\nRésolution du capteur : 12 mégapixels\r\nCapacité de la mémoire interne : 64 Go\r\nGénération à haut débit mobile : 4G\r\nProtection : Revêtement oléophobe résistant aux empreintes digitales\r\nSystème d\'exploitation : iOS 11\r\nFonctions du téléphone : Téléphone à haut parleur, commande vocale, compteur d\'appels, téléconférence, mode avion, numérotation vocale, vibreur');
 
 -- --------------------------------------------------------
 
@@ -102,25 +108,31 @@ CREATE TABLE IF NOT EXISTS `articlevendeur` (
 --
 
 INSERT INTO `articlevendeur` (`idArticle`, `idVendeur`, `quantite`, `payableNFois`, `prix`) VALUES
-(37, 1, 123, 0, 987),
-(38, 1, 98, 0, 23),
-(39, 1, 123, 0, 234),
-(40, 1, 87, 0, 32),
-(41, 1, 987, 0, 87),
-(42, 1, 123, 0, 23),
-(43, 1, 23, 0, 134),
-(44, 1, 123, 0, 23),
+(37, 1, 123, 0, 1099),
+(38, 1, 45, 0, 679),
+(39, 1, 123, 0, 899.99),
+(40, 1, 87, 0, 349.99),
+(41, 1, 987, 0, 399.99),
+(42, 1, 123, 0, 899.99),
+(43, 1, 23, 0, 299.99),
+(44, 1, 123, 0, 271.91),
 (45, 1, 143, 0, 123),
-(46, 1, 345, 0, 98),
-(47, 1, 89, 0, 123),
-(48, 1, 477, 0, 1234),
-(49, 1, 56, 0, 32),
-(50, 1, 98, 0, 67),
-(51, 1, 123, 0, 74),
-(52, 1, 210, 0, 32),
-(53, 1, 89, 0, 234),
-(53, 2, 214, 0, 214),
-(54, 1, 32, 0, 124);
+(46, 1, 345, 0, 1979),
+(47, 1, 89, 0, 562.99),
+(48, 1, 477, 0, 349.99),
+(49, 1, 56, 0, 1449),
+(50, 1, 98, 0, 1439.99),
+(51, 1, 123, 0, 266.23),
+(52, 1, 210, 0, 266.23),
+(53, 1, 89, 0, 699),
+(53, 2, 214, 0, 899),
+(54, 1, 32, 0, 999.99),
+(55, 1, 32, 0, 902.51),
+(56, 2, 13, 0, 499.99),
+(57, 2, 21, 0, 134.99),
+(58, 2, 13, 0, 86.99),
+(59, 2, 21, 0, 329.99),
+(60, 2, 4, 0, 1159);
 
 -- --------------------------------------------------------
 
@@ -133,15 +145,16 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `idCategorie` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(45) NOT NULL,
   PRIMARY KEY (`idCategorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `categorie`
 --
 
 INSERT INTO `categorie` (`idCategorie`, `nom`) VALUES
-(1, 'Informatique'),
-(2, 'Jeux');
+(1, 'Ordinateur'),
+(2, 'Cyclisme'),
+(5, 'Téléphone');
 
 -- --------------------------------------------------------
 
@@ -161,18 +174,21 @@ CREATE TABLE IF NOT EXISTS `client` (
   `token` varchar(255) NOT NULL,
   `telephone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`idClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `client`
 --
 
 INSERT INTO `client` (`idClient`, `nom`, `prenom`, `email`, `password`, `adresse`, `valide`, `token`, `telephone`) VALUES
-(1, 'azertyii', 'azerty', 'azerty@mlk.fr', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', NULL, 'f4918f181fd27e57d852e341f15096e1e1c37ce9', ''),
+(1, 'azertyii', 'azerty', 'azerty@mlk.fr', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '2 rue du moul', 1, 'f4918f181fd27e57d852e341f15096e1e1c37ce9', ''),
 (3, 'azerty', 'azer', 'azerty@mlk.frze', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 0, '474ab8ae7b16aa13e0ee391dcbd6f9305545c5b9', ''),
 (4, 'toto', 'toto', 'tamoo@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 1, '572aa2935d9c1d22c08b634bd45881b78a110add', NULL),
 (5, 'toto', 'toto', 'toto@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 0, '684312138e3e6d397c326916bc505534a858dcc1', NULL),
-(6, 'toto', 'toto', 'tamoo2@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 1, 'ec86d7170900ea4fb54c73d47903a6749e1a5a2f', NULL);
+(6, 'toto', 'toto', 'tamoo2@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 1, 'ec86d7170900ea4fb54c73d47903a6749e1a5a2f', NULL),
+(7, 'titu', 'tutu', 'tamoo6@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 1, '3f39ef7300d23f1fb72e083fb0c0a6b288230766', ''),
+(8, 'Ahamada', 'Tamou', 'fnac@vendeur.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '12 rue kjhfd ssd', 1, '', NULL),
+(9, 'test', 'test', 'cdiscount@vendeur.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'sdf dfe ef', 1, '', NULL);
 
 -- --------------------------------------------------------
 
@@ -206,6 +222,7 @@ CREATE TABLE IF NOT EXISTS `commandearticle` (
   `quantite` int(11) DEFAULT NULL,
   `datePrevue` datetime DEFAULT NULL,
   `dateRecue` datetime DEFAULT NULL,
+  `etat` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idCommande`,`idArticle`,`idVendeur`),
   KEY `FK_CommandeArticle_Article_idx` (`idArticle`),
   KEY `FK_CommandeArticle_Article` (`idArticle`,`idVendeur`)
@@ -230,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`idMessage`),
   KEY `FK_Message_Article_idx` (`idArticle`),
   KEY `FK_Message_Vendeur_idx` (`idPersonne`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `message`
@@ -241,7 +258,13 @@ INSERT INTO `message` (`idMessage`, `date`, `contenu`, `vendeur`, `reclamation`,
 (3, '2017-10-30 20:38:25', 'coucou aussi\n	', NULL, NULL, 1, 53, 1),
 (4, '2017-11-04 18:51:12', 'mpil jjio\n	', NULL, NULL, 1, 42, 1),
 (5, '2017-11-05 15:06:20', 'dert		\n	', NULL, NULL, 1, 40, 1),
-(6, '2017-11-05 19:23:01', 'test\n	', NULL, NULL, 1, 38, 1);
+(6, '2017-11-05 19:23:01', 'test\n	', NULL, NULL, 1, 38, 1),
+(7, '2017-11-06 08:34:58', 'tr', NULL, NULL, 1, 48, 1),
+(8, '2017-11-06 08:35:05', '		\n	bncf', NULL, NULL, 1, 48, 1),
+(9, '2017-11-06 09:24:55', 'mpo', NULL, NULL, 1, 38, 1),
+(10, '2017-11-06 21:32:35', 'slt', NULL, NULL, 9, 59, 1),
+(11, '2017-11-06 21:32:52', 're', NULL, NULL, 9, 59, 1),
+(12, '2017-11-06 21:37:07', 'test', NULL, NULL, 1, 37, 1);
 
 -- --------------------------------------------------------
 
@@ -274,6 +297,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `date` date DEFAULT NULL,
   `datePrevue` datetime DEFAULT NULL,
   `dateRecue` datetime DEFAULT NULL,
+  `etat` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idArticle`,`idClient`),
   KEY `FK_Reservation_Client_idx` (`idClient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -282,9 +306,11 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 -- Déchargement des données de la table `reservation`
 --
 
-INSERT INTO `reservation` (`idArticle`, `idClient`, `quantite`, `date`, `datePrevue`, `dateRecue`) VALUES
-(42, 1, 135, '2017-11-04', NULL, NULL),
-(51, 1, 199, '2017-11-05', NULL, NULL);
+INSERT INTO `reservation` (`idArticle`, `idClient`, `quantite`, `date`, `datePrevue`, `dateRecue`, `etat`) VALUES
+(38, 1, 46, '2017-11-06', NULL, NULL, 'Attente du vendeur'),
+(40, 1, 120, '2017-11-06', NULL, NULL, 'Attente du vendeur'),
+(42, 1, 135, '2017-11-04', NULL, NULL, 'Attente du vendeur'),
+(51, 1, 199, '2017-11-05', NULL, NULL, 'Attente du vendeur');
 
 -- --------------------------------------------------------
 
@@ -313,23 +339,20 @@ CREATE TABLE IF NOT EXISTS `retour` (
 DROP TABLE IF EXISTS `vendeur`;
 CREATE TABLE IF NOT EXISTS `vendeur` (
   `idVendeur` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(45) DEFAULT NULL,
-  `prenom` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `adresse` varchar(255) DEFAULT NULL,
-  `valide` tinyint(4) DEFAULT NULL,
+  `idClient` int(11) NOT NULL,
   `adresseVendeur` varchar(255) DEFAULT NULL,
   `nomVendeur` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`idVendeur`)
+  PRIMARY KEY (`idVendeur`),
+  KEY `FK_Vendeur_Client` (`idClient`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `vendeur`
 --
 
-INSERT INTO `vendeur` (`idVendeur`, `nom`, `prenom`, `email`, `adresse`, `valide`, `adresseVendeur`, `nomVendeur`) VALUES
-(1, 'Ahamada', 'Tamou', 'sdfd@mlh.com', '12 rue kjhfd ssd', 1, '123 rue delaboutique', 'MarketShop'),
-(2, 'test', 'test', 'tzts@jh.fr', 'sdf dfe ef', NULL, 'df df21 fdf', 'MyBoutique');
+INSERT INTO `vendeur` (`idVendeur`, `idClient`, `adresseVendeur`, `nomVendeur`) VALUES
+(1, 8, '123 rue delaboutique', 'Fnac'),
+(2, 9, 'df df21 fdf', 'Cdiscount');
 
 --
 -- Contraintes pour les tables déchargées
@@ -388,6 +411,12 @@ ALTER TABLE `reservation`
 ALTER TABLE `retour`
   ADD CONSTRAINT `FK_Retour_Article` FOREIGN KEY (`idArticle`) REFERENCES `article` (`idArticle`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_Retour_Client` FOREIGN KEY (`idClient`) REFERENCES `client` (`idClient`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `vendeur`
+--
+ALTER TABLE `vendeur`
+  ADD CONSTRAINT `FK_Vendeur_Client` FOREIGN KEY (`idClient`) REFERENCES `client` (`idClient`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

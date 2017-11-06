@@ -1,6 +1,6 @@
 {% for item in reponse %}
 <div class="commentaire">
-	<span>Posté le {{item.date}} par {{item.prenom}} {{item.nom}} </span>
+	<span>Posté le {{item.date}} par {% if item.nomVendeur | length >0 %} {{item.nomVendeur}} {% else %}{{item.prenom}} {{item.nom}} {% endif %}</span>
 	<div class="well">{{item.contenu}}</div>
 </div>
 {% endfor %}
