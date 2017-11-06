@@ -3,12 +3,19 @@
 <div class="borderedBottom">
     <h4 class="text-center"><em>Veuillez vous connecter</em></h4>
 </div>
-<form action="" method="POST">
-    <label for="email">Email:</label><input type="text" class="form-control" id="email" name="email"/>
-    <label for="password">Password:</label><input type="password" class="form-control" id="password" name="password"/>    
+<form id="connexionForm" action="" method="POST">
+    <label for="email">Email:</label><input type="text" class="form-control" id="email" name="email" required/>
+    <label for="password">Password:</label><input type="password" class="form-control" id="password" name="password" required/> 
+    {% if adminMode is defined%}
+	<div class='col-md-12 nopadding' id="divSubmitConnAdmin">
+	    <button class="btn btn-primary btn-lg btn-block" id="btnSubmitConnAdmin">Se connecter</button>
+	</div>
+	{% endif %}
 </form>
+{% if adminMode is not defined%}
 <div id="nouveauCompte">
 	<a href="ajoutClient.php">
 	  <small><span>Pas encore de compte ?</span> <strong><span>Créer mon compte</span></strong></small>
 	</a>
 <div>
+{% endif %}

@@ -77,8 +77,8 @@ class ManagerArticle extends Manager
             }  
             
             //Image redimentionné
-            $width=200;
-            $height=100;
+            $width=400;
+            $height=200;
             $nomRed = "images/article/".$randomNom."Mini.".$extension_upload;
             $rImage=new Imagine\Gd\Imagine();
             $rImage->open($nom)->resize(new Imagine\Image\Box($width,$height))->save($nomRed);

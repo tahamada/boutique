@@ -10,7 +10,7 @@ else
 	$message=array();
 if(isset($_SESSION['user'])){
 	$idClient=$_SESSION['user']["idClient"];
-	$session="ok";
+	$session['val']=$_SESSION['user'];
 }
 
 if(isset($_GET["deconnexion"])){

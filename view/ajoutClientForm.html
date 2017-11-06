@@ -9,13 +9,13 @@
             class="col-md-offset-2"
             {% endif %}
     >
-        <h2 class="row">
+        <h3>
             {% if detail is defined%}
             Mes Informations
             {% else %}
-            Créer un compte
+            Inscription
             {% endif %}
-        </h2>
+        </h3>
         <div class="row">
             <div class='col-md-12'>
                 <label for="nom">Nom:</label>
@@ -93,13 +93,13 @@
             </div>  
         </div> 
     </div>
-    <div class="row" >
+    <div>
         {% if detail is defined%}
-        <div id="submitModifClient" class='col-md-12'>
+        <div id="submitModifClient" class='col-md-12 col-md-offset-1'>
             <input type="submit" class="btn btn-primary btn-lg btn-block" name="modifClientSubmit" value="Modifier"/>
         </div>
         {% else %}
-        <div id="submitInscr" class='col-md-12'>
+        <div id="submitInscr" class='col-md-12  col-md-offset-1'>
             <input type="submit" class="btn btn-primary btn-lg btn-block" name="inscriptionSubmit" value="S'inscrire"/>
         </div>
         {% endif %}

@@ -22,4 +22,18 @@ $( document ).ready(function(){
         }
 
         });
+
+    $('#connexionForm').validate({
+        errorElement: "div",
+        messages: {            
+            email: {
+                required: "Entrer un email",
+                email: "Veuillez entrer unn email valide"
+            },
+            password: {
+                required: "Entrer un mot de passe"
+            }
+        }
+
+        });
 });

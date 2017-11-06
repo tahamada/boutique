@@ -41,6 +41,8 @@ $( document ).ready(function(){
 
             });
     }
+
+
     dialog = $( "#ConnexionDialog" ).dialog({
         autoOpen: false,
         height: 300,

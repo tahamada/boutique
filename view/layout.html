@@ -29,12 +29,11 @@
 
                     {% block content %}{% endblock %}
                 </div>
+                 <div class="row" id="footer">
+                    {% include 'footer.html'%}
+                </div>
             </div>
-            <div id="footer">
-                {% block footer %}
-                    
-                {% endblock %}
-            </div>
+           
         </div>
         <div id="ConnexionDialog" class="row">
              {% include 'connexion.html' %}

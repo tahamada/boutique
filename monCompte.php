@@ -9,8 +9,8 @@ if(isset($_GET['idClient']) && isset($_SESSION['user']) && $_SESSION['user']["id
 	$mClient=Manager::getInstance();
 	$mClient::setTable("Client");
 	$objet=false;
-	$colonne=['idClient','nom','prenom','email','adresse','telephone','password','token'];
-	$search=array("idClient"=>$_SESSION['user']["idClient"]);
+	$colonne=['t.idClient','nom','prenom','email','adresse','telephone','password','token'];
+	$search=array("t.idClient"=>$_SESSION['user']["idClient"]);
 	$client=$mClient::lister($search,$colonne,$objet);
 	$client=$client[0];
 	//mise a jour des donnée	
@@ -39,7 +39,7 @@ if(isset($_GET['idClient']) && isset($_SESSION['user']) && $_SESSION['user']["id
 	$mCommande::setTable("Commande");
 	$objet=false;
 	$colonne=[];
-	$search=array("idClient"=>$_SESSION['user']["idClient"]);
+	$search=array("t.idClient"=>$_SESSION['user']["idClient"]);
 	$join1=array("CommandeArticle as ca","ca.idCommande=t.idCommande","JOIN");
 	$join2=array("ArticleVendeur as av","av.idArticle=ca.idArticle","JOIN");
 	$join3=array("Article as a","a.idArticle=av.idArticle","JOIN");
@@ -52,7 +52,7 @@ if(isset($_GET['idClient']) && isset($_SESSION['user']) && $_SESSION['user']["id
 	$mReservation::setTable("Reservation");
 	$objet=false;
 	$colonne=["imageUrl","designation","prix","nomVendeur","t.quantite","date","etat"];
-	$search=array("idClient"=>$_SESSION['user']["idClient"]);
+	$search=array("t.idClient"=>$_SESSION['user']["idClient"]);
 	$join1=array("ArticleVendeur as av","av.idArticle=t.idArticle","JOIN");
 	$join2=array("Article as a","a.idArticle=av.idArticle","JOIN");
 	$join3=array("Vendeur as v","av.idVendeur=v.idVendeur","JOIN");
