@@ -5,6 +5,9 @@ class CommandeArticle extends Model {
 	private $_idCommande;
 	private $_idArticle;
 	private $_quantite;
+	private $_etat;
+	private $_datePrevue;
+	private $_dateRecue;
 
 	/**
 	 * Class Constructor
@@ -66,6 +69,42 @@ class CommandeArticle extends Model {
 	 */
 	public function setQuantite($_quantite) {
 		$this->_quantite = $_quantite;
+
+		return $this;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function DatePrevue() {
+		return $this->_datePrevue;
+	}
+
+	/**
+	 * @param mixed $_datePrevue
+	 *
+	 * @return self
+	 */
+	public function setDatePrevue($_datePrevue) {
+		$this->_datePrevue = $_datePrevue;
+
+		return $this;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function DateRecue() {
+		return $this->_dateRecue;
+	}
+
+	/**
+	 * @param mixed $_dateRecue
+	 *
+	 * @return self
+	 */
+	public function setDateRecue($_dateRecue) {
+		$this->_dateRecue = $_dateRecue;
 
 		return $this;
 	}

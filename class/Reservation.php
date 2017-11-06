@@ -8,6 +8,7 @@ class Reservation extends Model
 	private $_date;
     private $_datePrevue;
     private $_dateRecue;
+    private $_etat;
 
 
 	/**
@@ -158,6 +159,26 @@ class Reservation extends Model
     public function setDateRecue($_dateRecue)
     {
         $this->_dateRecue = $_dateRecue;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function Etat()
+    {
+        return $this->_etat;
+    }
+
+    /**
+     * @param mixed $_etat
+     *
+     * @return self
+     */
+    public function setEtat($_etat)
+    {
+        $this->_etat = $_etat;
 
         return $this;
     }

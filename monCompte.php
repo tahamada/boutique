@@ -13,7 +13,6 @@ if(isset($_GET['idClient']) && isset($_SESSION['user']) && $_SESSION['user']["id
 	$search=array("idClient"=>$_SESSION['user']["idClient"]);
 	$client=$mClient::lister($search,$colonne,$objet);
 	$client=$client[0];
-
 	//mise a jour des donnée	
 	if(isset($_POST['modifClientSubmit'])){
 		$message=array(1,"Mise a jour réussit");
@@ -24,6 +23,7 @@ if(isset($_GET['idClient']) && isset($_SESSION['user']) && $_SESSION['user']["id
 				$_POST['password']=$client['password'];
 			$_POST['idClient']=$client['idClient'];
 			$_POST['token']=$client['token'];
+			$_POST['valide']=1;
 			$oClient=new Client($_POST);
 			$mClient::enregistrer($oClient,true);
 			$client=$mClient::lister($search,$colonne,$objet);
@@ -51,7 +51,7 @@ if(isset($_GET['idClient']) && isset($_SESSION['user']) && $_SESSION['user']["id
 	$mReservation=Manager::getInstance();
 	$mReservation::setTable("Reservation");
 	$objet=false;
-	$colonne=[];
+	$colonne=["imageUrl","designation","prix","nomVendeur","t.quantite","date","etat"];
 	$search=array("idClient"=>$_SESSION['user']["idClient"]);
 	$join1=array("ArticleVendeur as av","av.idArticle=t.idArticle","JOIN");
 	$join2=array("Article as a","a.idArticle=av.idArticle","JOIN");

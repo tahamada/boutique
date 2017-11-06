@@ -3,10 +3,11 @@ require "vendor/autoload.php";
 include "Autoload.php";
 include "funct/session.php";
 
-$reponse=array("message"=>"success");
+$message=array("message"=>"success");
 if(isset($_POST['idArticle'])){
     $_POST['date']=date("Y-m-d H:i:s");
     $_POST['idClient']=$_SESSION['user']["idClient"];
+    $_POST['etat']="Attente du vendeur";
     $mReservation=Manager::getInstance();
 	$mReservation::setTable("Reservation");
     $oReservation=new Reservation($_POST);
@@ -20,7 +21,6 @@ if(isset($_POST['idArticle'])){
 
 $loaderfile = new Twig_Loader_Filesystem('view/');
 $twig = new Twig_Environment($loaderfile);
-
 
 echo $twig->render('ajaxReponse/json.html', array("reponse"=>$message,"session"=>$session));
 ?>

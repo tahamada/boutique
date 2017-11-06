@@ -1,6 +1,7 @@
 $( document ).ready(function(){
-    panierFunction();
+    panierFunction("loadingPage");
     function panierFunction(){
+      
         $.ajax({
                 method: "POST",
                 crossDomain: true,
@@ -49,11 +50,11 @@ $( document ).ready(function(){
       $("#total").text(somme+"€");  
     }    
 
-    function verifStock(ligne){    
+    function verifStock(ligne){  
       if($(ligne).parent().length<1)
         var ligne=$(this).parent().parent();
-
-      ajoutPanier(ligne);
+     
+      //ajoutPanier(ligne);
       quantite=$(ligne).find(".quantite").val();
       idVendeur=$(ligne).find(".panierIdVendeur").text();
       idArticle=$(ligne).find(".panierIdArticle").text();
@@ -83,7 +84,8 @@ $( document ).ready(function(){
                 $(ligne).find(".BtnReserverPanier").removeClass("hidden");
                 
               }
-              total();              
+              total();
+              $("#nbPanier").text("("+reponse["nbPanier"]+")");              
             })
             .fail(function() {
                 console.log("fail");
@@ -94,6 +96,12 @@ $( document ).ready(function(){
     }
 
     ajoutPanier=function ajoutPanier(ligne){
+      console.log($(this).attr('id'));
+      console.log($(ligne));
+      idArticle="";
+      quantite="";
+      idVendeur="";
+      if($(this).attr('id')=="btnAjoutPanier"){
         if($("#idArticle").length > 0)
             idArticle=$("#idArticle").val();
         else
@@ -105,28 +113,27 @@ $( document ).ready(function(){
             idVendeur=$(ligne).find("#idVendeur").val();
 
         quantite=$(ligne).find(".quantite").val();
-        $.ajax({
-                method: "POST",
-                crossDomain: true,
-                xhrFields: {
-                    withCredentials: true
-                },
-                url: "ajoutPanier.php",
-                data: { idArticle: idArticle,quantite:quantite,idVendeur:idVendeur },
-                dataType : "json"
-            })
-            .done(function(reponse) {
-              $("#nbPanier").text("("+reponse["nbPanier"]+")");
-              if(reponse["nbPanier"]=="0"){
-                dialogPanier.dialog( "close" );
-              }
-            })
-            .fail(function() {
-                console.log("fail");
-            })
-            .always(function() {
+      }
+      
+      $.ajax({
+              method: "POST",
+              crossDomain: true,
+              xhrFields: {
+                  withCredentials: true
+              },
+              url: "ajoutPanier.php",
+              data: { idArticle: idArticle,quantite:quantite,idVendeur:idVendeur },
+              dataType : "json"
+          })
+          .done(function(reponse) {
+            location.reload();
+          })
+          .fail(function() {
+              console.log("fail");
+          })
+          .always(function() {
 
-            });
+          });
     }
 
     $("#titreDetail").on("click","#btnAjoutPanier",ajoutPanier);
@@ -172,14 +179,15 @@ $( document ).ready(function(){
         .done(function(reponse) {
           if(reponse['message']=="success")
             $.get("ajaxReponse/ajaxMessageSuccessReservation.html", function(data){
-                $("#alertZonePanier").html(data).fadeIn(2000, function(){$(this).fadeOut(2000);});;
+                $("#alertZonePanier").html(data).fadeIn(2000, function(){$(this).fadeOut(2000);});
+                //panierFunction();
             });
           else{
             $.get("ajaxReponse/ajaxMessageWarningReservation.html", function(data){
-                $("#alertZonePanier").html(data).fadeIn(2000, function(){$(this).fadeOut(2000);});;
+                $("#alertZonePanier").html(data).fadeIn(2000, function(){$(this).fadeOut(2000);});
+                //panierFunction();
             });
           }
-          panierFunction();
         })
         .fail(function() {
             console.log("fail");

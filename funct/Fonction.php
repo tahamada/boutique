@@ -70,6 +70,35 @@ class Fonction{
 		}
 	
 	}
+
+	static function cookiesPanier($article,$quantite){
+		if(isset($_COOKIE['panier'])){
+			$panier = unserialize($_COOKIE['panier']);
+			if(isset($article)){
+				$saute=false;
+				foreach($panier as $index => $pan){
+					if($pan['idVendeur']==$article['idVendeur'] && $pan['idArticle']==$article['idArticle']){
+						if(isset($quantite) && !empty($quantite)){
+							$pan['quantite']=$quantite;
+							$panier[$index]=$pan;
+						}			
+						$saute=true;
+					}
+				}
+				if(!$saute)
+					$panier[]=$article;
+				setcookie('panier', serialize($panier), time()+3600);
+				$panier = unserialize($_COOKIE['panier']);
+			}
+		}
+		else{	
+			if(isset($article) && !empty($article)){
+				setcookie('panier', serialize(array($article)), time()+3600);
+				$panier = unserialize($_COOKIE['panier']);
+			}
+		}
+		return $panier;
+	}
 }
 
 ?>

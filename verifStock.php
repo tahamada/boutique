@@ -9,7 +9,7 @@ if(isset($_POST['idVendeur']) && isset($_POST['idArticle']) && isset($_POST['qua
 	$mArticle::setTable("Article");
 	$search=array("t.idArticle"=>$_POST['idArticle'],"av.idVendeur"=>$_POST['idVendeur']);
 	$objet=null;
-	$column=["quantite","prix"];
+	$column=[];
 	//param jointure
 	$join1=array("ArticleVendeur as av","av.idArticle=t.idArticle","JOIN");
 	$joinParam=array($join1);
@@ -29,6 +29,8 @@ if(isset($_POST['idVendeur']) && isset($_POST['idArticle']) && isset($_POST['qua
 	else{
 		$message=array("reponse"=>"Plus en stock","etat"=>0,"prix"=>$article['prix']);
 	}
+	$panier=Fonction::cookiesPanier($article,$_POST['quantite']);
+	$message=array_merge($message,array("nbPanier"=>count($panier)));
 }
 
 $loaderfile = new Twig_Loader_Filesystem('view/');

@@ -4,7 +4,7 @@ include "Autoload.php";
 include "funct/session.php";
 
 $message=array("message"=>"error");
-if(isset($_POST['idArticle'])){
+if(isset($_POST['idArticle']) && !empty($_POST['idArticle'])){
 	//recuperation de l'article
 	$mArticle= Manager::getInstance();
     $mArticle::setTable("Article"); 
@@ -26,31 +26,13 @@ if(isset($_POST['idArticle'])){
 	$article["quantite"]=1;
 	//unset($_COOKIE['panier']);
 }
-if(isset($_COOKIE['panier'])){
-	$panier = unserialize($_COOKIE['panier']);
-	if(isset($article)){
-		$saute=false;
-		foreach($panier as $index => $pan){
-			if($pan['idVendeur']==$article['idVendeur'] && $pan['idArticle']==$article['idArticle']){
-				if(isset($_POST['quantite']) && !empty($_POST['quantite'])){
-					$pan['quantite']=$_POST['quantite'];
-					$panier[$index]=$pan;
-				}			
-				$saute=true;
-			}
-		}
-		if(!$saute)
-			$panier[]=$article;
-		setcookie('panier', serialize($panier), time()+3600);
-		$panier = unserialize($_COOKIE['panier']);
-	}
-}
-else{	
-	if(isset($article)){
-		setcookie('panier', serialize(array($article)), time()+3600);
-		$panier = unserialize($_COOKIE['panier']);
-	}
-}
+if(isset($_POST['quantite']))
+	$quantite=$_POST['quantite'];
+else
+	$quantite=null;
+
+$panier=Fonction::cookiesPanier($article,$quantite);
+
 
 $message=array("message"=>"success");
 

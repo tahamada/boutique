@@ -3,13 +3,14 @@ require "vendor/autoload.php";
 include "Autoload.php";
 include "funct/listCategorie.php";
 include "funct/session.php";
-$mArticle = new ManagerArticle();
+$mArticle = Manager::getInstance();
 
 //validation d'inscription par token
 if (isset($_GET['token'])) {
-	$mClient      = new ManagerClient();
+	$mClient = Manager::getInstance();
+	$mClient::setTable("Client");
 	$search       = array("token" => $_GET['token']);
-	$clientTrouve = $mClient->lister($search);
+	$clientTrouve = $mClient::lister($search);
 	if (count($clientTrouve) != 0) {
 		if ($clientTrouve[0]->Valide() != 1) {
 			$clientTrouve[0]->setValide(1);
@@ -29,10 +30,10 @@ $column    = [];
 $objet     = false;
 $joinParam = null;
 $order     = "idArticle desc";
-$limit     = 14;
+$limit     = 12;
 $offset    = null;
-
-$listArticleNouveau = $mArticle->lister($search, $column, $objet, $joinParam, $order, $limit, $offset);
+$mArticle::setTable("Article");
+$listArticleNouveau = $mArticle::lister($search, $column, $objet, $joinParam, $order, $limit, $offset);
 
 //liste des Articles
 $search    = null;
@@ -67,12 +68,25 @@ if (isset($_GET['recherche'])) {
 
 }
 
-$listArticle = $mArticle->lister($search, $column, $objet, $joinParam, $order);
-$loaderfile  = new Twig_Loader_Filesystem('view/');
-$twig        = new Twig_Environment($loaderfile);
+//nomnbre d'article lié a la recherche
+$nbArticle = $mArticle::lister($search, array("count"), $objet, $joinParam, $order);
+$nbArticle = $nbArticle[0];
+$limit     = 12;
+
+$offset = 0;
+$page   = 1;
+if (isset($_GET['page']) && is_numeric($_GET['page']) && intval($_GET['page']) > 0) {
+	$offset = (intval($_GET['page'])-1)*intval($limit);
+	$page   = $_GET['page'];
+}
+//liste des aricle souhaité
+$listArticle = $mArticle::lister($search, $column, $objet, $joinParam, $order, $limit, $offset);
+
+$loaderfile = new Twig_Loader_Filesystem('view/');
+$twig       = new Twig_Environment($loaderfile);
 if (isset($_GET['mode']) && $_GET['mode'] == "ajax") {
 	echo $twig->render('ajaxReponse/articleList.html', array('articles' => $listArticle));
 } else {
-	echo $twig->render('accueil.html', array('categorie' => $listeoCategorie, 'articlesSlide' => $listArticleNouveau, 'articles' => $listArticle, 'message' => $message, 'session' => $session));
+	echo $twig->render('accueil.html', array('categorie' => $listeoCategorie, 'articlesSlide' => $listArticleNouveau, 'articles' => $listArticle, 'message' => $message, 'session' => $session, 'nbArticle' => $nbArticle['nb'], 'page' => $page, 'limit' => $limit, 'idClient' => $idClient));
 }
 ?>

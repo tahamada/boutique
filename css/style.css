@@ -11,7 +11,7 @@ body{
 	background-image:url("../images/Digital_Marketing_Agency.jpg");
 	background-size:cover;
 	width: 100%;
-	height: 110px;
+	height: 80px;
 }
 
 /*.vertical-align {
@@ -216,7 +216,11 @@ input[class='error']{
 	
 }
 
-#commentaire textarea{
+textarea{
+	width: 100%;
+}
+
+input{
 	width: 100%;
 }
 
@@ -349,6 +353,8 @@ a:hover{
 #submitModifClient{
 	margin-top: 5px;
 }
+
+
 
 @media screen and (max-width: 1000px)
 {

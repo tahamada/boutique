@@ -18,9 +18,10 @@ $( document ).ready(function(){
                       $( "#ConnexionDialog" ).dialog("close");
                   });
                   $("#connexion").empty();
-                  $.get("view/monCompte.html", function(data){
+                  $.get("view/monMenuCompte.html", function(data){
                       $("#connexion").html(data);
                   });
+                  location.reload();
                 }else if(reponse.message=="valide"){
                   $.get("ajaxReponse/ajaxMessageValideConnexion.html", function(data){
                       $("#alertZone").html(data).fadeIn(2000, function(){$(this).fadeOut(1000);});;

@@ -16,5 +16,6 @@ if(isset($_SESSION['user'])){
 if(isset($_GET["deconnexion"])){
 	unset($_SESSION['user']);
 	$session=null;
+	header("location:/");
 }
 ?>

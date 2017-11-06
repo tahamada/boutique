@@ -6,6 +6,7 @@ class CommandeArticle extends Model
 	private $_idCommande;
 	private $_idArticle;
 	private $_quantite;
+    private $_etat;
     private $_datePrevue; 
     private $_dateRecue; 
 

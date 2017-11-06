@@ -5,7 +5,6 @@ include "funct/listCategorie.php";
 include "funct/session.php";
 $mArticle= Manager::getInstance();
 
-
 //validation d'inscription par token
 if(isset($_GET['token'])){
 	$mClient=Manager::getInstance();
@@ -31,7 +30,7 @@ $column=[];
 $objet=false;
 $joinParam=null;
 $order="idArticle desc";
-$limit=14;
+$limit=12;
 $offset=null;
 $mArticle::setTable("Article");
 $listArticleNouveau=$mArticle::lister($search,$column,$objet,$joinParam,$order,$limit,$offset);
