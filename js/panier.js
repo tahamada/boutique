@@ -44,9 +44,10 @@ $( document ).ready(function(){
         var quantite=$(this).find(".quantite").val();
         var prix=$(this).find(".prix").text(); 
         if(quantite){
-          somme+=parseInt(quantite)*parseInt(prix);
+          somme+=parseFloat(quantite)*parseFloat(prix);
         }
       });
+      somme=somme.toFixed(2);
       $("#total").text(somme+"€");  
     }    
 
@@ -209,6 +210,7 @@ $( document ).ready(function(){
           }
         },
         close: function() {
+          location.reload();
           //form[ 0 ].reset();
           //allFields.removeClass( "ui-state-error" );
         }

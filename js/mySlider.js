@@ -7,6 +7,7 @@ $( document ).ready(function(){
 	  slidesToScroll: 4,
 	  prevArrow: false,
 	  nextArrow: false,
+	  //adaptiveHeight:true,
 	  responsive: [
 	    {
 	      breakpoint: 1024,

@@ -12,6 +12,7 @@ class Client extends Model
     private $_valide; 
 	private $_password; 
     private $_token;
+    private $_googleIdentifier;
 
 
 
@@ -215,6 +216,26 @@ class Client extends Model
     public function setTelephone($_telephone)
     {
         $this->_telephone = $_telephone;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function GoogleIdentifier()
+    {
+        return $this->_googleIdentifier;
+    }
+
+    /**
+     * @param mixed $_googleIdentifier
+     *
+     * @return self
+     */
+    public function setGoogleIdentifier($_googleIdentifier)
+    {
+        $this->_googleIdentifier = $_googleIdentifier;
 
         return $this;
     }

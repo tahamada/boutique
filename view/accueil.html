@@ -9,7 +9,7 @@
 <div class="container-fluid" id="sliderContainer">
     <div class="col-md-12 col-md-offset-0 nopadding row" id="mainSlider">
         {% for item in articlesSlide %}
-            <li><a href="articleDetail.php?idArticle={{item.idArticle}}"> <img width="400px" src="{{item.imageUrl}}"></a></li>
+            <li id="listSlide" class="col-md-3" ><a href="articleDetail.php?idArticle={{item.idArticle}}"> <img src="{{item.imageUrl}}"></a></li>
         {% endfor %}
     </div>
 </div>

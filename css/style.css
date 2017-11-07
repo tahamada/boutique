@@ -114,7 +114,10 @@ div.ui-dialog-titlebar{
 
 
 .slick-slide img {
-   height:300px;
+   //height:300px;
+   width:250px;
+   position:absolute;
+   bottom: 0;
 }
 
 .slick-slide {
@@ -127,6 +130,10 @@ div.ui-dialog-titlebar{
 
 #sliderContainer{
 	padding:0px;
+}
+
+#listSlide img{
+	//width:100%;
 }
 
 .articleWell{
@@ -396,6 +403,9 @@ a:hover{
     }
     .ban{
     	height: 53px;
+    }
+    #blockArticle{
+    	height: 200px;
     }
 }
 
