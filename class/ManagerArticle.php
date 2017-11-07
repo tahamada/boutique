@@ -16,8 +16,9 @@ class ManagerArticle extends Manager
         $extension_upload = strtolower(  substr(  strrchr($file['Fichier_1']['name'], '.')  ,1)  );
         if ( in_array($extension_upload,$extensions_valides) ) 
            $extentionValide=true; 
-        else
-            var_dump("mauvais type de fichier");
+        else{
+           // var_dump("mauvais type de fichier");
+        }
         
         $randomNom=md5(uniqid(rand(), true));
         $nom = "images/article/".$randomNom.".".$extension_upload;              
@@ -43,10 +44,29 @@ class ManagerArticle extends Manager
                 //verifier si l'article existe deja
                 $search=array("designation"=>$oArticle->Designation());
                 
-                $articleTrouve=$mArticle->lister($search);
+                $articleTrouve=$mArticle::lister($search);
                 if(count($articleTrouve)==0){                    
-                    $idArticle=$mArticle->enregistrer($oArticle)[1];
+                    $idArticle=$mArticle::enregistrer($oArticle)[1];
                     $mArticle::Bdd()->commit();
+                     if(!$error){            
+                        //deplacement du fichier apres l'enregistrement
+                        $resultat = move_uploaded_file($file['Fichier_1']['tmp_name'],$nom);
+                        
+                        if ($resultat){ 
+                            //var_dump("Transfert réussi"); 
+                        }  
+                        
+                        //Image redimentionné
+                        $width=400;
+                        $height=200;
+                        $nomRed = "images/article/".$randomNom."Mini.".$extension_upload;
+                        $rImage=new Imagine\Gd\Imagine();
+                        $rImage->open($nom)->resize(new Imagine\Image\Box($width,$height))->save($nomRed);
+                            
+                    }
+                    else{
+                        return array(false,$message);
+                    }
                 }
                 else{
                     $idArticle=$articleTrouve[0]->IdArticle();
@@ -54,9 +74,12 @@ class ManagerArticle extends Manager
 
                // $idArticle=$mArticle->Bdd()->lastInsertId();
                 $post["idArticle"]=$idArticle;
+
                 $oArticleVendeur=new ArticleVendeur($post);
                 $mArticle::setTable("ArticleVendeur");  
-                $mArticle->enregistrer($oArticleVendeur);
+                $mArticle::enregistrer($oArticleVendeur);
+                $mArticle::Bdd()->commit();
+                return array(true,"Ajout d'article reussi");
             }
             
         }catch(PDOException $e){
@@ -66,28 +89,7 @@ class ManagerArticle extends Manager
         }catch(Exception $e){
             $error=true;
             $message=$e->getMessage();
-        }
-
-        if(!$error){            
-            //deplacement du fichier apres l'enregistrement
-            $resultat = move_uploaded_file($file['Fichier_1']['tmp_name'],$nom);
-            
-            if ($resultat){ 
-                //var_dump("Transfert réussi"); 
-            }  
-            
-            //Image redimentionné
-            $width=400;
-            $height=200;
-            $nomRed = "images/article/".$randomNom."Mini.".$extension_upload;
-            $rImage=new Imagine\Gd\Imagine();
-            $rImage->open($nom)->resize(new Imagine\Image\Box($width,$height))->save($nomRed);
-                return array(true,"Ajout d'article reussi");
-        }
-        else{
-            return array(false,$message);
-        }
-
+        }       
             
         //var_dump($oArticle,$oArticleVendeur);
     }
