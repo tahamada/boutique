@@ -22,6 +22,8 @@ if (isset($_GET['token'])) {
 
 		}
 	}
+
+	header("location:/");
 }
 
 //liste des articles pour le slider
@@ -30,7 +32,7 @@ $column    = [];
 $objet     = false;
 $joinParam = null;
 $order     = "idArticle desc";
-$limit     = 12;
+$limit     = 6;
 $offset    = null;
 $mArticle::setTable("Article");
 $listArticleNouveau = $mArticle::lister($search, $column, $objet, $joinParam, $order, $limit, $offset);

@@ -48,12 +48,12 @@
             $mClient=Manager::getInstance();
             $mClient::setTable("Client");
 
-            $client=$mClient::lister(array("googleIdentifier"=>$identifer));
+            $client=$mClient::lister(array("googleIdentifier"=>$identifer),[],false);
             if(count($client)){
                  $_SESSION['user']=$client[0];
             }
             else{
-                $idClient=$mClient::enregistrer($oClient);
+                $idClient=$mClient::enregistrer($oClient)[1];
                 $_SESSION['user']['email']=$oClient->Email();
                 $_SESSION['user']['nom']=$oClient->Nom();
                 $_SESSION['user']['idClient']=$idClient;

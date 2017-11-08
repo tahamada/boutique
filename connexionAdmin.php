@@ -27,14 +27,15 @@ if(isset($_POST['email'])){
         	header("location:/");
 		}
 		else
-			$reponse=array("message"=>"valide");
+			$reponse=array("message"=>array(1,"Validé votre email"));
 
-	}
+	}else
+		$reponse=array("message"=>array(0,"Mauvais identifiants"));
 		
 }
 $loaderfile = new Twig_Loader_Filesystem('view/');
 $twig = new Twig_Environment($loaderfile);
 
 
-echo $twig->render('connexionAdmin.html', array('categorie'=>$listeoCategorie,"reponse"=>$reponse,"adminMode"=>"","session"=>$session,"idClient"=>$idClient));
+echo $twig->render('connexionAdmin.html', array('categorie'=>$listeoCategorie,"reponse"=>$reponse,"adminMode"=>"","session"=>$session,"idClient"=>$idClient,'message'=>$message));
 ?>

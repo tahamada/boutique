@@ -395,6 +395,10 @@ a:hover{
 	text-decoration:underline;
 }
 
+.janrainEngage button{
+	margin-top:10px;
+}
+
 @media screen and (max-width: 1000px)
 {
     #mainSlider{

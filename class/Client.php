@@ -66,8 +66,10 @@ class Client extends Model
      */
     public function setNom($_nom)
     {
-        $this->verifTailleInf("nom",$_nom,2);
-        $this->verifChaineSansNombre("nom",$_nom);
+        if($_nom!=null){
+            $this->verifTailleInf("nom",$_nom,2);
+            $this->verifChaineSansNombre("nom",$_nom);
+        }
        
         $this->_nom = $_nom;
         return $this;
@@ -88,10 +90,10 @@ class Client extends Model
      */
     public function setPrenom($_prenom)
     {
-        
-        $this->verifTailleInf("prenom",$_prenom,2);
-        $this->verifChaineSansNombre("prenom",$_prenom);
-       
+        if($_prenom!=null){
+            $this->verifTailleInf("prenom",$_prenom,2);
+            $this->verifChaineSansNombre("prenom",$_prenom);
+        }    
         $this->_prenom = $_prenom;
             
         return $this;
@@ -112,9 +114,10 @@ class Client extends Model
      */
     public function setEmail($_email)
     {
-        
-        $this->verifEmail("email",$_email);
-        $this->_email = $_email;
+        if($_email!=null){
+            $this->verifEmail("email",$_email);
+            $this->_email = $_email;
+        }
         
         return $this;
     }
@@ -174,9 +177,10 @@ class Client extends Model
      */
     public function setPassword($_password)
     {
-        $this->verifTailleInf("mot de passe",$_password,5);
-        $this->_password = $_password;        
-
+        if($_password!=null){
+            $this->verifTailleInf("mot de passe",$_password,5);
+            $this->_password = $_password;        
+        }
         return $this;
     }
 

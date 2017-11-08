@@ -12,7 +12,8 @@ Class Manager implements Enregistrable{
 			self::$_bdd=$bdd;		
 			
 		}catch(Exception $e){
-			die("Erreur: ".$e->getMessage());
+			//die("Erreur: ".$e->getMessage());
+			die("Erreur de connexion à la base de données ");
 		}
 
 	}

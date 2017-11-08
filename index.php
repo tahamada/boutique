@@ -21,6 +21,7 @@ if(isset($_GET['token'])){
 			$message=array(2,"Email déjà validé");
 		
 	}
+	header("location:/");
 }
 
 
@@ -30,7 +31,7 @@ $column=[];
 $objet=false;
 $joinParam=null;
 $order="idArticle desc";
-$limit=12;
+$limit=6;
 $offset=null;
 $mArticle::setTable("Article");
 $listArticleNouveau=$mArticle::lister($search,$column,$objet,$joinParam,$order,$limit,$offset);

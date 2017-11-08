@@ -24,6 +24,8 @@ if(isset($_GET['idClient']) && isset($_SESSION['user']) && $_SESSION['user']["id
 			$_POST['idClient']=$client['idClient'];
 			$_POST['token']=$client['token'];
 			$_POST['valide']=1;
+			if(!empty($_POST['password']))
+				$_POST['password']=hash ("sha256", $_POST['password']);
 			$oClient=new Client($_POST);
 			$mClient::enregistrer($oClient,true);
 			$client=$mClient::lister($search,$colonne,$objet);

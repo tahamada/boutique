@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 06 nov. 2017 à 21:47
+-- Généré le :  mer. 08 nov. 2017 à 13:30
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -168,27 +168,31 @@ CREATE TABLE IF NOT EXISTS `client` (
   `nom` varchar(45) DEFAULT NULL,
   `prenom` varchar(45) DEFAULT NULL,
   `email` varchar(45) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `adresse` varchar(45) DEFAULT NULL,
   `valide` tinyint(4) DEFAULT NULL,
-  `token` varchar(255) NOT NULL,
+  `token` varchar(255) DEFAULT NULL,
   `telephone` varchar(20) DEFAULT NULL,
+  `googleIdentifier` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `client`
 --
 
-INSERT INTO `client` (`idClient`, `nom`, `prenom`, `email`, `password`, `adresse`, `valide`, `token`, `telephone`) VALUES
-(1, 'azertyii', 'azerty', 'azerty@mlk.fr', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '2 rue du moul', 1, 'f4918f181fd27e57d852e341f15096e1e1c37ce9', ''),
-(3, 'azerty', 'azer', 'azerty@mlk.frze', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 0, '474ab8ae7b16aa13e0ee391dcbd6f9305545c5b9', ''),
-(4, 'toto', 'toto', 'tamoo@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 1, '572aa2935d9c1d22c08b634bd45881b78a110add', NULL),
-(5, 'toto', 'toto', 'toto@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 0, '684312138e3e6d397c326916bc505534a858dcc1', NULL),
-(6, 'toto', 'toto', 'tamoo2@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 1, 'ec86d7170900ea4fb54c73d47903a6749e1a5a2f', NULL),
-(7, 'titu', 'tutu', 'tamoo6@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 1, '3f39ef7300d23f1fb72e083fb0c0a6b288230766', ''),
-(8, 'Ahamada', 'Tamou', 'fnac@vendeur.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '12 rue kjhfd ssd', 1, '', NULL),
-(9, 'test', 'test', 'cdiscount@vendeur.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'sdf dfe ef', 1, '', NULL);
+INSERT INTO `client` (`idClient`, `nom`, `prenom`, `email`, `password`, `adresse`, `valide`, `token`, `telephone`, `googleIdentifier`) VALUES
+(1, 'azertyii', 'azerty', 'azerty@mlk.fr', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '2 rue du moul', 1, 'f4918f181fd27e57d852e341f15096e1e1c37ce9', '', NULL),
+(3, 'azerty', 'azer', 'azerty@mlk.frze', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 0, '474ab8ae7b16aa13e0ee391dcbd6f9305545c5b9', '', NULL),
+(4, 'toto', 'toto', 'tamoo@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 1, '572aa2935d9c1d22c08b634bd45881b78a110add', NULL, NULL),
+(5, 'toto', 'toto', 'toto@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 0, '684312138e3e6d397c326916bc505534a858dcc1', NULL, NULL),
+(6, 'toto', 'toto', 'tamoo2@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 1, 'ec86d7170900ea4fb54c73d47903a6749e1a5a2f', NULL, NULL),
+(7, 'titu', 'tutu', 'tamoo6@yopmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '', 1, '3f39ef7300d23f1fb72e083fb0c0a6b288230766', '', NULL),
+(8, 'Ahamada', 'Tamou', 'fnac@vendeur.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '12 rue kjhfd ssd', 1, '', NULL, NULL),
+(9, 'test', 'test', 'cdiscount@vendeur.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'sdf dfe ef', 1, '', NULL, NULL),
+(12, 'Mr', 'Boutique', 'mymarketboutique@gmail.com', NULL, '', 1, NULL, '', NULL),
+(13, 'tamoo', 'tamoo', 'tamoo8@yopmail.com', '481f6cc0511143ccdd7e2d1b1b94faf0a700a8b49cd13922a70b5ae28acaa8c5', '', 1, '1a922567a3b4e0efdb2f487baa40422e282b0582', '', NULL),
+(14, NULL, NULL, 'mymarketboutique@gmail.com', NULL, NULL, NULL, NULL, NULL, 'https://www.google.com/profiles/108103601829176386765');
 
 -- --------------------------------------------------------
 
@@ -247,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`idMessage`),
   KEY `FK_Message_Article_idx` (`idArticle`),
   KEY `FK_Message_Vendeur_idx` (`idPersonne`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `message`
@@ -264,7 +268,9 @@ INSERT INTO `message` (`idMessage`, `date`, `contenu`, `vendeur`, `reclamation`,
 (9, '2017-11-06 09:24:55', 'mpo', NULL, NULL, 1, 38, 1),
 (10, '2017-11-06 21:32:35', 'slt', NULL, NULL, 9, 59, 1),
 (11, '2017-11-06 21:32:52', 're', NULL, NULL, 9, 59, 1),
-(12, '2017-11-06 21:37:07', 'test', NULL, NULL, 1, 37, 1);
+(12, '2017-11-06 21:37:07', 'test', NULL, NULL, 1, 37, 1),
+(13, '2017-11-07 08:21:27', 'très bon produit', NULL, NULL, 8, 59, 1),
+(14, '2017-11-08 12:48:40', 'azerty', NULL, NULL, 12, 39, 1);
 
 -- --------------------------------------------------------
 

@@ -24,7 +24,8 @@ $( document ).ready(function(){
                   location.reload();
                 }else if(reponse.message=="valide"){
                   $.get("ajaxReponse/ajaxMessageValideConnexion.html", function(data){
-                      $("#alertZone").html(data).fadeIn(2000, function(){$(this).fadeOut(1000);});;
+                      $("#alertZone").html(data).fadeIn(2000, function(){$(this).fadeOut(2000);});
+                      $( "#ConnexionDialog" ).dialog("close");
                   });
                 }else if(reponse.message=="error"){
                    $.get("ajaxReponse/ajaxMessageErrorConnexion.html", function(data){
@@ -45,7 +46,7 @@ $( document ).ready(function(){
 
     dialog = $( "#ConnexionDialog" ).dialog({
         autoOpen: false,
-        height: 300,
+        height: 350,
         width: 250,
         modal: true,
         buttons: {
