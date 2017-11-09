@@ -18,9 +18,9 @@ if(isset($_POST['idArticle'])){
 }
 
 
-$loaderfile = new Twig_Loader_Filesystem('ajaxReponse/');
+$loaderfile = new Twig_Loader_Filesystem('view/');
 $twig = new Twig_Environment($loaderfile);
 
 $reponse=array("message"=>"success");
-echo $twig->render('json.html', array("reponse"=>$message,"session"=>$session));
+echo $twig->render('ajaxReponse/json.html', array("reponse"=>$message,"session"=>$session));
 ?>

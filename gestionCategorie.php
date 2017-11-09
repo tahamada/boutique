@@ -3,6 +3,7 @@ require "vendor/autoload.php";
 include "Autoload.php";
 include "funct/session.php";
 
+
 if(isset($_SESSION['user']['role']) && $_SESSION['user']['role']=="vendeur"){  
 	if(isset($_POST['enregistrer'])){
 		$_POST['nom'];
@@ -29,7 +30,7 @@ if(isset($_SESSION['user']['role']) && $_SESSION['user']['role']=="vendeur"){
 
 	$loaderfile = new Twig_Loader_Filesystem('view/');
 	$twig = new Twig_Environment($loaderfile);
-	echo $twig->render('gestionCategorie.html', array('categorie'=>$listeoCategorie));
+	echo $twig->render('gestionCategorie.html', array('categorie'=>$listeoCategorie,"session"=>$session));
 	
 }
 else

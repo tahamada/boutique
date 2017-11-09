@@ -22,7 +22,7 @@
 				<td>  <input type="number" class="quantite" value="{{item.quantite}}" min="1" max="99"/></td>
 				<td class="etatStock"></td>
 				<td><button class='btn BtnDelPanier'>Supprimer</button>
-					 {% if session=='ok'%}<button class='btn BtnReserverPanier hidden'>Reserver</button>{% endif %}
+					 {% if session['val'] is defined %}<button class='btn BtnReserverPanier hidden'>Reserver</button>{% endif %}
 					</td>
 			</tr>
 		{% endfor %}
